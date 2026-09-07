@@ -101,9 +101,9 @@
   },
   "baseline_metrics": {
     "model": "Regresi\u00f3n lineal",
-    "RMSE": 173.47,
-    "MAE": 66.89,
-    "R2": 0.77,
-    "MAPE": 26.77
+    "RMSE": 172.37,
+    "MAE": 62.83,
+    "R2": 0.69,
+    "MAPE": 25.77
   }
 }

@@ -837,7 +837,7 @@ def load_test_matrix():
 @st.cache_data
 def load_test_evaluation():
     """Sesgo del modelo (predicho - real) en el set de test, por distrito y por
-    quintil de precio. Mismo análisis que 03_model_evaluation.ipynb, recalculado
+    quintil de precio. Mismo análisis que 05_model_evaluation.ipynb, recalculado
     aquí para poder mostrarlo en la app."""
     test_df = pd.read_csv(PROJECT_DIR / "data" / "processed" / "listings_test.csv")
     X = test_df[FEATURE_COLS].copy()

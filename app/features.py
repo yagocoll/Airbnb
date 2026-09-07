@@ -20,7 +20,7 @@ with open(PROJECT_DIR / "models" / "model_metadata.json", encoding="utf-8") as f
 FEATURE_COLS = METADATA["feature_cols"]
 
 # Árbol espacial sobre los anuncios reales (mismo universo y radio que
-# n_nearby_150m en 02D_fe_listings_full.ipynb), para poder calcular la densidad
+# n_nearby_150m en 02_feature_engineering.ipynb), para poder calcular la densidad
 # de un anuncio nuevo/simulado sin tener que recorrer los ~13000 anuncios cada vez.
 _EARTH_R_KM = 6371.0
 _NEARBY_RADIUS_M = 150
@@ -47,7 +47,7 @@ NEIGHBOURHOODS_BY_DISTRICT = {
 
 ROOM_TYPES = ["Entire home/apt", "Private room", "Shared room", "Hotel room"]
 
-# Mismas 13 categorías que quedaron como columnas propias en 02D_fe_listings_full.ipynb
+# Mismas 13 categorías que quedaron como columnas propias en 02_feature_engineering.ipynb
 # (>=30 apariciones en el dataset); el resto se agrupa en "Other".
 PROPERTY_TYPES = [
     "Entire rental unit",
@@ -66,7 +66,7 @@ PROPERTY_TYPES = [
     "Other",
 ]
 
-CITY_CENTER = (41.3874, 2.1686)  # Plaça Catalunya, misma referencia que en 02D
+CITY_CENTER = (41.3874, 2.1686)  # Plaça Catalunya, misma referencia que en 02_feature_engineering.ipynb
 
 FEATURE_LABELS = {
     "minimum_nights": "Estancia mínima (noches)",
@@ -231,7 +231,7 @@ def build_features(inputs: dict):
 
 
 def confidence_flags(inputs: dict):
-    """Señales de baja confianza documentadas en 03_model_evaluation.ipynb:
+    """Señales de baja confianza documentadas en 05_model_evaluation.ipynb:
     anuncios tipo Group Flat (cola alta de precio) y distritos con poca muestra.
     """
     flags = []
