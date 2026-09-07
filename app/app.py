@@ -71,6 +71,10 @@ WHATIF_LABELS = {
     "listing_age_days": "Días desde la publicación",
     "days_since_last_review": "Días desde la última reseña",
     "estimated_occupancy_l365d": "Noches ocupadas último año",
+    "has_ac": "Aire acondicionado",
+    "has_pool": "Piscina",
+    "has_dishwasher": "Lavavajillas",
+    "n_amenities": "Nº de amenities",
 }
 
 WHATIF_NUMERIC_VALUES = {
@@ -94,6 +98,8 @@ WHATIF_NUMERIC_VALUES = {
     "neighbourhood_price_encoded": [80, 120, 160, 200, 250, 300, 350, 400, 450],
     "distance_to_center_km": [0, 0.5, 1, 2, 3, 4, 5, 6, 8],
     "host_entire_homes_ratio": [0, 0.25, 0.5, 0.75, 1.0],
+    "n_amenities": [0, 10, 20, 30, 40, 50, 60, 84],
+    "n_nearby_150m": [0, 25, 50, 75, 100, 125, 150, 165],
 }
 
 PDP_GROUPS = {
@@ -125,6 +131,11 @@ PDP_GROUPS = {
     "Tiene reseñas": {"kind": "boolean", "col": "has_reviews"},
     "Foto de perfil": {"kind": "boolean", "col": "host_has_profile_pic"},
     "% de vivienda entera del anfitrión": {"kind": "numeric", "cols": ["host_entire_homes_ratio"], "sample_key": "host_entire_homes_ratio"},
+    "Aire acondicionado": {"kind": "boolean", "col": "has_ac"},
+    "Piscina": {"kind": "boolean", "col": "has_pool"},
+    "Lavavajillas": {"kind": "boolean", "col": "has_dishwasher"},
+    "Nº de amenities": {"kind": "numeric", "cols": ["n_amenities"], "sample_key": "n_amenities"},
+    "Densidad de anuncios cercanos": {"kind": "numeric", "cols": ["n_nearby_150m"], "sample_key": "n_nearby_150m"},
 }
 
 # De cada clave de WHATIF_LABELS a la fila del waterfall que le corresponde (las
@@ -157,6 +168,10 @@ WHATIF_KEY_TO_GROUP = {
     "listing_age_days": "Antigüedad del anuncio",
     "days_since_last_review": "Días desde la última reseña",
     "estimated_occupancy_l365d": "Noches ocupadas último año",
+    "has_ac": "Aire acondicionado",
+    "has_pool": "Piscina",
+    "has_dishwasher": "Lavavajillas",
+    "n_amenities": "Nº de amenities",
 }
 
 # Para el resumen SHAP: solo variables con un valor propio y continuo (numéricas y
@@ -1212,6 +1227,10 @@ DEFAULT_INPUTS = {
     "is_new_listing": True,
     "latitude": NEIGHBOURHOOD_STATS[NEIGHBOURHOODS_BY_DISTRICT["Eixample"][0]]["lat"],
     "longitude": NEIGHBOURHOOD_STATS[NEIGHBOURHOODS_BY_DISTRICT["Eixample"][0]]["lon"],
+    "has_ac": True,
+    "has_pool": False,
+    "has_dishwasher": False,
+    "n_amenities": 30,
 }
 
 def page_home():
@@ -1762,6 +1781,30 @@ def page_formulario():
                         help="Indica si el anuncio tiene número de licencia turística registrado, requisito legal en Barcelona para alquileres de corta duración.",
                     )
 
+        with st.container(border=True, key="section_form_comodidades"):
+            st.markdown("#### :material/checklist: Comodidades")
+            ac1, ac2, ac3 = st.columns(3)
+            with ac1:
+                has_ac = st.toggle(
+                    "Aire acondicionado", value=True,
+                    help="Muy común en Barcelona (más del 80% de los anuncios lo tiene).",
+                )
+            with ac2:
+                has_pool = st.toggle(
+                    "Piscina", value=False,
+                    help="Poco frecuente (menos del 5% de los anuncios), pero un factor de lujo cuando está.",
+                )
+            with ac3:
+                has_dishwasher = st.toggle(
+                    "Lavavajillas", value=False,
+                    help="Presente en algo menos de la mitad de los anuncios.",
+                )
+            n_amenities = st.number_input(
+                "Nº total de comodidades del anuncio", min_value=0, max_value=84, value=30,
+                help="Recuento total de comodidades marcadas en el anuncio (wifi, cocina, calefacción...), "
+                "no solo las tres de arriba. La media real es de unas 30.",
+            )
+
         with st.container(border=True, key="section_form_historial"):
             st.markdown("#### :material/history: Historial del anuncio")
             is_new_listing = st.toggle(
@@ -1829,6 +1872,10 @@ def page_formulario():
         "is_new_listing": is_new_listing,
         "latitude": latitude,
         "longitude": longitude,
+        "has_ac": has_ac,
+        "has_pool": has_pool,
+        "has_dishwasher": has_dishwasher,
+        "n_amenities": n_amenities,
         **review_inputs,
     }
 

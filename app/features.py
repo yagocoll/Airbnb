@@ -7,6 +7,10 @@ import json
 import math
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
+from sklearn.neighbors import BallTree
+
 APP_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = APP_DIR.parent
 
@@ -14,6 +18,22 @@ with open(PROJECT_DIR / "models" / "model_metadata.json", encoding="utf-8") as f
     METADATA = json.load(f)
 
 FEATURE_COLS = METADATA["feature_cols"]
+
+# Árbol espacial sobre los anuncios reales (mismo universo y radio que
+# n_nearby_150m en 02D_fe_listings_full.ipynb), para poder calcular la densidad
+# de un anuncio nuevo/simulado sin tener que recorrer los ~13000 anuncios cada vez.
+_EARTH_R_KM = 6371.0
+_NEARBY_RADIUS_M = 150
+_nearby_coords = pd.read_csv(
+    PROJECT_DIR / "data" / "processed" / "listings_full_clean.csv", usecols=["latitude", "longitude"]
+)
+_NEARBY_TREE = BallTree(np.radians(_nearby_coords[["latitude", "longitude"]].to_numpy()), metric="haversine")
+
+
+def count_nearby(lat, lon, radius_m=_NEARBY_RADIUS_M):
+    radius_rad = (radius_m / 1000) / _EARTH_R_KM
+    count = _NEARBY_TREE.query_radius(np.radians([[lat, lon]]), r=radius_rad, count_only=True)
+    return int(count[0])
 
 with open(APP_DIR / "assets" / "neighbourhood_stats.json", encoding="utf-8") as f:
     NEIGHBOURHOOD_STATS = json.load(f)
@@ -76,6 +96,11 @@ FEATURE_LABELS = {
     "listing_age_days": "Antigüedad del anuncio (días)",
     "days_since_last_review": "Días desde la última reseña",
     "estimated_occupancy_l365d": "Noches ocupadas último año",
+    "has_ac": "Aire acondicionado",
+    "has_pool": "Piscina",
+    "has_dishwasher": "Lavavajillas",
+    "n_amenities": "Nº de amenities",
+    "n_nearby_150m": "Anuncios cercanos (150m)",
 }
 
 
@@ -123,6 +148,7 @@ def build_features(inputs: dict):
     lat = inputs.get("latitude") or neigh_stats["lat"]
     lon = inputs.get("longitude") or neigh_stats["lon"]
     distance_to_center_km = haversine_km(lat, lon, *CITY_CENTER)
+    n_nearby_150m = count_nearby(lat, lon)
 
     listings_count = inputs["calculated_host_listings_count"]
     tier = host_size_tier(listings_count)
@@ -182,6 +208,11 @@ def build_features(inputs: dict):
         "days_since_last_review": days_since_last_review,
         "distance_to_center_km": distance_to_center_km,
         "host_user_tenure_years": inputs["host_user_tenure_years"],
+        "has_ac": inputs["has_ac"],
+        "has_pool": inputs["has_pool"],
+        "has_dishwasher": inputs["has_dishwasher"],
+        "n_amenities": inputs["n_amenities"],
+        "n_nearby_150m": n_nearby_150m,
     }
 
     for rt in ROOM_TYPES:

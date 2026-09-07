@@ -1,6 +1,6 @@
 {
   "model": "HistGradientBoostingRegressor",
-  "date": "2026-09-04",
+  "date": "2026-09-07",
   "target": "price",
   "id_cols": [
     "id",
@@ -78,6 +78,11 @@
     "listing_age_days",
     "days_since_last_review",
     "distance_to_center_km",
+    "n_nearby_150m",
+    "has_ac",
+    "has_pool",
+    "has_dishwasher",
+    "n_amenities",
     "host_user_tenure_years"
   ],
   "best_params": {
@@ -89,10 +94,10 @@
   },
   "test_metrics": {
     "modelo": "Hist Gradient Boosting (final)",
-    "RMSE": 134.90033565613476,
-    "MAE": 52.21666524654111,
-    "R2": 0.8585286462287347,
-    "MAPE": 20.351604430099684
+    "RMSE": 140.95513459919064,
+    "MAE": 50.820143003717554,
+    "R2": 0.7908171969714554,
+    "MAPE": 20.558957975340856
   },
   "baseline_metrics": {
     "model": "Regresi\u00f3n lineal",
