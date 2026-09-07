@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Datos crudos: pesados y regenerables desde la fuente original (Inside Airbnb).
+# Se mantiene data/processed/ porque la app lo necesita para arrancar.
+data/raw/
+data/external/
