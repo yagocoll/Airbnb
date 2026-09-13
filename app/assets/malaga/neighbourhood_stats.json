@@ -1,0 +1,79 @@
+{
+ "Bailen-Miraflores": {
+  "district": "Bailen-Miraflores",
+  "lat": 36.725236,
+  "lon": -4.437139,
+  "price_encoded": 151.85,
+  "n_listings": 283
+ },
+ "Campanillas": {
+  "district": "Campanillas",
+  "lat": 36.744842,
+  "lon": -4.552675,
+  "price_encoded": 339.39,
+  "n_listings": 21
+ },
+ "Carretera de Cadiz": {
+  "district": "Carretera de Cadiz",
+  "lat": 36.700533,
+  "lon": -4.440889,
+  "price_encoded": 194.2,
+  "n_listings": 831
+ },
+ "Centro": {
+  "district": "Centro",
+  "lat": 36.722848,
+  "lon": -4.420945,
+  "price_encoded": 209.9,
+  "n_listings": 5902
+ },
+ "Churriana": {
+  "district": "Churriana",
+  "lat": 36.662476,
+  "lon": -4.482324,
+  "price_encoded": 373.3,
+  "n_listings": 124
+ },
+ "Ciudad Jardin": {
+  "district": "Ciudad Jardin",
+  "lat": 36.753482,
+  "lon": -4.415912,
+  "price_encoded": 194.84,
+  "n_listings": 78
+ },
+ "Cruz de Humilladero": {
+  "district": "Cruz de Humilladero",
+  "lat": 36.71367,
+  "lon": -4.441596,
+  "price_encoded": 170.26,
+  "n_listings": 373
+ },
+ "Este": {
+  "district": "Este",
+  "lat": 36.725627,
+  "lon": -4.366506,
+  "price_encoded": 285.61,
+  "n_listings": 826
+ },
+ "Palma-Palmilla": {
+  "district": "Palma-Palmilla",
+  "lat": 36.735627,
+  "lon": -4.428976,
+  "price_encoded": 213.42,
+  "n_listings": 203
+ },
+ "Puerto de la Torre": {
+  "district": "Puerto de la Torre",
+  "lat": 36.742074,
+  "lon": -4.480543,
+  "price_encoded": 245.32,
+  "n_listings": 32
+ },
+ "Teatinos-Universidad": {
+  "district": "Teatinos-Universidad",
+  "lat": 36.720247,
+  "lon": -4.471009,
+  "price_encoded": 193.8,
+  "n_listings": 69
+ }
+}

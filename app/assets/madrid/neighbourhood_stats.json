@@ -1,0 +1,891 @@
+{
+  "Abrantes": {
+    "district": "Carabanchel",
+    "lat": 40.381179,
+    "lon": -3.727844,
+    "price_encoded": 92.41,
+    "n_listings": 36
+  },
+  "Acacias": {
+    "district": "Arganzuela",
+    "lat": 40.402137,
+    "lon": -3.705052,
+    "price_encoded": 128.28,
+    "n_listings": 148
+  },
+  "Adelfas": {
+    "district": "Retiro",
+    "lat": 40.400905,
+    "lon": -3.670562,
+    "price_encoded": 135.24,
+    "n_listings": 108
+  },
+  "Aeropuerto": {
+    "district": "Barajas",
+    "lat": 40.465215,
+    "lon": -3.57769,
+    "price_encoded": 145.49,
+    "n_listings": 11
+  },
+  "Aguilas": {
+    "district": "Latina",
+    "lat": 40.380398,
+    "lon": -3.771846,
+    "price_encoded": 96.69,
+    "n_listings": 40
+  },
+  "Alameda de Osuna": {
+    "district": "Barajas",
+    "lat": 40.456536,
+    "lon": -3.58939,
+    "price_encoded": 154.67,
+    "n_listings": 25
+  },
+  "Almagro": {
+    "district": "Chamberí",
+    "lat": 40.432632,
+    "lon": -3.694449,
+    "price_encoded": 163.05,
+    "n_listings": 165
+  },
+  "Almenara": {
+    "district": "Tetuán",
+    "lat": 40.470192,
+    "lon": -3.692597,
+    "price_encoded": 128.72,
+    "n_listings": 165
+  },
+  "Almendrales": {
+    "district": "Usera",
+    "lat": 40.384877,
+    "lon": -3.701381,
+    "price_encoded": 104.2,
+    "n_listings": 93
+  },
+  "Aluche": {
+    "district": "Latina",
+    "lat": 40.391618,
+    "lon": -3.757479,
+    "price_encoded": 97.56,
+    "n_listings": 49
+  },
+  "Ambroz": {
+    "district": "Vicálvaro",
+    "lat": 40.406971,
+    "lon": -3.605341,
+    "price_encoded": 117.76,
+    "n_listings": 10
+  },
+  "Amposta": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.427012,
+    "lon": -3.619454,
+    "price_encoded": 154.23,
+    "n_listings": 11
+  },
+  "Apostol Santiago": {
+    "district": "Hortaleza",
+    "lat": 40.476506,
+    "lon": -3.660409,
+    "price_encoded": 101.81,
+    "n_listings": 30
+  },
+  "Arapiles": {
+    "district": "Chamberí",
+    "lat": 40.433299,
+    "lon": -3.708604,
+    "price_encoded": 146.04,
+    "n_listings": 199
+  },
+  "Aravaca": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.456109,
+    "lon": -3.780071,
+    "price_encoded": 136.27,
+    "n_listings": 41
+  },
+  "Arcos": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.423755,
+    "lon": -3.61689,
+    "price_encoded": 134.06,
+    "n_listings": 33
+  },
+  "Argüelles": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.426143,
+    "lon": -3.716079,
+    "price_encoded": 153.11,
+    "n_listings": 246
+  },
+  "Atocha": {
+    "district": "Arganzuela",
+    "lat": 40.400559,
+    "lon": -3.682127,
+    "price_encoded": 172.55,
+    "n_listings": 49
+  },
+  "Bellas Vistas": {
+    "district": "Tetuán",
+    "lat": 40.451168,
+    "lon": -3.70603,
+    "price_encoded": 133.72,
+    "n_listings": 196
+  },
+  "Berruguete": {
+    "district": "Tetuán",
+    "lat": 40.459841,
+    "lon": -3.704351,
+    "price_encoded": 121.02,
+    "n_listings": 207
+  },
+  "Buenavista": {
+    "district": "Carabanchel",
+    "lat": 40.368209,
+    "lon": -3.751478,
+    "price_encoded": 90.37,
+    "n_listings": 39
+  },
+  "Butarque": {
+    "district": "Villaverde",
+    "lat": 40.348082,
+    "lon": -3.679924,
+    "price_encoded": 102.43,
+    "n_listings": 21
+  },
+  "Campamento": {
+    "district": "Latina",
+    "lat": 40.395825,
+    "lon": -3.774126,
+    "price_encoded": 110.87,
+    "n_listings": 20
+  },
+  "Canillas": {
+    "district": "Hortaleza",
+    "lat": 40.463563,
+    "lon": -3.645822,
+    "price_encoded": 111.49,
+    "n_listings": 125
+  },
+  "Canillejas": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.440926,
+    "lon": -3.610281,
+    "price_encoded": 121.72,
+    "n_listings": 84
+  },
+  "Casa de Campo": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.425838,
+    "lon": -3.727195,
+    "price_encoded": 134.71,
+    "n_listings": 81
+  },
+  "Casco Histórico de Barajas": {
+    "district": "Barajas",
+    "lat": 40.473563,
+    "lon": -3.578683,
+    "price_encoded": 158.29,
+    "n_listings": 44
+  },
+  "Casco Histórico de Vallecas": {
+    "district": "Villa de Vallecas",
+    "lat": 40.374195,
+    "lon": -3.618609,
+    "price_encoded": 127.1,
+    "n_listings": 75
+  },
+  "Casco Histórico de Vicálvaro": {
+    "district": "Vicálvaro",
+    "lat": 40.400398,
+    "lon": -3.595067,
+    "price_encoded": 100.58,
+    "n_listings": 41
+  },
+  "Castellana": {
+    "district": "Salamanca",
+    "lat": 40.433428,
+    "lon": -3.683583,
+    "price_encoded": 219.26,
+    "n_listings": 146
+  },
+  "Castilla": {
+    "district": "Chamartín",
+    "lat": 40.471316,
+    "lon": -3.684234,
+    "price_encoded": 132.03,
+    "n_listings": 70
+  },
+  "Castillejos": {
+    "district": "Tetuán",
+    "lat": 40.459836,
+    "lon": -3.695804,
+    "price_encoded": 123.26,
+    "n_listings": 243
+  },
+  "Chopera": {
+    "district": "Arganzuela",
+    "lat": 40.3962,
+    "lon": -3.698381,
+    "price_encoded": 121.87,
+    "n_listings": 108
+  },
+  "Ciudad Jardín": {
+    "district": "Chamartín",
+    "lat": 40.446733,
+    "lon": -3.673091,
+    "price_encoded": 143.8,
+    "n_listings": 80
+  },
+  "Ciudad Universitaria": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.457163,
+    "lon": -3.720883,
+    "price_encoded": 149.9,
+    "n_listings": 55
+  },
+  "Colina": {
+    "district": "Ciudad Lineal",
+    "lat": 40.457953,
+    "lon": -3.660899,
+    "price_encoded": 134.09,
+    "n_listings": 20
+  },
+  "Comillas": {
+    "district": "Carabanchel",
+    "lat": 40.394117,
+    "lon": -3.711716,
+    "price_encoded": 134.77,
+    "n_listings": 109
+  },
+  "Concepción": {
+    "district": "Ciudad Lineal",
+    "lat": 40.437708,
+    "lon": -3.651797,
+    "price_encoded": 131.89,
+    "n_listings": 70
+  },
+  "Corralejos": {
+    "district": "Barajas",
+    "lat": 40.467017,
+    "lon": -3.590331,
+    "price_encoded": 128.42,
+    "n_listings": 12
+  },
+  "Cortes": {
+    "district": "Centro",
+    "lat": 40.41443,
+    "lon": -3.69852,
+    "price_encoded": 209.3,
+    "n_listings": 864
+  },
+  "Costillares": {
+    "district": "Ciudad Lineal",
+    "lat": 40.47334,
+    "lon": -3.666062,
+    "price_encoded": 151.57,
+    "n_listings": 29
+  },
+  "Cuatro Caminos": {
+    "district": "Tetuán",
+    "lat": 40.451647,
+    "lon": -3.699521,
+    "price_encoded": 124.06,
+    "n_listings": 395
+  },
+  "Cuatro Vientos": {
+    "district": "Latina",
+    "lat": 40.371513,
+    "lon": -3.771478,
+    "price_encoded": 127.3,
+    "n_listings": 6
+  },
+  "Cármenes": {
+    "district": "Latina",
+    "lat": 40.402775,
+    "lon": -3.735568,
+    "price_encoded": 106.77,
+    "n_listings": 43
+  },
+  "Delicias": {
+    "district": "Arganzuela",
+    "lat": 40.397868,
+    "lon": -3.693269,
+    "price_encoded": 129.41,
+    "n_listings": 117
+  },
+  "El Goloso": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.51462,
+    "lon": -3.699339,
+    "price_encoded": 148.3,
+    "n_listings": 4
+  },
+  "El Pardo": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.524807,
+    "lon": -3.778032,
+    "price_encoded": 149.98,
+    "n_listings": 2
+  },
+  "El Plantío": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.469927,
+    "lon": -3.821082,
+    "price_encoded": 152.41,
+    "n_listings": 17
+  },
+  "El Viso": {
+    "district": "Chamartín",
+    "lat": 40.445308,
+    "lon": -3.684981,
+    "price_encoded": 200.47,
+    "n_listings": 66
+  },
+  "Embajadores": {
+    "district": "Centro",
+    "lat": 40.410185,
+    "lon": -3.70339,
+    "price_encoded": 164.79,
+    "n_listings": 2037
+  },
+  "Entrevías": {
+    "district": "Puente de Vallecas",
+    "lat": 40.380194,
+    "lon": -3.669525,
+    "price_encoded": 92.64,
+    "n_listings": 54
+  },
+  "Estrella": {
+    "district": "Retiro",
+    "lat": 40.413252,
+    "lon": -3.667599,
+    "price_encoded": 151.27,
+    "n_listings": 26
+  },
+  "Fontarrón": {
+    "district": "Moratalaz",
+    "lat": 40.402978,
+    "lon": -3.648908,
+    "price_encoded": 140.36,
+    "n_listings": 27
+  },
+  "Fuente del Berro": {
+    "district": "Salamanca",
+    "lat": 40.426162,
+    "lon": -3.665561,
+    "price_encoded": 152.72,
+    "n_listings": 107
+  },
+  "Fuentelareina": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.476829,
+    "lon": -3.741948,
+    "price_encoded": 223.12,
+    "n_listings": 5
+  },
+  "Gaztambide": {
+    "district": "Chamberí",
+    "lat": 40.435226,
+    "lon": -3.714012,
+    "price_encoded": 131.75,
+    "n_listings": 201
+  },
+  "Goya": {
+    "district": "Salamanca",
+    "lat": 40.425602,
+    "lon": -3.675114,
+    "price_encoded": 208.09,
+    "n_listings": 291
+  },
+  "Guindalera": {
+    "district": "Salamanca",
+    "lat": 40.434966,
+    "lon": -3.668894,
+    "price_encoded": 156.75,
+    "n_listings": 341
+  },
+  "Hellín": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.430528,
+    "lon": -3.617859,
+    "price_encoded": 126.64,
+    "n_listings": 10
+  },
+  "Hispanoamérica": {
+    "district": "Chamartín",
+    "lat": 40.455629,
+    "lon": -3.678615,
+    "price_encoded": 168.95,
+    "n_listings": 108
+  },
+  "Horcajo": {
+    "district": "Moratalaz",
+    "lat": 40.404865,
+    "lon": -3.62632,
+    "price_encoded": 142.33,
+    "n_listings": 2
+  },
+  "Ibiza": {
+    "district": "Retiro",
+    "lat": 40.419046,
+    "lon": -3.675832,
+    "price_encoded": 156.26,
+    "n_listings": 189
+  },
+  "Imperial": {
+    "district": "Arganzuela",
+    "lat": 40.40914,
+    "lon": -3.718328,
+    "price_encoded": 154.04,
+    "n_listings": 149
+  },
+  "Jerónimos": {
+    "district": "Retiro",
+    "lat": 40.413443,
+    "lon": -3.685735,
+    "price_encoded": 220.83,
+    "n_listings": 80
+  },
+  "Justicia": {
+    "district": "Centro",
+    "lat": 40.422981,
+    "lon": -3.698443,
+    "price_encoded": 193.12,
+    "n_listings": 928
+  },
+  "La Paz": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.479175,
+    "lon": -3.694157,
+    "price_encoded": 140.68,
+    "n_listings": 23
+  },
+  "Legazpi": {
+    "district": "Arganzuela",
+    "lat": 40.388432,
+    "lon": -3.690406,
+    "price_encoded": 148.6,
+    "n_listings": 38
+  },
+  "Lista": {
+    "district": "Salamanca",
+    "lat": 40.431881,
+    "lon": -3.675355,
+    "price_encoded": 161.64,
+    "n_listings": 163
+  },
+  "Los Angeles": {
+    "district": "Villaverde",
+    "lat": 40.356347,
+    "lon": -3.69904,
+    "price_encoded": 92.48,
+    "n_listings": 44
+  },
+  "Los Rosales": {
+    "district": "Villaverde",
+    "lat": 40.352873,
+    "lon": -3.68775,
+    "price_encoded": 114.47,
+    "n_listings": 36
+  },
+  "Lucero": {
+    "district": "Latina",
+    "lat": 40.405151,
+    "lon": -3.748242,
+    "price_encoded": 95.27,
+    "n_listings": 62
+  },
+  "Marroquina": {
+    "district": "Moratalaz",
+    "lat": 40.409252,
+    "lon": -3.647351,
+    "price_encoded": 125.46,
+    "n_listings": 11
+  },
+  "Media Legua": {
+    "district": "Moratalaz",
+    "lat": 40.409053,
+    "lon": -3.656033,
+    "price_encoded": 107.54,
+    "n_listings": 15
+  },
+  "Mirasierra": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.491842,
+    "lon": -3.715168,
+    "price_encoded": 192.27,
+    "n_listings": 15
+  },
+  "Moscardó": {
+    "district": "Usera",
+    "lat": 40.387889,
+    "lon": -3.705323,
+    "price_encoded": 111.35,
+    "n_listings": 105
+  },
+  "Niño Jesús": {
+    "district": "Retiro",
+    "lat": 40.412712,
+    "lon": -3.674059,
+    "price_encoded": 207.58,
+    "n_listings": 56
+  },
+  "Nueva España": {
+    "district": "Chamartín",
+    "lat": 40.462654,
+    "lon": -3.684117,
+    "price_encoded": 143.78,
+    "n_listings": 140
+  },
+  "Numancia": {
+    "district": "Puente de Vallecas",
+    "lat": 40.398634,
+    "lon": -3.662292,
+    "price_encoded": 116.45,
+    "n_listings": 183
+  },
+  "Opañel": {
+    "district": "Carabanchel",
+    "lat": 40.390729,
+    "lon": -3.72167,
+    "price_encoded": 120.54,
+    "n_listings": 123
+  },
+  "Orcasitas": {
+    "district": "Usera",
+    "lat": 40.36892,
+    "lon": -3.712113,
+    "price_encoded": 127.2,
+    "n_listings": 16
+  },
+  "Orcasur": {
+    "district": "Usera",
+    "lat": 40.378156,
+    "lon": -3.694945,
+    "price_encoded": 110.55,
+    "n_listings": 59
+  },
+  "Pacífico": {
+    "district": "Retiro",
+    "lat": 40.404303,
+    "lon": -3.677655,
+    "price_encoded": 127.97,
+    "n_listings": 225
+  },
+  "Palacio": {
+    "district": "Centro",
+    "lat": 40.415867,
+    "lon": -3.710707,
+    "price_encoded": 184.29,
+    "n_listings": 1451
+  },
+  "Palomas": {
+    "district": "Hortaleza",
+    "lat": 40.451996,
+    "lon": -3.610526,
+    "price_encoded": 155.23,
+    "n_listings": 5
+  },
+  "Palomeras Bajas": {
+    "district": "Puente de Vallecas",
+    "lat": 40.388377,
+    "lon": -3.658491,
+    "price_encoded": 100.54,
+    "n_listings": 38
+  },
+  "Palomeras Sureste": {
+    "district": "Puente de Vallecas",
+    "lat": 40.385866,
+    "lon": -3.641326,
+    "price_encoded": 122.42,
+    "n_listings": 37
+  },
+  "Palos de Moguer": {
+    "district": "Arganzuela",
+    "lat": 40.404093,
+    "lon": -3.69439,
+    "price_encoded": 138.73,
+    "n_listings": 301
+  },
+  "Pavones": {
+    "district": "Moratalaz",
+    "lat": 40.396772,
+    "lon": -3.635008,
+    "price_encoded": 122.26,
+    "n_listings": 5
+  },
+  "Peñagrande": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.478969,
+    "lon": -3.723041,
+    "price_encoded": 179.33,
+    "n_listings": 45
+  },
+  "Pilar": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.476513,
+    "lon": -3.710916,
+    "price_encoded": 115.79,
+    "n_listings": 50
+  },
+  "Pinar del Rey": {
+    "district": "Hortaleza",
+    "lat": 40.472995,
+    "lon": -3.644359,
+    "price_encoded": 131.95,
+    "n_listings": 120
+  },
+  "Piovera": {
+    "district": "Hortaleza",
+    "lat": 40.456524,
+    "lon": -3.638362,
+    "price_encoded": 153.22,
+    "n_listings": 22
+  },
+  "Portazgo": {
+    "district": "Puente de Vallecas",
+    "lat": 40.389144,
+    "lon": -3.648641,
+    "price_encoded": 93.1,
+    "n_listings": 37
+  },
+  "Pradolongo": {
+    "district": "Usera",
+    "lat": 40.381962,
+    "lon": -3.707378,
+    "price_encoded": 109.92,
+    "n_listings": 47
+  },
+  "Prosperidad": {
+    "district": "Chamartín",
+    "lat": 40.442424,
+    "lon": -3.673028,
+    "price_encoded": 138.7,
+    "n_listings": 199
+  },
+  "Pueblo Nuevo": {
+    "district": "Ciudad Lineal",
+    "lat": 40.429377,
+    "lon": -3.64028,
+    "price_encoded": 122.94,
+    "n_listings": 190
+  },
+  "Puerta Bonita": {
+    "district": "Carabanchel",
+    "lat": 40.379928,
+    "lon": -3.738437,
+    "price_encoded": 102.09,
+    "n_listings": 60
+  },
+  "Puerta del Angel": {
+    "district": "Latina",
+    "lat": 40.410217,
+    "lon": -3.731714,
+    "price_encoded": 106.21,
+    "n_listings": 196
+  },
+  "Quintana": {
+    "district": "Ciudad Lineal",
+    "lat": 40.435311,
+    "lon": -3.648122,
+    "price_encoded": 127.62,
+    "n_listings": 93
+  },
+  "Recoletos": {
+    "district": "Salamanca",
+    "lat": 40.424546,
+    "lon": -3.685602,
+    "price_encoded": 252.56,
+    "n_listings": 256
+  },
+  "Rejas": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.444464,
+    "lon": -3.580688,
+    "price_encoded": 127.71,
+    "n_listings": 121
+  },
+  "Rios Rosas": {
+    "district": "Chamberí",
+    "lat": 40.442134,
+    "lon": -3.699039,
+    "price_encoded": 150.31,
+    "n_listings": 199
+  },
+  "Rosas": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.429204,
+    "lon": -3.606995,
+    "price_encoded": 183.37,
+    "n_listings": 34
+  },
+  "Salvador": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.444323,
+    "lon": -3.634758,
+    "price_encoded": 174.17,
+    "n_listings": 16
+  },
+  "San Andrés": {
+    "district": "Villaverde",
+    "lat": 40.341602,
+    "lon": -3.707391,
+    "price_encoded": 99.7,
+    "n_listings": 85
+  },
+  "San Cristobal": {
+    "district": "Villaverde",
+    "lat": 40.342798,
+    "lon": -3.688116,
+    "price_encoded": 102.95,
+    "n_listings": 17
+  },
+  "San Diego": {
+    "district": "Puente de Vallecas",
+    "lat": 40.392981,
+    "lon": -3.667831,
+    "price_encoded": 117.5,
+    "n_listings": 192
+  },
+  "San Fermín": {
+    "district": "Usera",
+    "lat": 40.371685,
+    "lon": -3.690167,
+    "price_encoded": 95.36,
+    "n_listings": 43
+  },
+  "San Isidro": {
+    "district": "Carabanchel",
+    "lat": 40.395657,
+    "lon": -3.727961,
+    "price_encoded": 109.56,
+    "n_listings": 159
+  },
+  "San Juan Bautista": {
+    "district": "Ciudad Lineal",
+    "lat": 40.452223,
+    "lon": -3.655417,
+    "price_encoded": 217.84,
+    "n_listings": 22
+  },
+  "San Pascual": {
+    "district": "Ciudad Lineal",
+    "lat": 40.442316,
+    "lon": -3.652466,
+    "price_encoded": 133.73,
+    "n_listings": 29
+  },
+  "Santa Eugenia": {
+    "district": "Villa de Vallecas",
+    "lat": 40.382184,
+    "lon": -3.610313,
+    "price_encoded": 136.42,
+    "n_listings": 9
+  },
+  "Simancas": {
+    "district": "San Blas - Canillejas",
+    "lat": 40.43449,
+    "lon": -3.627635,
+    "price_encoded": 142.29,
+    "n_listings": 78
+  },
+  "Sol": {
+    "district": "Centro",
+    "lat": 40.417186,
+    "lon": -3.704579,
+    "price_encoded": 236.55,
+    "n_listings": 1115
+  },
+  "Timón": {
+    "district": "Barajas",
+    "lat": 40.473704,
+    "lon": -3.589517,
+    "price_encoded": 172.96,
+    "n_listings": 44
+  },
+  "Trafalgar": {
+    "district": "Chamberí",
+    "lat": 40.432293,
+    "lon": -3.701534,
+    "price_encoded": 160.99,
+    "n_listings": 378
+  },
+  "Universidad": {
+    "district": "Centro",
+    "lat": 40.424129,
+    "lon": -3.705204,
+    "price_encoded": 177.05,
+    "n_listings": 1646
+  },
+  "Valdeacederas": {
+    "district": "Tetuán",
+    "lat": 40.465964,
+    "lon": -3.701514,
+    "price_encoded": 108.98,
+    "n_listings": 204
+  },
+  "Valdefuentes": {
+    "district": "Hortaleza",
+    "lat": 40.49119,
+    "lon": -3.650367,
+    "price_encoded": 250.32,
+    "n_listings": 115
+  },
+  "Valdemarín": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.468097,
+    "lon": -3.784927,
+    "price_encoded": 143.28,
+    "n_listings": 11
+  },
+  "Valdezarza": {
+    "district": "Moncloa - Aravaca",
+    "lat": 40.464915,
+    "lon": -3.716452,
+    "price_encoded": 116.57,
+    "n_listings": 62
+  },
+  "Vallehermoso": {
+    "district": "Chamberí",
+    "lat": 40.44235,
+    "lon": -3.709802,
+    "price_encoded": 124.62,
+    "n_listings": 90
+  },
+  "Valverde": {
+    "district": "Fuencarral - El Pardo",
+    "lat": 40.494835,
+    "lon": -3.685289,
+    "price_encoded": 122.86,
+    "n_listings": 92
+  },
+  "Ventas": {
+    "district": "Ciudad Lineal",
+    "lat": 40.428036,
+    "lon": -3.653261,
+    "price_encoded": 120.75,
+    "n_listings": 180
+  },
+  "Vinateros": {
+    "district": "Moratalaz",
+    "lat": 40.405766,
+    "lon": -3.644964,
+    "price_encoded": 96.55,
+    "n_listings": 16
+  },
+  "Vista Alegre": {
+    "district": "Carabanchel",
+    "lat": 40.386464,
+    "lon": -3.740521,
+    "price_encoded": 109.83,
+    "n_listings": 82
+  },
+  "Zofío": {
+    "district": "Usera",
+    "lat": 40.381342,
+    "lon": -3.714696,
+    "price_encoded": 109.03,
+    "n_listings": 41
+  }
+}

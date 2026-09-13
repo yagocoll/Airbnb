@@ -1,0 +1,138 @@
+[
+ {
+  "feature": "Estancia mínima",
+  "importance": 0.2874298447820941
+ },
+ {
+  "feature": "Huéspedes",
+  "importance": 0.1644541165190526
+ },
+ {
+  "feature": "Tipo de alojamiento",
+  "importance": 0.12806567694341622
+ },
+ {
+  "feature": "% de vivienda entera del anfitrión",
+  "importance": 0.030402622541227033
+ },
+ {
+  "feature": "Nivel de precios del barrio",
+  "importance": 0.0248439725327691
+ },
+ {
+  "feature": "Baños",
+  "importance": 0.02210611583814499
+ },
+ {
+  "feature": "Días disponibles al año",
+  "importance": 0.017291985808661738
+ },
+ {
+  "feature": "Valoración media",
+  "importance": 0.012906401172360827
+ },
+ {
+  "feature": "Coordenadas exactas",
+  "importance": 0.010110138485952668
+ },
+ {
+  "feature": "Aire acondicionado",
+  "importance": 0.010074129582605017
+ },
+ {
+  "feature": "Nº de amenities",
+  "importance": 0.009964906693168584
+ },
+ {
+  "feature": "Anuncios que gestiona",
+  "importance": 0.008712435379188033
+ },
+ {
+  "feature": "Camas",
+  "importance": 0.007063299300904946
+ },
+ {
+  "feature": "Años como anfitrión",
+  "importance": 0.006945086819572099
+ },
+ {
+  "feature": "Años con cuenta en la plataforma",
+  "importance": 0.005617247149703175
+ },
+ {
+  "feature": "Noches ocupadas último año",
+  "importance": 0.005351661679825615
+ },
+ {
+  "feature": "Densidad de anuncios cercanos",
+  "importance": 0.004628744431742026
+ },
+ {
+  "feature": "Distancia al centro",
+  "importance": 0.004149004520387345
+ },
+ {
+  "feature": "Piscina",
+  "importance": 0.003970605070692468
+ },
+ {
+  "feature": "Dormitorios",
+  "importance": 0.0037577835779646573
+ },
+ {
+  "feature": "Tipo de propiedad",
+  "importance": 0.0034248078791401016
+ },
+ {
+  "feature": "Lavavajillas",
+  "importance": 0.0031919813648069507
+ },
+ {
+  "feature": "Estancia máxima",
+  "importance": 0.0029874692031309547
+ },
+ {
+  "feature": "Licencia turística",
+  "importance": 0.002006312088672568
+ },
+ {
+  "feature": "Días desde la última reseña",
+  "importance": 0.0019307851414722133
+ },
+ {
+  "feature": "Antigüedad del anuncio",
+  "importance": 0.0015090061402622367
+ },
+ {
+  "feature": "Reseñas al mes",
+  "importance": 0.001280486185272478
+ },
+ {
+  "feature": "Número de reseñas",
+  "importance": 0.0012768500198545919
+ },
+ {
+  "feature": "Superhost",
+  "importance": 0.0007300373445010777
+ },
+ {
+  "feature": "Reseñas último año",
+  "importance": 0.0006849046754627608
+ },
+ {
+  "feature": "Foto de perfil",
+  "importance": 6.554293512486264e-05
+ },
+ {
+  "feature": "Identidad verificada",
+  "importance": 0.0
+ },
+ {
+  "feature": "Tiene reseñas",
+  "importance": 0.0
+ },
+ {
+  "feature": "Distrito",
+  "importance": -1.4838588196597368e-05
+ }
+]

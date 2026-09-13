@@ -1,0 +1,485 @@
+{
+  "Can Baró": {
+    "district": "Horta-Guinardó",
+    "lat": 41.415863,
+    "lon": 2.161972,
+    "price_encoded": 215.42,
+    "n_listings": 27
+  },
+  "Ciutat Meridiana": {
+    "district": "Nou Barris",
+    "lat": 41.462243,
+    "lon": 2.178132,
+    "price_encoded": 226.12,
+    "n_listings": 1
+  },
+  "Diagonal Mar i el Front Marítim del Poblenou": {
+    "district": "Sant Martí",
+    "lat": 41.405144,
+    "lon": 2.211895,
+    "price_encoded": 379.42,
+    "n_listings": 101
+  },
+  "Horta": {
+    "district": "Horta-Guinardó",
+    "lat": 41.430669,
+    "lon": 2.159989,
+    "price_encoded": 199.38,
+    "n_listings": 9
+  },
+  "Hostafrancs": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.375299,
+    "lon": 2.144215,
+    "price_encoded": 280.96,
+    "n_listings": 153
+  },
+  "Montbau": {
+    "district": "Horta-Guinardó",
+    "lat": 41.432576,
+    "lon": 2.142442,
+    "price_encoded": 210.67,
+    "n_listings": 2
+  },
+  "Navas": {
+    "district": "Sant Andreu",
+    "lat": 41.41841,
+    "lon": 2.18603,
+    "price_encoded": 133.89,
+    "n_listings": 44
+  },
+  "Pedralbes": {
+    "district": "Les Corts",
+    "lat": 41.389031,
+    "lon": 2.117437,
+    "price_encoded": 223.29,
+    "n_listings": 22
+  },
+  "Porta": {
+    "district": "Nou Barris",
+    "lat": 41.433905,
+    "lon": 2.179099,
+    "price_encoded": 166.0,
+    "n_listings": 14
+  },
+  "Provençals del Poblenou": {
+    "district": "Sant Martí",
+    "lat": 41.410249,
+    "lon": 2.20315,
+    "price_encoded": 201.68,
+    "n_listings": 66
+  },
+  "Sant Andreu": {
+    "district": "Sant Andreu",
+    "lat": 41.435384,
+    "lon": 2.18817,
+    "price_encoded": 168.78,
+    "n_listings": 64
+  },
+  "Sant Antoni": {
+    "district": "Eixample",
+    "lat": 41.379875,
+    "lon": 2.160131,
+    "price_encoded": 312.32,
+    "n_listings": 746
+  },
+  "Sant Genís dels Agudells": {
+    "district": "Horta-Guinardó",
+    "lat": 41.426003,
+    "lon": 2.136212,
+    "price_encoded": 229.84,
+    "n_listings": 4
+  },
+  "Sant Gervasi - Galvany": {
+    "district": "Sarrià-Sant Gervasi",
+    "lat": 41.39777,
+    "lon": 2.146168,
+    "price_encoded": 178.11,
+    "n_listings": 401
+  },
+  "Sant Gervasi - la Bonanova": {
+    "district": "Sarrià-Sant Gervasi",
+    "lat": 41.404845,
+    "lon": 2.135784,
+    "price_encoded": 180.37,
+    "n_listings": 71
+  },
+  "Sant Martí de Provençals": {
+    "district": "Sant Martí",
+    "lat": 41.416865,
+    "lon": 2.197577,
+    "price_encoded": 150.62,
+    "n_listings": 31
+  },
+  "Sant Pere, Santa Caterina i la Ribera": {
+    "district": "Ciutat Vella",
+    "lat": 41.386227,
+    "lon": 2.180029,
+    "price_encoded": 233.13,
+    "n_listings": 785
+  },
+  "Sants": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.376584,
+    "lon": 2.135959,
+    "price_encoded": 217.72,
+    "n_listings": 238
+  },
+  "Sants - Badal": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.374332,
+    "lon": 2.127056,
+    "price_encoded": 144.42,
+    "n_listings": 118
+  },
+  "Sarrià": {
+    "district": "Sarrià-Sant Gervasi",
+    "lat": 41.398192,
+    "lon": 2.122106,
+    "price_encoded": 152.16,
+    "n_listings": 54
+  },
+  "Torre Baró": {
+    "district": "Nou Barris",
+    "lat": 41.456377,
+    "lon": 2.184568,
+    "price_encoded": 224.06,
+    "n_listings": 1
+  },
+  "Vallcarca i els Penitents": {
+    "district": "Gràcia",
+    "lat": 41.411761,
+    "lon": 2.146023,
+    "price_encoded": 164.42,
+    "n_listings": 63
+  },
+  "Vallvidrera, el Tibidabo i les Planes": {
+    "district": "Sarrià-Sant Gervasi",
+    "lat": 41.417751,
+    "lon": 2.106389,
+    "price_encoded": 225.44,
+    "n_listings": 24
+  },
+  "Verdun": {
+    "district": "Nou Barris",
+    "lat": 41.44268,
+    "lon": 2.176119,
+    "price_encoded": 215.93,
+    "n_listings": 3
+  },
+  "Vilapicina i la Torre Llobeta": {
+    "district": "Nou Barris",
+    "lat": 41.428499,
+    "lon": 2.180631,
+    "price_encoded": 161.81,
+    "n_listings": 74
+  },
+  "el Baix Guinardó": {
+    "district": "Horta-Guinardó",
+    "lat": 41.410921,
+    "lon": 2.169042,
+    "price_encoded": 208.37,
+    "n_listings": 69
+  },
+  "el Barri Gòtic": {
+    "district": "Ciutat Vella",
+    "lat": 41.382062,
+    "lon": 2.176249,
+    "price_encoded": 222.9,
+    "n_listings": 750
+  },
+  "el Besòs i el Maresme": {
+    "district": "Sant Martí",
+    "lat": 41.415077,
+    "lon": 2.215689,
+    "price_encoded": 183.73,
+    "n_listings": 80
+  },
+  "el Bon Pastor": {
+    "district": "Sant Andreu",
+    "lat": 41.434479,
+    "lon": 2.203691,
+    "price_encoded": 212.0,
+    "n_listings": 3
+  },
+  "el Camp d'en Grassot i Gràcia Nova": {
+    "district": "Gràcia",
+    "lat": 41.405425,
+    "lon": 2.166561,
+    "price_encoded": 198.74,
+    "n_listings": 220
+  },
+  "el Camp de l'Arpa del Clot": {
+    "district": "Sant Martí",
+    "lat": 41.411128,
+    "lon": 2.181029,
+    "price_encoded": 210.16,
+    "n_listings": 221
+  },
+  "el Carmel": {
+    "district": "Horta-Guinardó",
+    "lat": 41.422013,
+    "lon": 2.155674,
+    "price_encoded": 145.25,
+    "n_listings": 58
+  },
+  "el Clot": {
+    "district": "Sant Martí",
+    "lat": 41.40871,
+    "lon": 2.188558,
+    "price_encoded": 146.51,
+    "n_listings": 62
+  },
+  "el Coll": {
+    "district": "Gràcia",
+    "lat": 41.417503,
+    "lon": 2.148366,
+    "price_encoded": 167.56,
+    "n_listings": 25
+  },
+  "el Congrés i els Indians": {
+    "district": "Sant Andreu",
+    "lat": 41.423356,
+    "lon": 2.181311,
+    "price_encoded": 135.67,
+    "n_listings": 34
+  },
+  "el Fort Pienc": {
+    "district": "Eixample",
+    "lat": 41.397928,
+    "lon": 2.179645,
+    "price_encoded": 250.78,
+    "n_listings": 372
+  },
+  "el Guinardó": {
+    "district": "Horta-Guinardó",
+    "lat": 41.419245,
+    "lon": 2.174877,
+    "price_encoded": 172.27,
+    "n_listings": 81
+  },
+  "el Parc i la Llacuna del Poblenou": {
+    "district": "Sant Martí",
+    "lat": 41.395913,
+    "lon": 2.190074,
+    "price_encoded": 248.61,
+    "n_listings": 137
+  },
+  "el Poble Sec": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.373251,
+    "lon": 2.163698,
+    "price_encoded": 244.41,
+    "n_listings": 587
+  },
+  "el Poblenou": {
+    "district": "Sant Martí",
+    "lat": 41.400207,
+    "lon": 2.203092,
+    "price_encoded": 206.63,
+    "n_listings": 379
+  },
+  "el Putxet i el Farró": {
+    "district": "Sarrià-Sant Gervasi",
+    "lat": 41.40545,
+    "lon": 2.144893,
+    "price_encoded": 183.97,
+    "n_listings": 171
+  },
+  "el Raval": {
+    "district": "Ciutat Vella",
+    "lat": 41.380431,
+    "lon": 2.169363,
+    "price_encoded": 147.34,
+    "n_listings": 865
+  },
+  "el Turó de la Peira": {
+    "district": "Nou Barris",
+    "lat": 41.432183,
+    "lon": 2.169688,
+    "price_encoded": 137.45,
+    "n_listings": 11
+  },
+  "l'Antiga Esquerra de l'Eixample": {
+    "district": "Eixample",
+    "lat": 41.388844,
+    "lon": 2.156448,
+    "price_encoded": 249.56,
+    "n_listings": 742
+  },
+  "la Barceloneta": {
+    "district": "Ciutat Vella",
+    "lat": 41.379194,
+    "lon": 2.189515,
+    "price_encoded": 142.83,
+    "n_listings": 357
+  },
+  "la Bordeta": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.369858,
+    "lon": 2.137309,
+    "price_encoded": 168.53,
+    "n_listings": 59
+  },
+  "la Clota": {
+    "district": "Horta-Guinardó",
+    "lat": 41.427869,
+    "lon": 2.151247,
+    "price_encoded": 233.35,
+    "n_listings": 4
+  },
+  "la Dreta de l'Eixample": {
+    "district": "Eixample",
+    "lat": 41.393197,
+    "lon": 2.168536,
+    "price_encoded": 353.49,
+    "n_listings": 1927
+  },
+  "la Font d'en Fargues": {
+    "district": "Horta-Guinardó",
+    "lat": 41.426247,
+    "lon": 2.165308,
+    "price_encoded": 215.99,
+    "n_listings": 19
+  },
+  "la Font de la Guatlla": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.370709,
+    "lon": 2.145227,
+    "price_encoded": 183.63,
+    "n_listings": 65
+  },
+  "la Guineueta": {
+    "district": "Nou Barris",
+    "lat": 41.437826,
+    "lon": 2.168736,
+    "price_encoded": 152.47,
+    "n_listings": 10
+  },
+  "la Marina de Port": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.360745,
+    "lon": 2.138486,
+    "price_encoded": 104.35,
+    "n_listings": 53
+  },
+  "la Marina del Prat Vermell": {
+    "district": "Sants-Montjuïc",
+    "lat": 41.352714,
+    "lon": 2.145246,
+    "price_encoded": 255.98,
+    "n_listings": 3
+  },
+  "la Maternitat i Sant Ramon": {
+    "district": "Les Corts",
+    "lat": 41.379578,
+    "lon": 2.123577,
+    "price_encoded": 247.74,
+    "n_listings": 59
+  },
+  "la Nova Esquerra de l'Eixample": {
+    "district": "Eixample",
+    "lat": 41.38208,
+    "lon": 2.149907,
+    "price_encoded": 328.39,
+    "n_listings": 579
+  },
+  "la Prosperitat": {
+    "district": "Nou Barris",
+    "lat": 41.441605,
+    "lon": 2.179723,
+    "price_encoded": 166.92,
+    "n_listings": 11
+  },
+  "la Sagrada Família": {
+    "district": "Eixample",
+    "lat": 41.40495,
+    "lon": 2.1758,
+    "price_encoded": 266.84,
+    "n_listings": 804
+  },
+  "la Sagrera": {
+    "district": "Sant Andreu",
+    "lat": 41.423174,
+    "lon": 2.188879,
+    "price_encoded": 146.31,
+    "n_listings": 33
+  },
+  "la Salut": {
+    "district": "Gràcia",
+    "lat": 41.410619,
+    "lon": 2.153588,
+    "price_encoded": 161.97,
+    "n_listings": 63
+  },
+  "la Teixonera": {
+    "district": "Horta-Guinardó",
+    "lat": 41.422984,
+    "lon": 2.147256,
+    "price_encoded": 152.64,
+    "n_listings": 12
+  },
+  "la Trinitat Nova": {
+    "district": "Nou Barris",
+    "lat": 41.448122,
+    "lon": 2.18306,
+    "price_encoded": 200.28,
+    "n_listings": 3
+  },
+  "la Trinitat Vella": {
+    "district": "Sant Andreu",
+    "lat": 41.45087,
+    "lon": 2.194853,
+    "price_encoded": 207.96,
+    "n_listings": 2
+  },
+  "la Vall d'Hebron": {
+    "district": "Horta-Guinardó",
+    "lat": 41.428105,
+    "lon": 2.146787,
+    "price_encoded": 191.34,
+    "n_listings": 5
+  },
+  "la Verneda i la Pau": {
+    "district": "Sant Martí",
+    "lat": 41.422974,
+    "lon": 2.203369,
+    "price_encoded": 136.57,
+    "n_listings": 24
+  },
+  "la Vila Olímpica del Poblenou": {
+    "district": "Sant Martí",
+    "lat": 41.391974,
+    "lon": 2.19458,
+    "price_encoded": 281.89,
+    "n_listings": 123
+  },
+  "la Vila de Gràcia": {
+    "district": "Gràcia",
+    "lat": 41.401745,
+    "lon": 2.157412,
+    "price_encoded": 207.49,
+    "n_listings": 820
+  },
+  "les Corts": {
+    "district": "Les Corts",
+    "lat": 41.385895,
+    "lon": 2.135679,
+    "price_encoded": 182.02,
+    "n_listings": 181
+  },
+  "les Roquetes": {
+    "district": "Nou Barris",
+    "lat": 41.448204,
+    "lon": 2.175767,
+    "price_encoded": 161.46,
+    "n_listings": 13
+  },
+  "les Tres Torres": {
+    "district": "Sarrià-Sant Gervasi",
+    "lat": 41.395272,
+    "lon": 2.130798,
+    "price_encoded": 182.82,
+    "n_listings": 46
+  }
+}

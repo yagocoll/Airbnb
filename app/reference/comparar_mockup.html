@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairNight · Comparar · maqueta de referencia</title>
+<style>
+  :root {
+    --crema:#EDEAE4; --panel:#F5F3EE; --texto:#2C2C2A; --texto-sec:#6B6A66;
+    --texto-ter:#8B8A85; --borde:#E3E0DA; --rosa:#FF385C; --rosa-oscuro:#C42843;
+    --rosa-suave:#FFF1F4; --azul:#2F6491;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:36px 24px 140px; background:var(--crema); color:var(--texto);
+    font-family:"Segoe UI",Roboto,-apple-system,"Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  .lienzo { max-width:1000px; margin:0 auto; }
+  .aviso { background:#FFF8E6; border:1px solid #EAD9A6; border-radius:10px; padding:15px 17px; margin-bottom:26px; font-size:13px; line-height:1.6; color:#5C4B18; }
+  .aviso b { font-weight:600; } .aviso p { margin:0 0 7px; } .aviso p:last-child { margin:0; }
+  h1 { font-size:34px; font-weight:700; letter-spacing:-.025em; margin:0 0 18px; }
+  h2 { font-size:19px; font-weight:600; margin:0 0 4px; }
+  .separador { margin:56px 0 12px; padding-top:22px; border-top:2px solid #DDD9D1; font-size:13px; font-weight:700; color:var(--texto-ter); }
+  .etiqueta { font-size:12px; font-weight:600; color:var(--texto-ter); margin:30px 0 10px; }
+  .panel { background:#fff; border:1px solid var(--borde); border-radius:14px; padding:24px 28px 26px; margin-bottom:14px; }
+
+  .resumen { background:var(--panel); border-radius:12px; padding:18px 22px; margin-bottom:14px; }
+  .resumen .linea { display:flex; align-items:baseline; justify-content:space-between; gap:20px; }
+  .resumen .frase { margin:0; font-size:15px; line-height:1.6; color:var(--texto-sec); max-width:74ch; }
+  .resumen .frase b { color:var(--texto); font-weight:600; }
+  .ajustar { border:0; background:transparent; font-family:inherit; font-size:13.5px; color:var(--rosa-oscuro); font-weight:600; cursor:pointer; padding:0; flex-shrink:0; }
+  .criterios { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+  .chip { background:#fff; border:1px solid var(--borde); border-radius:8px; padding:5px 11px; font-size:12.5px; color:var(--texto-sec); }
+  .chip b { color:var(--texto); font-weight:600; }
+  .aviso-ampliado { margin:14px 0 0; padding:11px 14px; background:#FDF6E9; border:1px solid #EDDCB9; border-radius:9px; font-size:13px; color:#6B5420; line-height:1.55; }
+  .aviso-ampliado b { font-weight:700; }
+
+  .cabecera { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; }
+  .pastilla { display:inline-block; margin:0 0 10px; padding:4px 12px; border-radius:7px; font-size:12px; font-weight:700; letter-spacing:.03em; }
+  .p-barato { background:#E8F0F7; color:#2F6491; }
+  .p-mercado { background:var(--panel); color:var(--texto-sec); }
+  .p-caro { background:#DDE8F1; color:#1F4460; }
+  .titular { margin:0 0 10px; font-size:28px; font-weight:700; letter-spacing:-.025em; line-height:1.15; }
+  .explica { margin:0; font-size:15px; color:var(--texto-sec); line-height:1.6; max-width:58ch; }
+  .explica b { color:var(--texto); font-weight:600; }
+  .par { text-align:right; flex-shrink:0; }
+  .par .rot { margin:0 0 3px; font-size:12.5px; color:var(--texto-sec); }
+  .par .cifra { margin:0 0 14px; font-size:25px; font-weight:700; letter-spacing:-.02em; }
+  .par .cifra:last-child { margin-bottom:0; }
+  .par .cifra.tuyo { color:var(--rosa-oscuro); }
+  .nota-margen { margin:14px 0 0; padding:12px 15px; background:var(--panel); border-radius:9px; font-size:13px; color:var(--texto-sec); line-height:1.55; }
+  .nota-margen b { color:var(--texto); font-weight:600; }
+
+  .grafico { margin-top:22px; padding-top:20px; border-top:1px solid #F1EEE9; }
+  svg { display:block; width:100%; height:auto; }
+  .t-eje { font-size:11px; fill:#8B8A85; }
+  .t-rot { font-size:11.5px; font-weight:600; fill:#8B8A85; }
+  .t-gris { font-size:11.5px; font-weight:600; fill:#4A4945; }
+  .t-rosa { font-size:12.5px; font-weight:700; fill:#C42843; }
+
+  .cab-panel { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; margin-bottom:8px; }
+  .cab-panel .sub { margin:0; font-size:13.5px; color:var(--texto-sec); }
+  .conmutador { display:flex; background:var(--panel); border-radius:9px; padding:3px; flex-shrink:0; }
+  .conmutador button { border:0; background:transparent; font-family:inherit; font-size:13px; color:var(--texto-sec); padding:6px 15px; border-radius:7px; cursor:pointer; }
+  .conmutador button.on { background:#fff; color:var(--texto); font-weight:600; box-shadow:0 1px 3px rgba(44,44,42,.10); }
+
+  .barra-cantidad { display:flex; align-items:center; gap:10px; margin:16px 0 18px; padding-bottom:14px; border-bottom:1px solid #F1EEE9; flex-wrap:wrap; }
+  .barra-cantidad .rot { font-size:12.5px; color:var(--texto-sec); }
+  .cant { border:1px solid var(--borde); background:#fff; border-radius:8px; padding:5px 12px; font-family:inherit; font-size:12.5px; color:var(--texto-sec); cursor:pointer; }
+  .cant.on { border-color:var(--rosa); background:var(--rosa-suave); color:var(--rosa-oscuro); font-weight:600; }
+  .barra-cantidad .nota { margin-left:auto; font-size:12px; color:var(--texto-ter); }
+
+  table { width:100%; border-collapse:collapse; }
+  thead th { text-align:left; font-size:12px; font-weight:600; color:var(--texto-ter); padding:0 10px 9px 0; border-bottom:1px solid var(--borde); }
+  thead th.num { text-align:right; padding-right:0; }
+  tbody td { padding:9px 10px 9px 0; font-size:13.5px; border-bottom:1px solid #F5F3EE; color:var(--texto-sec); }
+  tbody td.num { text-align:right; padding-right:0; font-variant-numeric:tabular-nums; }
+  tbody td.barrio { color:var(--texto); }
+  tbody td.precio { font-weight:600; color:var(--texto); font-size:14.5px; }
+  tbody td.dif { font-weight:600; }
+  tbody td.dif.mas { color:var(--azul); }
+  tbody td.dif.menos { color:var(--texto-ter); }
+  tbody tr.fila { cursor:pointer; }
+  tbody tr.fila:hover td { background:#FAF8F5; }
+  tbody tr.fila.activa td { background:var(--rosa-suave); }
+  .caja-tabla { max-height:520px; overflow-y:auto; }
+
+  .marco-mapa { border-radius:12px; overflow:hidden; background:#E9E7E1; }
+  .pt { cursor:pointer; }
+  .pt:hover { stroke:#2C2C2A; stroke-width:1.5; }
+  .pt.activa { stroke:#FF385C; stroke-width:2.5; }
+  .leyenda { display:flex; gap:16px; flex-wrap:wrap; margin:14px 0 0; font-size:12px; color:var(--texto-sec); }
+  .leyenda span { display:flex; align-items:center; gap:6px; }
+  .pastilla-col { width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  .card { position:absolute; width:268px; background:#fff; border:1px solid var(--borde); border-radius:14px;
+    box-shadow:0 8px 28px rgba(44,44,42,.16); overflow:hidden; z-index:20; display:none; }
+  .card.visible { display:block; }
+  .card.estatica { position:static; display:block; box-shadow:0 2px 10px rgba(44,44,42,.08); }
+  .card .foto { height:150px; background:#E6E2DA; display:flex; align-items:center; justify-content:center; }
+  .card .foto span { font-size:11.5px; color:#A29F98; }
+  .card .sinfoto { height:64px; background:var(--panel); display:flex; align-items:center; justify-content:center; }
+  .card .sinfoto span { font-size:12px; color:var(--texto-ter); }
+  .card .cuerpo { padding:13px 15px 15px; }
+  .card .titulo { margin:0 0 5px; font-size:14.5px; font-weight:600; line-height:1.35; }
+  .card .precio-c { margin:0 0 4px; font-size:14px; color:var(--texto); }
+  .card .precio-c b { font-weight:700; }
+  .card .specs { margin:0 0 11px; font-size:12.5px; color:var(--texto-sec); }
+  .card .comparacion { display:flex; gap:8px; margin:0 0 13px; flex-wrap:wrap; }
+  .card .marca { font-size:11.5px; font-weight:600; padding:3px 9px; border-radius:6px; }
+  .m-mas { background:#E8F0F7; color:#1F4460; }
+  .m-menos { background:var(--panel); color:var(--texto-sec); }
+  .m-dist { background:var(--panel); color:var(--texto-sec); }
+  .card .enlace { display:block; text-align:center; text-decoration:none; background:var(--rosa); color:#fff;
+    font-size:13.5px; font-weight:600; padding:9px 0; border-radius:9px; }
+  .card .enlace:hover { background:#E82E51; }
+  .fila-cards { display:flex; gap:16px; flex-wrap:wrap; }
+  .oculto { display:none !important; }
+</style>
+</head>
+<body>
+<div class="lienzo">
+
+  <div class="aviso">
+    <p><b>Maqueta de referencia de la pantalla Comparar.</b> Arriba, la pantalla completa en su estado normal. Abajo, en el anexo, los estados alternativos que también hay que implementar.</p>
+    <p>Interacciones vivas: el conmutador Lista/Mapa, el selector de cantidad, y la card al pasar el ratón o hacer clic sobre una fila o un punto.</p>
+    <p><b>Todos los datos son inventados.</b> El mapa es un fondo plano simulado: lo que importa es el código de color de los puntos y la leyenda, no el mapa base. El precio que se juzga es el <b>del usuario</b>, no la predicción del modelo.</p>
+  </div>
+
+  <h1>Comparar</h1>
+
+
+  <div class="resumen">
+    <div class="linea">
+      <p class="frase">Te comparo con <b>142 anuncios reales</b> de Eixample: viviendas enteras, de capacidad parecida a la tuya y con estancia mínima corta, como el tuyo.</p>
+      <button class="ajustar">Ajustar ▾</button>
+    </div>
+    <div class="criterios">
+      <span class="chip">Tipo · <b>vivienda entera</b></span>
+      <span class="chip">Huéspedes · <b>3 a 5</b></span>
+      <span class="chip">Estancia mínima · <b>1 a 3 noches</b></span>
+      <span class="chip">Alcance · <b>tu barrio</b></span>
+    </div>
+  </div>
+
+
+  <section class="panel">
+    <div class="cabecera">
+      <div>
+        <span class="pastilla p-barato">VENDES BARATO</span>
+        <p class="titular">Tu precio está por debajo del mercado</p>
+        <p class="explica">De esos 142 anuncios, <b>8 de cada 10 se publican más caros</b>. Estás unos <b>78 € por noche</b> por debajo de la mediana del barrio, bastante más de lo que puede explicar el margen del modelo.</p>
+      </div>
+      <div class="par">
+        <p class="rot">Tu precio</p>
+        <p class="cifra tuyo">197 €</p>
+        <p class="rot">Mediana del barrio</p>
+        <p class="cifra">275 €</p>
+      </div>
+    </div>
+    <div class="grafico">
+      <svg viewBox="0 0 820 216" role="img" aria-label="Histograma de precios de los comparables y, en un carril propio, tu precio con su margen de error y la mediana del barrio">
+        <rect x="24.0" y="115.0" width="35.3" height="3.0" rx="2" fill="#C9D9E7"/><rect x="60.8" y="110.6" width="35.3" height="7.4" rx="2" fill="#C9D9E7"/><rect x="97.5" y="103.2" width="35.3" height="14.8" rx="2" fill="#C9D9E7"/><rect x="134.3" y="91.4" width="35.3" height="26.6" rx="2" fill="#C9D9E7"/><rect x="171.0" y="73.7" width="35.3" height="44.3" rx="2" fill="#C9D9E7"/><rect x="207.8" y="51.5" width="35.3" height="66.5" rx="2" fill="#C9D9E7"/><rect x="244.6" y="29.4" width="35.3" height="88.6" rx="2" fill="#8FB4D2"/><rect x="281.3" y="22.0" width="35.3" height="96.0" rx="2" fill="#8FB4D2"/><rect x="318.1" y="29.4" width="35.3" height="88.6" rx="2" fill="#8FB4D2"/><rect x="354.9" y="44.2" width="35.3" height="73.8" rx="2" fill="#8FB4D2"/><rect x="391.6" y="58.9" width="35.3" height="59.1" rx="2" fill="#8FB4D2"/><rect x="428.4" y="70.7" width="35.3" height="47.3" rx="2" fill="#5C8CB4"/><rect x="465.1" y="79.6" width="35.3" height="38.4" rx="2" fill="#5C8CB4"/><rect x="501.9" y="88.5" width="35.3" height="29.5" rx="2" fill="#5C8CB4"/><rect x="538.7" y="94.4" width="35.3" height="23.6" rx="2" fill="#5C8CB4"/><rect x="575.4" y="100.3" width="35.3" height="17.7" rx="2" fill="#5C8CB4"/><rect x="612.2" y="104.7" width="35.3" height="13.3" rx="2" fill="#5C8CB4"/><rect x="649.0" y="107.7" width="35.3" height="10.3" rx="2" fill="#5C8CB4"/><rect x="685.7" y="110.6" width="35.3" height="7.4" rx="2" fill="#5C8CB4"/><rect x="722.5" y="112.1" width="35.3" height="5.9" rx="2" fill="#5C8CB4"/><rect x="759.2" y="113.6" width="35.3" height="4.4" rx="2" fill="#5C8CB4"/>
+        <line x1="24" y1="118" x2="796" y2="118" stroke="#DCD8D0" stroke-width="1"/>
+        <text class="t-eje" x="60.8" y="136" text-anchor="middle">100 €</text><text class="t-eje" x="207.8" y="136" text-anchor="middle">200 €</text><text class="t-eje" x="354.9" y="136" text-anchor="middle">300 €</text><text class="t-eje" x="501.9" y="136" text-anchor="middle">400 €</text><text class="t-eje" x="649.0" y="136" text-anchor="middle">500 €</text><text class="t-eje" x="796.0" y="136" text-anchor="middle">600 €</text>
+        <text class="t-rot" x="24" y="168">Tu posición</text>
+        <line x1="24" y1="186" x2="796" y2="186" stroke="#EDEAE4" stroke-width="10" stroke-linecap="round"/>
+        <line x1="318.1" y1="177" x2="318.1" y2="195" stroke="#6B6A66" stroke-width="2"/>
+        <text class="t-gris" x="318.1" y="171" text-anchor="middle">mediana 275 €</text>
+        <line x1="115.2" y1="186" x2="291.6" y2="186" stroke="#FF385C" stroke-width="4" opacity=".28" stroke-linecap="round"/>
+        <line x1="115.2" y1="180" x2="115.2" y2="192" stroke="#FF385C" stroke-width="1.5" opacity=".55"/>
+        <line x1="291.6" y1="180" x2="291.6" y2="192" stroke="#FF385C" stroke-width="1.5" opacity=".55"/>
+        <circle cx="203.4" cy="186" r="6" fill="#FF385C" stroke="#fff" stroke-width="2"/>
+        <text class="t-rosa" x="203.4" y="210" text-anchor="middle">tu precio 197 € · margen ±60 €</text>
+      </svg></div>
+
+  </section>
+
+  <section class="panel">
+    <div class="cab-panel">
+      <div>
+        <h2>Los anuncios uno a uno</h2>
+        <p class="sub">Ordenados por parecido a tu anuncio</p>
+      </div>
+      <div class="conmutador">
+        <button id="bl" class="on" onclick="ver('lista')">Lista</button>
+        <button id="bm" onclick="ver('mapa')">Mapa</button>
+      </div>
+    </div>
+
+    <div class="barra-cantidad">
+      <span class="rot">Mostrar</span>
+      <button class="cant on" data-n="10" onclick="cantidad(10)">10 más parecidos</button>
+      <button class="cant" data-n="25" onclick="cantidad(25)">25</button>
+      <button class="cant" data-n="50" onclick="cantidad(50)">50</button>
+      <button class="cant" data-n="142" onclick="cantidad(142)">Todos (142)</button>
+      <span class="nota">No cambia el veredicto</span>
+    </div>
+
+    <div id="vlista">
+      <div class="caja-tabla">
+        <table>
+          <thead><tr><th>Barrio</th><th>Tamaño</th><th class="num">Distancia</th><th class="num">Precio</th><th class="num">vs. el tuyo</th></tr></thead>
+          <tbody><!-- 142 filas de datos inventados: ver el archivo original si hace falta reinspeccionar --></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="vmapa" class="oculto">
+      <div class="marco-mapa">
+        <svg viewBox="0 0 940 390" role="img" aria-label="Mapa con los anuncios comparables coloreados según su precio respecto al tuyo">
+          <!-- fondo plano simulado + 142 puntos de colores + tu punto en rosa: ver el archivo original -->
+        </svg>
+      </div>
+      <div class="leyenda">
+        <span><i class="pastilla-col" style="background:#C9D9E7"></i> más baratos que tú</span>
+        <span><i class="pastilla-col" style="background:#7FA9CB"></i> precio parecido</span>
+        <span><i class="pastilla-col" style="background:#2F6491"></i> más caros que tú</span>
+        <span><i class="pastilla-col" style="background:#FF385C"></i> tu anuncio</span>
+      </div>
+    </div>
+  </section>
+
+  <p class="separador">ANEXO · ESTADOS ALTERNATIVOS</p>
+
+  <p class="etiqueta">Veredicto · en precio de mercado (la mediana cae dentro del margen)</p>
+
+  <section class="panel">
+    <div class="cabecera">
+      <div>
+        <span class="pastilla p-mercado">EN PRECIO DE MERCADO</span>
+        <p class="titular">Tu precio está en línea con el mercado</p>
+        <p class="explica">Tu precio cae dentro de la <b>mitad central del barrio</b>: entre 228 y 349 € se publica la mitad de los anuncios parecidos al tuyo. Estás 30 € por debajo de la mediana, una diferencia pequeña para este mercado.</p>
+      </div>
+      <div class="par">
+        <p class="rot">Tu precio</p>
+        <p class="cifra tuyo">245 €</p>
+        <p class="rot">Mediana del barrio</p>
+        <p class="cifra">275 €</p>
+      </div>
+    </div>
+    <div class="grafico">
+      <svg viewBox="0 0 820 216" role="img" aria-label="Histograma de precios de los comparables y, en un carril propio, tu precio con su margen de error y la mediana del barrio">
+        <!-- mismo histograma que el estado normal; carril propio con tu precio (245 €) dentro del margen alrededor de la mediana -->
+      </svg></div>
+    <div class="nota-margen">En el carril de abajo se ve por qué no decimos que vendas barato: <b>la marca de la mediana cae dentro de tu barra de margen</b>. Con la precisión que tiene el modelo en tu tramo, esos 30 € no se distinguen del ruido.</div>
+  </section>
+
+  <p class="etiqueta">Veredicto · vendes caro</p>
+
+  <section class="panel">
+    <div class="cabecera">
+      <div>
+        <span class="pastilla p-caro">VENDES CARO</span>
+        <p class="titular">Tu precio está por encima del mercado</p>
+        <p class="explica">De los 142 anuncios parecidos al tuyo, <b>solo 1 de cada 10 se publica más caro</b>. Estás unos <b>120 € por noche</b> por encima de la mediana del barrio.</p>
+      </div>
+      <div class="par">
+        <p class="rot">Tu precio</p>
+        <p class="cifra tuyo">395 €</p>
+        <p class="rot">Mediana del barrio</p>
+        <p class="cifra">275 €</p>
+      </div>
+    </div>
+    <div class="grafico">
+      <svg viewBox="0 0 820 216" role="img" aria-label="Histograma de precios de los comparables y, en un carril propio, tu precio con su margen de error y la mediana del barrio">
+        <!-- mismo histograma; carril propio con tu precio (395 €) muy por encima de la mediana y su margen -->
+      </svg></div>
+
+  </section>
+
+  <p class="etiqueta">Resumen · cuando no hay suficientes anuncios y se amplía el alcance</p>
+  <div class="resumen">
+    <div class="linea">
+      <p class="frase">Te comparo con <b>38 anuncios reales</b> del distrito de Abando: viviendas enteras, de capacidad parecida a la tuya y con estancia mínima corta, como el tuyo.</p>
+      <button class="ajustar">Ajustar ▾</button>
+    </div>
+    <div class="criterios">
+      <span class="chip">Tipo · <b>vivienda entera</b></span>
+      <span class="chip">Huéspedes · <b>3 a 5</b></span>
+      <span class="chip">Estancia mínima · <b>1 a 3 noches</b></span>
+      <span class="chip">Alcance · <b>tu distrito</b></span>
+    </div>
+    <div class="aviso-ampliado">
+      <b>He ampliado el alcance.</b> En tu barrio solo había 11 anuncios parecidos al tuyo, muy pocos para calcular un rango fiable, así que he pasado al distrito. Puedes volver a tu barrio en Ajustar, pero el resultado será menos sólido.
+    </div>
+  </div>
+
+  <p class="etiqueta">Card · con foto y sin foto disponible</p>
+  <div class="fila-cards">
+    <div class="card estatica">
+      <div class="foto"><span>foto del anuncio</span></div>
+      <div class="cuerpo">
+        <p class="titulo">Apartamento en Sagrada Família</p>
+        <p class="precio-c"><b>251 €</b> por noche · Vivienda entera</p>
+        <p class="specs">2 hab · 2 baños · 4 huéspedes · mín. 1 noche</p>
+        <div class="comparacion">
+          <span class="marca m-mas">+54 € que tu precio</span>
+          <span class="marca m-dist">a 320 m</span>
+        </div>
+        <a class="enlace" href="https://www.airbnb.es" target="_blank" rel="noopener">Ver en Airbnb →</a>
+      </div>
+    </div>
+    <div class="card estatica">
+      <div class="sinfoto"><span>Sin foto disponible</span></div>
+      <div class="cuerpo">
+        <p class="titulo">Apartamento en Sant Antoni</p>
+        <p class="precio-c"><b>178 €</b> por noche · Vivienda entera</p>
+        <p class="specs">2 hab · 1 baño · 3 huéspedes · mín. 3 noches</p>
+        <div class="comparacion">
+          <span class="marca m-menos">−19 € que tu precio</span>
+          <span class="marca m-dist">a 540 m</span>
+        </div>
+        <a class="enlace" href="https://www.airbnb.es" target="_blank" rel="noopener">Ver en Airbnb →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="card"></div>
+
+</div>
+<!-- script de interacción de la maqueta (hover/clic en fila o punto, conmutador lista/mapa,
+     selector de cantidad) omitido aquí: es solo para la demo HTML, no aplica a Streamlit -->
+</body>
+</html>

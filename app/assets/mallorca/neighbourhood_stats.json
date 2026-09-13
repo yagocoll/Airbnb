@@ -1,0 +1,373 @@
+{
+  "Alaró": {
+    "district": "Alaró",
+    "lat": 39.704654,
+    "lon": 2.796377,
+    "price_encoded": 812.22,
+    "n_listings": 62
+  },
+  "Alcúdia": {
+    "district": "Alcúdia",
+    "lat": 39.841345,
+    "lon": 3.118479,
+    "price_encoded": 602.5,
+    "n_listings": 1011
+  },
+  "Algaida": {
+    "district": "Algaida",
+    "lat": 39.564437,
+    "lon": 2.895278,
+    "price_encoded": 957.26,
+    "n_listings": 66
+  },
+  "Andratx": {
+    "district": "Andratx",
+    "lat": 39.557205,
+    "lon": 2.390923,
+    "price_encoded": 1089.49,
+    "n_listings": 165
+  },
+  "Ariany": {
+    "district": "Ariany",
+    "lat": 39.651706,
+    "lon": 3.119207,
+    "price_encoded": 762.73,
+    "n_listings": 54
+  },
+  "Artà": {
+    "district": "Artà",
+    "lat": 39.713147,
+    "lon": 3.31779,
+    "price_encoded": 624.09,
+    "n_listings": 259
+  },
+  "Banyalbufar": {
+    "district": "Banyalbufar",
+    "lat": 39.688871,
+    "lon": 2.524812,
+    "price_encoded": 547.02,
+    "n_listings": 55
+  },
+  "Binissalem": {
+    "district": "Binissalem",
+    "lat": 39.68302,
+    "lon": 2.853399,
+    "price_encoded": 659.24,
+    "n_listings": 48
+  },
+  "Bunyola": {
+    "district": "Bunyola",
+    "lat": 39.696743,
+    "lon": 2.702452,
+    "price_encoded": 676.56,
+    "n_listings": 52
+  },
+  "Búger": {
+    "district": "Búger",
+    "lat": 39.75632,
+    "lon": 2.984793,
+    "price_encoded": 653.1,
+    "n_listings": 89
+  },
+  "Calvià": {
+    "district": "Calvià",
+    "lat": 39.522397,
+    "lon": 2.511729,
+    "price_encoded": 757.12,
+    "n_listings": 334
+  },
+  "Campanet": {
+    "district": "Campanet",
+    "lat": 39.7841,
+    "lon": 2.970712,
+    "price_encoded": 648.59,
+    "n_listings": 97
+  },
+  "Campos": {
+    "district": "Campos",
+    "lat": 39.391852,
+    "lon": 2.99886,
+    "price_encoded": 732.09,
+    "n_listings": 325
+  },
+  "Capdepera": {
+    "district": "Capdepera",
+    "lat": 39.694924,
+    "lon": 3.445774,
+    "price_encoded": 614.69,
+    "n_listings": 319
+  },
+  "Consell": {
+    "district": "Consell",
+    "lat": 39.668503,
+    "lon": 2.815726,
+    "price_encoded": 730.34,
+    "n_listings": 14
+  },
+  "Costitx": {
+    "district": "Costitx",
+    "lat": 39.660968,
+    "lon": 2.948436,
+    "price_encoded": 591.16,
+    "n_listings": 42
+  },
+  "Deyá": {
+    "district": "Deyá",
+    "lat": 39.752504,
+    "lon": 2.646224,
+    "price_encoded": 785.49,
+    "n_listings": 67
+  },
+  "Escorca": {
+    "district": "Escorca",
+    "lat": 39.834517,
+    "lon": 2.841043,
+    "price_encoded": 397.75,
+    "n_listings": 26
+  },
+  "Esporles": {
+    "district": "Esporles",
+    "lat": 39.659953,
+    "lon": 2.592798,
+    "price_encoded": 1075.21,
+    "n_listings": 46
+  },
+  "Estellencs": {
+    "district": "Estellencs",
+    "lat": 39.654508,
+    "lon": 2.479849,
+    "price_encoded": 452.86,
+    "n_listings": 10
+  },
+  "Felanitx": {
+    "district": "Felanitx",
+    "lat": 39.42806,
+    "lon": 3.204018,
+    "price_encoded": 724.49,
+    "n_listings": 500
+  },
+  "Fornalutx": {
+    "district": "Fornalutx",
+    "lat": 39.782661,
+    "lon": 2.742094,
+    "price_encoded": 626.49,
+    "n_listings": 67
+  },
+  "Inca": {
+    "district": "Inca",
+    "lat": 39.715827,
+    "lon": 2.930578,
+    "price_encoded": 621.76,
+    "n_listings": 157
+  },
+  "Lloret de Vistalegre": {
+    "district": "Lloret de Vistalegre",
+    "lat": 39.620225,
+    "lon": 2.974691,
+    "price_encoded": 424.81,
+    "n_listings": 32
+  },
+  "Lloseta": {
+    "district": "Lloseta",
+    "lat": 39.718983,
+    "lon": 2.864738,
+    "price_encoded": 716.9,
+    "n_listings": 37
+  },
+  "Llubí": {
+    "district": "Llubí",
+    "lat": 39.69888,
+    "lon": 3.017222,
+    "price_encoded": 590.94,
+    "n_listings": 70
+  },
+  "Llucmajor": {
+    "district": "Llucmajor",
+    "lat": 39.440108,
+    "lon": 2.837979,
+    "price_encoded": 683.27,
+    "n_listings": 405
+  },
+  "Manacor": {
+    "district": "Manacor",
+    "lat": 39.539898,
+    "lon": 3.264781,
+    "price_encoded": 595.31,
+    "n_listings": 605
+  },
+  "Mancor de la Vall": {
+    "district": "Mancor de la Vall",
+    "lat": 39.750907,
+    "lon": 2.872053,
+    "price_encoded": 797.47,
+    "n_listings": 32
+  },
+  "Maria de la Salut": {
+    "district": "Maria de la Salut",
+    "lat": 39.668432,
+    "lon": 3.079282,
+    "price_encoded": 583.17,
+    "n_listings": 49
+  },
+  "Marratxí": {
+    "district": "Marratxí",
+    "lat": 39.62045,
+    "lon": 2.726339,
+    "price_encoded": 918.3,
+    "n_listings": 69
+  },
+  "Montuïri": {
+    "district": "Montuïri",
+    "lat": 39.574025,
+    "lon": 2.984311,
+    "price_encoded": 732.0,
+    "n_listings": 38
+  },
+  "Muro": {
+    "district": "Muro",
+    "lat": 39.771103,
+    "lon": 3.097865,
+    "price_encoded": 699.12,
+    "n_listings": 232
+  },
+  "Palma de Mallorca": {
+    "district": "Palma de Mallorca",
+    "lat": 39.564582,
+    "lon": 2.666119,
+    "price_encoded": 444.36,
+    "n_listings": 861
+  },
+  "Petra": {
+    "district": "Petra",
+    "lat": 39.608235,
+    "lon": 3.1043,
+    "price_encoded": 602.45,
+    "n_listings": 110
+  },
+  "Pollença": {
+    "district": "Pollença",
+    "lat": 39.88905,
+    "lon": 3.048193,
+    "price_encoded": 578.57,
+    "n_listings": 1578
+  },
+  "Porreres": {
+    "district": "Porreres",
+    "lat": 39.513546,
+    "lon": 3.02797,
+    "price_encoded": 607.05,
+    "n_listings": 55
+  },
+  "Puigpunyent": {
+    "district": "Puigpunyent",
+    "lat": 39.616495,
+    "lon": 2.519413,
+    "price_encoded": 558.63,
+    "n_listings": 28
+  },
+  "Sa Pobla": {
+    "district": "Sa Pobla",
+    "lat": 39.784769,
+    "lon": 3.022255,
+    "price_encoded": 556.97,
+    "n_listings": 173
+  },
+  "Sant Joan": {
+    "district": "Sant Joan",
+    "lat": 39.594831,
+    "lon": 3.049835,
+    "price_encoded": 619.31,
+    "n_listings": 31
+  },
+  "Sant Llorenç des Cardassar": {
+    "district": "Sant Llorenç des Cardassar",
+    "lat": 39.60034,
+    "lon": 3.338885,
+    "price_encoded": 501.42,
+    "n_listings": 217
+  },
+  "Santa Eugènia": {
+    "district": "Santa Eugènia",
+    "lat": 39.625404,
+    "lon": 2.838961,
+    "price_encoded": 789.02,
+    "n_listings": 10
+  },
+  "Santa Margalida": {
+    "district": "Santa Margalida",
+    "lat": 39.741805,
+    "lon": 3.162712,
+    "price_encoded": 549.41,
+    "n_listings": 452
+  },
+  "Santa María del Camí": {
+    "district": "Santa María del Camí",
+    "lat": 39.652427,
+    "lon": 2.780641,
+    "price_encoded": 908.49,
+    "n_listings": 42
+  },
+  "Santanyí": {
+    "district": "Santanyí",
+    "lat": 39.358809,
+    "lon": 3.187677,
+    "price_encoded": 637.71,
+    "n_listings": 809
+  },
+  "Selva": {
+    "district": "Selva",
+    "lat": 39.759695,
+    "lon": 2.912315,
+    "price_encoded": 582.33,
+    "n_listings": 192
+  },
+  "Sencelles": {
+    "district": "Sencelles",
+    "lat": 39.645738,
+    "lon": 2.898373,
+    "price_encoded": 708.58,
+    "n_listings": 71
+  },
+  "Ses Salines": {
+    "district": "Ses Salines",
+    "lat": 39.327646,
+    "lon": 3.015597,
+    "price_encoded": 551.52,
+    "n_listings": 189
+  },
+  "Sineu": {
+    "district": "Sineu",
+    "lat": 39.643435,
+    "lon": 3.014418,
+    "price_encoded": 550.79,
+    "n_listings": 55
+  },
+  "Son Servera": {
+    "district": "Son Servera",
+    "lat": 39.621173,
+    "lon": 3.38159,
+    "price_encoded": 794.42,
+    "n_listings": 221
+  },
+  "Sóller": {
+    "district": "Sóller",
+    "lat": 39.780774,
+    "lon": 2.707381,
+    "price_encoded": 537.78,
+    "n_listings": 397
+  },
+  "Valldemossa": {
+    "district": "Valldemossa",
+    "lat": 39.710629,
+    "lon": 2.611217,
+    "price_encoded": 498.84,
+    "n_listings": 91
+  },
+  "Vilafranc de Bonany": {
+    "district": "Vilafranc de Bonany",
+    "lat": 39.565446,
+    "lon": 3.110879,
+    "price_encoded": 705.91,
+    "n_listings": 28
+  }
+}

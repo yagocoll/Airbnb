@@ -1,0 +1,2642 @@
+[
+ {
+  "a": "Estancia máxima",
+  "b": "Foto de perfil",
+  "score": 0.6040870790590378
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Nº de amenities",
+  "score": 0.5904538621138048
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Baños",
+  "score": 0.3912887163566335
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Días disponibles al año",
+  "score": 0.35945353624925785
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Número de reseñas",
+  "score": 0.35083385442480697
+ },
+ {
+  "a": "Foto de perfil",
+  "b": "Nº de amenities",
+  "score": 0.33860872951260335
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Antigüedad del anuncio",
+  "score": 0.3327273631615836
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Distrito",
+  "score": 0.3090293130841123
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Distrito",
+  "score": 0.3020764404262851
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Valoración media",
+  "score": 0.27267179057677565
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Nº de amenities",
+  "score": 0.2580011992309197
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Nº de amenities",
+  "score": 0.25142534735938116
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Aire acondicionado",
+  "score": 0.2419220183833098
+ },
+ {
+  "a": "Aire acondicionado",
+  "b": "Nº de amenities",
+  "score": 0.24020444779155892
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.22749007463766222
+ },
+ {
+  "a": "Baños",
+  "b": "Dormitorios",
+  "score": 0.22393133069923354
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Anuncios que gestiona",
+  "score": 0.21191952409906895
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Nº de amenities",
+  "score": 0.2097301441981221
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Reseñas último año",
+  "score": 0.2094985636056047
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Camas",
+  "score": 0.2080550667061787
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Días disponibles al año",
+  "score": 0.20778565097147084
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Foto de perfil",
+  "score": 0.19548273412358355
+ },
+ {
+  "a": "Camas",
+  "b": "Aire acondicionado",
+  "score": 0.19462185019987185
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Estancia máxima",
+  "score": 0.19100620682797723
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Nº de amenities",
+  "score": 0.1897119984308518
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Nº de amenities",
+  "score": 0.189235023799401
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Piscina",
+  "score": 0.18800447466865208
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Nº de amenities",
+  "score": 0.1865623071972791
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Días disponibles al año",
+  "score": 0.18318854374616764
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Estancia máxima",
+  "score": 0.18137499842404045
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Aire acondicionado",
+  "score": 0.16906273012846498
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Días disponibles al año",
+  "score": 0.16662852912446618
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Reseñas al mes",
+  "score": 0.16209820353505308
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Baños",
+  "score": 0.15948083520966608
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Número de reseñas",
+  "score": 0.15646442993357884
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.1556999602140137
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Nº de amenities",
+  "score": 0.15318174722248956
+ },
+ {
+  "a": "Valoración media",
+  "b": "Días disponibles al año",
+  "score": 0.15051865327461533
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Dormitorios",
+  "score": 0.15051815841844188
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Nº de amenities",
+  "score": 0.1449069352199416
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Anuncios que gestiona",
+  "score": 0.1440768314589259
+ },
+ {
+  "a": "Baños",
+  "b": "Valoración media",
+  "score": 0.13932621337756432
+ },
+ {
+  "a": "Baños",
+  "b": "Nº de amenities",
+  "score": 0.13806952690552324
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Anuncios que gestiona",
+  "score": 0.13733519280421067
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Número de reseñas",
+  "score": 0.13677883221566034
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Camas",
+  "score": 0.1364504961841295
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Días disponibles al año",
+  "score": 0.13464748914198724
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Días desde la última reseña",
+  "score": 0.1298346900686861
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Antigüedad del anuncio",
+  "score": 0.1289689089142982
+ },
+ {
+  "a": "Valoración media",
+  "b": "Nº de amenities",
+  "score": 0.12747593772723276
+ },
+ {
+  "a": "Valoración media",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.12398621620762808
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Tipo de alojamiento",
+  "score": 0.12389712072852037
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Superhost",
+  "score": 0.12371553984829477
+ },
+ {
+  "a": "Camas",
+  "b": "Nº de amenities",
+  "score": 0.12262894352130652
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Distancia al centro",
+  "score": 0.11917839850528839
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Años como anfitrión",
+  "score": 0.11910050252084263
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Aire acondicionado",
+  "score": 0.11710712259137449
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.11691734260788332
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Años como anfitrión",
+  "score": 0.11495420816943287
+ },
+ {
+  "a": "Baños",
+  "b": "Días desde la última reseña",
+  "score": 0.11478650295968727
+ },
+ {
+  "a": "Distrito",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.11452828254341199
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Distrito",
+  "score": 0.11302688354045694
+ },
+ {
+  "a": "Baños",
+  "b": "Camas",
+  "score": 0.11256106439073021
+ },
+ {
+  "a": "Baños",
+  "b": "Piscina",
+  "score": 0.11188815476212888
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Foto de perfil",
+  "score": 0.11107288899466347
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Piscina",
+  "score": 0.10975411678779452
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Número de reseñas",
+  "score": 0.10892535707696525
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Foto de perfil",
+  "score": 0.10877941699667411
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Camas",
+  "score": 0.10775004197696095
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.10718487775423706
+ },
+ {
+  "a": "Baños",
+  "b": "Anuncios que gestiona",
+  "score": 0.10656494277530273
+ },
+ {
+  "a": "Valoración media",
+  "b": "Reseñas último año",
+  "score": 0.10334006222412291
+ },
+ {
+  "a": "Valoración media",
+  "b": "Años como anfitrión",
+  "score": 0.1022572129577646
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Nº de amenities",
+  "score": 0.10176336235703243
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Antigüedad del anuncio",
+  "score": 0.09998714784334244
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Nº de amenities",
+  "score": 0.09908801292116948
+ },
+ {
+  "a": "Baños",
+  "b": "Estancia máxima",
+  "score": 0.09904760769410514
+ },
+ {
+  "a": "Superhost",
+  "b": "Nº de amenities",
+  "score": 0.09860446335044155
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Baños",
+  "score": 0.09786184279781071
+ },
+ {
+  "a": "Valoración media",
+  "b": "Antigüedad del anuncio",
+  "score": 0.09740160836507879
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Superhost",
+  "score": 0.09711437569230684
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Dormitorios",
+  "score": 0.0967877912901533
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Antigüedad del anuncio",
+  "score": 0.09661690287372379
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Piscina",
+  "score": 0.09607061504569006
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.09562801863260952
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Lavavajillas",
+  "score": 0.0955535161036898
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Piscina",
+  "score": 0.09511889314963748
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Reseñas al mes",
+  "score": 0.09454983306790225
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Nº de amenities",
+  "score": 0.09452049801067149
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Número de reseñas",
+  "score": 0.09429785504723232
+ },
+ {
+  "a": "Camas",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.09219846227153247
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Antigüedad del anuncio",
+  "score": 0.0921715798965444
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Aire acondicionado",
+  "score": 0.09069905443808171
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Distancia al centro",
+  "score": 0.09065518223559785
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Piscina",
+  "score": 0.09062447697888441
+ },
+ {
+  "a": "Valoración media",
+  "b": "Número de reseñas",
+  "score": 0.08995141037996297
+ },
+ {
+  "a": "Camas",
+  "b": "Lavavajillas",
+  "score": 0.08991537860036962
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Tipo de alojamiento",
+  "score": 0.08958083008481708
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.08905621870069454
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Nº de amenities",
+  "score": 0.08857939828775194
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Distrito",
+  "score": 0.08823958932261831
+ },
+ {
+  "a": "Huéspedes",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.08777613046264335
+ },
+ {
+  "a": "Valoración media",
+  "b": "Tipo de propiedad",
+  "score": 0.08656480910902255
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.08525996621111936
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Piscina",
+  "score": 0.08478369783493064
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Estancia máxima",
+  "score": 0.08476164130744686
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Huéspedes",
+  "score": 0.08470752551627417
+ },
+ {
+  "a": "Baños",
+  "b": "Nivel de precios del barrio",
+  "score": 0.0838482315446092
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Tipo de propiedad",
+  "score": 0.08359089971723514
+ },
+ {
+  "a": "Superhost",
+  "b": "Distrito",
+  "score": 0.08232105706087937
+ },
+ {
+  "a": "Valoración media",
+  "b": "Camas",
+  "score": 0.0791383734479631
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Identidad verificada",
+  "score": 0.07882294365086778
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Nº de amenities",
+  "score": 0.07854265711650021
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Años como anfitrión",
+  "score": 0.07686774937676909
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Noches ocupadas último año",
+  "score": 0.07649684510172709
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Nº de amenities",
+  "score": 0.07649370888315309
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Noches ocupadas último año",
+  "score": 0.0763461324167504
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Días desde la última reseña",
+  "score": 0.07592964125793376
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.07569697817306406
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Días desde la última reseña",
+  "score": 0.07525471351686935
+ },
+ {
+  "a": "Camas",
+  "b": "Piscina",
+  "score": 0.07460478116106731
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Antigüedad del anuncio",
+  "score": 0.07448027958314118
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Foto de perfil",
+  "score": 0.0736753911126897
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Dormitorios",
+  "score": 0.07279039817092413
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.07278474508744948
+ },
+ {
+  "a": "Distrito",
+  "b": "Nº de amenities",
+  "score": 0.07217441498582562
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Años como anfitrión",
+  "score": 0.0713879258307561
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Distancia al centro",
+  "score": 0.07090287162571761
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.07018075833758255
+ },
+ {
+  "a": "Valoración media",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.06972568441418654
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Tipo de propiedad",
+  "score": 0.06881148086548786
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Valoración media",
+  "score": 0.0685047054945083
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Camas",
+  "score": 0.06843035095600283
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.06766144941640892
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Piscina",
+  "score": 0.06717360868449858
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Distrito",
+  "score": 0.06710804318601313
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Identidad verificada",
+  "score": 0.06673681019881265
+ },
+ {
+  "a": "Baños",
+  "b": "Distancia al centro",
+  "score": 0.06628181781275296
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Licencia turística",
+  "score": 0.06596675727742528
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Distancia al centro",
+  "score": 0.06576943531871622
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Reseñas último año",
+  "score": 0.065622949318128
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Piscina",
+  "score": 0.06542787844099081
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Piscina",
+  "score": 0.06532969596861894
+ },
+ {
+  "a": "Nº de amenities",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.06523528281979536
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Noches ocupadas último año",
+  "score": 0.06520310194158935
+ },
+ {
+  "a": "% de vivienda entera del anfitrión",
+  "b": "Lavavajillas",
+  "score": 0.06496365703410721
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Antigüedad del anuncio",
+  "score": 0.06494884116667145
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Distrito",
+  "score": 0.06441167427173063
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.06427458858377529
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.06415512118520987
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Identidad verificada",
+  "score": 0.06413667523531136
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Tipo de propiedad",
+  "score": 0.06405201749678817
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Valoración media",
+  "score": 0.06399984545348825
+ },
+ {
+  "a": "Valoración media",
+  "b": "Aire acondicionado",
+  "score": 0.06339153905610445
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Valoración media",
+  "score": 0.06268374240319599
+ },
+ {
+  "a": "Valoración media",
+  "b": "Estancia máxima",
+  "score": 0.06265584669140795
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Noches ocupadas último año",
+  "score": 0.06260692914159414
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.06213439917552893
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Camas",
+  "score": 0.06177359189488743
+ },
+ {
+  "a": "Distrito",
+  "b": "Lavavajillas",
+  "score": 0.061183693115842326
+ },
+ {
+  "a": "Baños",
+  "b": "Tipo de propiedad",
+  "score": 0.060841094733686284
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.06039475792093765
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Lavavajillas",
+  "score": 0.060335273582953756
+ },
+ {
+  "a": "Baños",
+  "b": "Días disponibles al año",
+  "score": 0.05995070577154493
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Superhost",
+  "score": 0.059584414683191846
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Distancia al centro",
+  "score": 0.05893546818978275
+ },
+ {
+  "a": "Valoración media",
+  "b": "Identidad verificada",
+  "score": 0.058773847366036795
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.05802239145889083
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Nº de amenities",
+  "score": 0.05795175112852696
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Valoración media",
+  "score": 0.05766429689475395
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Años como anfitrión",
+  "score": 0.05720332701416407
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Días desde la última reseña",
+  "score": 0.055714219635179155
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Camas",
+  "score": 0.05553188282902112
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Distancia al centro",
+  "score": 0.05547554649631263
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Aire acondicionado",
+  "score": 0.05528855085234692
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.054992806185733316
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Superhost",
+  "score": 0.05489066163381313
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Lavavajillas",
+  "score": 0.0548639393360779
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Tipo de propiedad",
+  "score": 0.05474485960614794
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Aire acondicionado",
+  "score": 0.054590204879874045
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Identidad verificada",
+  "score": 0.05446299520971423
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.0538496585113617
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Lavavajillas",
+  "score": 0.053021578238762766
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Distrito",
+  "score": 0.052739415683549375
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Camas",
+  "score": 0.05273892179913264
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Días desde la última reseña",
+  "score": 0.05232245042580215
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Distrito",
+  "score": 0.05177501674734171
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.05146472466178111
+ },
+ {
+  "a": "Piscina",
+  "b": "Lavavajillas",
+  "score": 0.05144899264393812
+ },
+ {
+  "a": "Baños",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.051447413489873424
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Piscina",
+  "score": 0.051334047618480504
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Reseñas al mes",
+  "score": 0.051221683382757836
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Nº de amenities",
+  "score": 0.05078503983993899
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Antigüedad del anuncio",
+  "score": 0.05055663771382459
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Anuncios que gestiona",
+  "score": 0.04989242422304636
+ },
+ {
+  "a": "Valoración media",
+  "b": "Noches ocupadas último año",
+  "score": 0.049708109483234966
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Noches ocupadas último año",
+  "score": 0.049533485509730836
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Lavavajillas",
+  "score": 0.04938091321140982
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Número de reseñas",
+  "score": 0.04927379841694645
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Camas",
+  "score": 0.0486765352551185
+ },
+ {
+  "a": "Lavavajillas",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.04866907574360328
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Piscina",
+  "score": 0.04861902930834908
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Reseñas al mes",
+  "score": 0.04859435533112721
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.04840080786605232
+ },
+ {
+  "a": "Valoración media",
+  "b": "Distancia al centro",
+  "score": 0.04825340941895601
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Aire acondicionado",
+  "score": 0.04812331823177686
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Nº de amenities",
+  "score": 0.04748963321005593
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.047410690047938936
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Reseñas al mes",
+  "score": 0.047085353299258864
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Tipo de propiedad",
+  "score": 0.046762003542727734
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Noches ocupadas último año",
+  "score": 0.04616020410049176
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.045569601033620594
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Distancia al centro",
+  "score": 0.0452704498070547
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Antigüedad del anuncio",
+  "score": 0.045075239099479
+ },
+ {
+  "a": "Baños",
+  "b": "Número de reseñas",
+  "score": 0.04506614807251016
+ },
+ {
+  "a": "Valoración media",
+  "b": "Piscina",
+  "score": 0.044612285377460835
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Identidad verificada",
+  "score": 0.04435486829815151
+ },
+ {
+  "a": "% de vivienda entera del anfitrión",
+  "b": "Piscina",
+  "score": 0.04373686455725923
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Días desde la última reseña",
+  "score": 0.04356713434909852
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Años como anfitrión",
+  "score": 0.043510333876763896
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Distancia al centro",
+  "score": 0.042661877235665356
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Antigüedad del anuncio",
+  "score": 0.042307847249064376
+ },
+ {
+  "a": "Camas",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.042102920233659295
+ },
+ {
+  "a": "Baños",
+  "b": "Reseñas al mes",
+  "score": 0.041852433498618856
+ },
+ {
+  "a": "Piscina",
+  "b": "Nº de amenities",
+  "score": 0.041575630626529164
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Noches ocupadas último año",
+  "score": 0.040539802939070974
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.040277752314368566
+ },
+ {
+  "a": "% de vivienda entera del anfitrión",
+  "b": "Nº de amenities",
+  "score": 0.04022944353662662
+ },
+ {
+  "a": "Valoración media",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.039959474392708645
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Lavavajillas",
+  "score": 0.03981551767732036
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Reseñas al mes",
+  "score": 0.03977020313572057
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Noches ocupadas último año",
+  "score": 0.03928117406862251
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Reseñas al mes",
+  "score": 0.03900983173710111
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Noches ocupadas último año",
+  "score": 0.038822652021311806
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Distancia al centro",
+  "score": 0.03778057986631163
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Estancia máxima",
+  "score": 0.03774132666242262
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Tipo de propiedad",
+  "score": 0.03749070526796787
+ },
+ {
+  "a": "Valoración media",
+  "b": "Lavavajillas",
+  "score": 0.03726479026598178
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Distancia al centro",
+  "score": 0.037188267252895195
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.03715507255051114
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Camas",
+  "score": 0.03658221021332111
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Identidad verificada",
+  "score": 0.036543427431271217
+ },
+ {
+  "a": "Dormitorios",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.036507104292373034
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Años como anfitrión",
+  "score": 0.03591584621952716
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.03590911676809532
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Piscina",
+  "score": 0.0359082777429299
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Antigüedad del anuncio",
+  "score": 0.03559377184379375
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Nº de amenities",
+  "score": 0.03520955443452193
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Piscina",
+  "score": 0.03518582864644023
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.035112419961892856
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Camas",
+  "score": 0.03443659675566504
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.0342376784403956
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Identidad verificada",
+  "score": 0.03418054647329341
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Estancia máxima",
+  "score": 0.03413936526752694
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Licencia turística",
+  "score": 0.033972352609946806
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Reseñas al mes",
+  "score": 0.03360362026531953
+ },
+ {
+  "a": "Aire acondicionado",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.03344654795881138
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Reseñas al mes",
+  "score": 0.03340714371606705
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Licencia turística",
+  "score": 0.03316365856396733
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Lavavajillas",
+  "score": 0.033070728642905584
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Distancia al centro",
+  "score": 0.032934404406242096
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Número de reseñas",
+  "score": 0.03238883632518391
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Número de reseñas",
+  "score": 0.03237900035806168
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Foto de perfil",
+  "score": 0.03218487659800731
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Lavavajillas",
+  "score": 0.03182231527887679
+ },
+ {
+  "a": "Baños",
+  "b": "Antigüedad del anuncio",
+  "score": 0.031577017139312845
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Aire acondicionado",
+  "score": 0.031239374167038682
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.03113774182758269
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Camas",
+  "score": 0.0310434752784691
+ },
+ {
+  "a": "Baños",
+  "b": "Años como anfitrión",
+  "score": 0.030616660388417746
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.030499729528489852
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Piscina",
+  "score": 0.030439047118366543
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Piscina",
+  "score": 0.030340452413284195
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Aire acondicionado",
+  "score": 0.03020548088042785
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Nivel de precios del barrio",
+  "score": 0.029830529470644435
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Nº de amenities",
+  "score": 0.029520258104000812
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Lavavajillas",
+  "score": 0.029351316481631744
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Antigüedad del anuncio",
+  "score": 0.029332465264570066
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Reseñas al mes",
+  "score": 0.02932339972198421
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Camas",
+  "score": 0.028672347678573074
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Lavavajillas",
+  "score": 0.028086663680190534
+ },
+ {
+  "a": "% de vivienda entera del anfitrión",
+  "b": "Aire acondicionado",
+  "score": 0.027367263330430602
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Piscina",
+  "score": 0.02699289914259042
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Foto de perfil",
+  "score": 0.026842377834488007
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Noches ocupadas último año",
+  "score": 0.026675082453206902
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Reseñas al mes",
+  "score": 0.02646655559714311
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Días desde la última reseña",
+  "score": 0.026069335648486795
+ },
+ {
+  "a": "Superhost",
+  "b": "Número de reseñas",
+  "score": 0.026023383993299537
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Aire acondicionado",
+  "score": 0.025823455402199495
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Piscina",
+  "score": 0.025793318510385185
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Distrito",
+  "score": 0.025480929101620593
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Días desde la última reseña",
+  "score": 0.025468701226642083
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Lavavajillas",
+  "score": 0.025432827736860106
+ },
+ {
+  "a": "Baños",
+  "b": "Identidad verificada",
+  "score": 0.02543203063590223
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Años con cuenta en la plataforma",
+  "score": 0.025412851815513778
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Número de reseñas",
+  "score": 0.024878677767067005
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Aire acondicionado",
+  "score": 0.02487261491584259
+ },
+ {
+  "a": "Baños",
+  "b": "Distrito",
+  "score": 0.02473857009805732
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Antigüedad del anuncio",
+  "score": 0.02455803100480331
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Identidad verificada",
+  "score": 0.02449296603524914
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Identidad verificada",
+  "score": 0.02429379003583385
+ },
+ {
+  "a": "Baños",
+  "b": "Superhost",
+  "score": 0.024282316231254954
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.02420523223381304
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.023959534841513516
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Licencia turística",
+  "score": 0.02360918292179014
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Foto de perfil",
+  "score": 0.023568585013305866
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Reseñas al mes",
+  "score": 0.023297466667963427
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.02319178014456425
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Noches ocupadas último año",
+  "score": 0.023154535262554746
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Identidad verificada",
+  "score": 0.02311967454620041
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Foto de perfil",
+  "score": 0.02278595971601288
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Número de reseñas",
+  "score": 0.022699084686206246
+ },
+ {
+  "a": "Lavavajillas",
+  "b": "Nº de amenities",
+  "score": 0.02261216612957912
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Noches ocupadas último año",
+  "score": 0.022523237740346546
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.022037548889231026
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Días desde la última reseña",
+  "score": 0.022022263040612933
+ },
+ {
+  "a": "Baños",
+  "b": "Noches ocupadas último año",
+  "score": 0.021546250305163148
+ },
+ {
+  "a": "Baños",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.02146572098973707
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Número de reseñas",
+  "score": 0.021389191329384428
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Número de reseñas",
+  "score": 0.021077744338774986
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Superhost",
+  "score": 0.02093795278999781
+ },
+ {
+  "a": "Valoración media",
+  "b": "Reseñas al mes",
+  "score": 0.02043526101687179
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Identidad verificada",
+  "score": 0.020413733029701606
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.020326251154714314
+ },
+ {
+  "a": "Valoración media",
+  "b": "Nivel de precios del barrio",
+  "score": 0.02031238403153559
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Antigüedad del anuncio",
+  "score": 0.020129346834271984
+ },
+ {
+  "a": "Valoración media",
+  "b": "Foto de perfil",
+  "score": 0.020129255981564134
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Lavavajillas",
+  "score": 0.020082240488637878
+ },
+ {
+  "a": "Aire acondicionado",
+  "b": "Piscina",
+  "score": 0.020076360020346216
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Estancia máxima",
+  "score": 0.01996999203020395
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Estancia máxima",
+  "score": 0.019822250781998577
+ },
+ {
+  "a": "Baños",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.01952436851281336
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Reseñas al mes",
+  "score": 0.01947865316888558
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Identidad verificada",
+  "score": 0.018913734225691883
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Estancia máxima",
+  "score": 0.0188375909198237
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Camas",
+  "score": 0.018775007038657063
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Aire acondicionado",
+  "score": 0.01876610135333054
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Identidad verificada",
+  "score": 0.01866386919799785
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Identidad verificada",
+  "score": 0.018566406852411198
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.01848500155698373
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Lavavajillas",
+  "score": 0.018370283805772356
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.018201288806782664
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Foto de perfil",
+  "score": 0.018066345219817297
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Camas",
+  "score": 0.01805398068985924
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Reseñas último año",
+  "score": 0.017948835143581303
+ },
+ {
+  "a": "Baños",
+  "b": "Lavavajillas",
+  "score": 0.017909721678847926
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Camas",
+  "score": 0.017834810140519654
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Nivel de precios del barrio",
+  "score": 0.017502383515528325
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Foto de perfil",
+  "score": 0.017322548294814874
+ },
+ {
+  "a": "Baños",
+  "b": "Foto de perfil",
+  "score": 0.017201981952726854
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Reseñas último año",
+  "score": 0.017180339299730438
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.016878107194824573
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Reseñas último año",
+  "score": 0.016836611930663613
+ },
+ {
+  "a": "Camas",
+  "b": "Foto de perfil",
+  "score": 0.01674762011857072
+ },
+ {
+  "a": "Valoración media",
+  "b": "Días desde la última reseña",
+  "score": 0.016541714488223745
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Reseñas último año",
+  "score": 0.016220122764147627
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Lavavajillas",
+  "score": 0.01618910558051237
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.015888687733438336
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.015700165142886878
+ },
+ {
+  "a": "Distrito",
+  "b": "Aire acondicionado",
+  "score": 0.015479254497826965
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Noches ocupadas último año",
+  "score": 0.015411325388900462
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Reseñas último año",
+  "score": 0.015327944755010332
+ },
+ {
+  "a": "Superhost",
+  "b": "Reseñas último año",
+  "score": 0.015224321598702068
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Años como anfitrión",
+  "score": 0.01521300373412982
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Lavavajillas",
+  "score": 0.015035648975665969
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Nivel de precios del barrio",
+  "score": 0.014996654529901126
+ },
+ {
+  "a": "Baños",
+  "b": "Reseñas último año",
+  "score": 0.014885242080469438
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Foto de perfil",
+  "score": 0.014847089978614848
+ },
+ {
+  "a": "Foto de perfil",
+  "b": "Lavavajillas",
+  "score": 0.014729531534519029
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Aire acondicionado",
+  "score": 0.014642427313422033
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Aire acondicionado",
+  "score": 0.014562022010021948
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Distrito",
+  "score": 0.01434099322711671
+ },
+ {
+  "a": "Foto de perfil",
+  "b": "Piscina",
+  "score": 0.014128187781999342
+ },
+ {
+  "a": "Camas",
+  "b": "Identidad verificada",
+  "score": 0.01403277659167069
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Identidad verificada",
+  "score": 0.013997523998006165
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Superhost",
+  "score": 0.013936575185024402
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Distancia al centro",
+  "score": 0.013746430576734987
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Aire acondicionado",
+  "score": 0.01371873555865485
+ },
+ {
+  "a": "Superhost",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.013717088498257023
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Superhost",
+  "score": 0.013707740778386459
+ },
+ {
+  "a": "Distrito",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.01355791762134809
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Foto de perfil",
+  "score": 0.013486567553699456
+ },
+ {
+  "a": "Foto de perfil",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.013356759877702276
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Foto de perfil",
+  "score": 0.013336139758155707
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Distrito",
+  "score": 0.013195322072142643
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Aire acondicionado",
+  "score": 0.012803758310833198
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Identidad verificada",
+  "score": 0.012534336341068672
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Distrito",
+  "score": 0.012416739251499364
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Piscina",
+  "score": 0.012181725945635786
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Foto de perfil",
+  "score": 0.012089083421960724
+ },
+ {
+  "a": "Baños",
+  "b": "Licencia turística",
+  "score": 0.011701426615411018
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Antigüedad del anuncio",
+  "score": 0.011509817641326286
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Licencia turística",
+  "score": 0.011501141955320262
+ },
+ {
+  "a": "Distrito",
+  "b": "Piscina",
+  "score": 0.011427180080532687
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Aire acondicionado",
+  "score": 0.01127290906130681
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Noches ocupadas último año",
+  "score": 0.011244161989571054
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Distrito",
+  "score": 0.011163989032552796
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Días desde la última reseña",
+  "score": 0.011123064831723107
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.01100070093966662
+ },
+ {
+  "a": "Distrito",
+  "b": "Identidad verificada",
+  "score": 0.01097106885172477
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Camas",
+  "score": 0.010902061055913567
+ },
+ {
+  "a": "Valoración media",
+  "b": "Superhost",
+  "score": 0.010719609001670342
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Noches ocupadas último año",
+  "score": 0.010616139450156692
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Distrito",
+  "score": 0.010606003200187456
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Foto de perfil",
+  "score": 0.010394742148427536
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Nivel de precios del barrio",
+  "score": 0.010385873993686675
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Licencia turística",
+  "score": 0.010372611157016274
+ },
+ {
+  "a": "Valoración media",
+  "b": "Licencia turística",
+  "score": 0.009962757890084387
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Estancia máxima",
+  "score": 0.009528020037269363
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Identidad verificada",
+  "score": 0.009102042784855411
+ },
+ {
+  "a": "Aire acondicionado",
+  "b": "Lavavajillas",
+  "score": 0.008961981102872364
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Reseñas último año",
+  "score": 0.008843529823333996
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Reseñas último año",
+  "score": 0.008611786650165574
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Aire acondicionado",
+  "score": 0.008541733260008474
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Reseñas último año",
+  "score": 0.008424127387532426
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Foto de perfil",
+  "score": 0.00837684657520062
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Foto de perfil",
+  "score": 0.008158052223762851
+ },
+ {
+  "a": "Superhost",
+  "b": "Camas",
+  "score": 0.008150017532128443
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Camas",
+  "score": 0.008149153927642191
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Piscina",
+  "score": 0.008118328117266514
+ },
+ {
+  "a": "% de vivienda entera del anfitrión",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.008010594707845573
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Noches ocupadas último año",
+  "score": 0.00794262878002474
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Identidad verificada",
+  "score": 0.007912967677085402
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Superhost",
+  "score": 0.007878966117967073
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Aire acondicionado",
+  "score": 0.00782698984352878
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Camas",
+  "score": 0.0077638640836250015
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Número de reseñas",
+  "score": 0.007740898455964492
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Foto de perfil",
+  "score": 0.007591055911267016
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Foto de perfil",
+  "score": 0.0075244993070385695
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Distrito",
+  "score": 0.007237453611286564
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Lavavajillas",
+  "score": 0.006946287464753799
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Estancia máxima",
+  "score": 0.006860388927886027
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.0067627232609296425
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Distrito",
+  "score": 0.006751779704467784
+ },
+ {
+  "a": "Piscina",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.006696923470457954
+ },
+ {
+  "a": "Foto de perfil",
+  "b": "Aire acondicionado",
+  "score": 0.006556924936203521
+ },
+ {
+  "a": "Valoración media",
+  "b": "Distrito",
+  "score": 0.006455170810332945
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Número de reseñas",
+  "score": 0.006380487939224765
+ },
+ {
+  "a": "Camas",
+  "b": "Distrito",
+  "score": 0.0063378630939601764
+ },
+ {
+  "a": "Baños",
+  "b": "Aire acondicionado",
+  "score": 0.006296943272637705
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Noches ocupadas último año",
+  "score": 0.006230997593046936
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Superhost",
+  "score": 0.006042220503089844
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Lavavajillas",
+  "score": 0.006025124602304597
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Número de reseñas",
+  "score": 0.006015201724128165
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.005998707474412687
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Distancia al centro",
+  "score": 0.005956187356911211
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Tipo de propiedad",
+  "score": 0.00593614058525581
+ },
+ {
+  "a": "Foto de perfil",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.005637768263157471
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.005633824125786527
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Noches ocupadas último año",
+  "score": 0.005597645994884096
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Reseñas último año",
+  "score": 0.005585299878351033
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Estancia máxima",
+  "score": 0.005565629703015322
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Reseñas último año",
+  "score": 0.005476845276824104
+ },
+ {
+  "a": "Superhost",
+  "b": "Piscina",
+  "score": 0.005207203627877319
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Nivel de precios del barrio",
+  "score": 0.004928813926021967
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Reseñas último año",
+  "score": 0.004816560867745443
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Superhost",
+  "score": 0.00473587642015216
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Superhost",
+  "score": 0.004729049670067483
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Superhost",
+  "score": 0.004678025936294765
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Nivel de precios del barrio",
+  "score": 0.004605836634097927
+ },
+ {
+  "a": "Superhost",
+  "b": "Foto de perfil",
+  "score": 0.00457592497090531
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Densidad de anuncios cercanos",
+  "score": 0.004497926675218202
+ },
+ {
+  "a": "Superhost",
+  "b": "Aire acondicionado",
+  "score": 0.004474577371511968
+ },
+ {
+  "a": "Superhost",
+  "b": "Identidad verificada",
+  "score": 0.004428845991362768
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Reseñas último año",
+  "score": 0.004425732954131383
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Superhost",
+  "score": 0.004318200790095126
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Superhost",
+  "score": 0.004285608999421711
+ },
+ {
+  "a": "Superhost",
+  "b": "Noches ocupadas último año",
+  "score": 0.004167813066924855
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Reseñas último año",
+  "score": 0.004137225179212047
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Licencia turística",
+  "score": 0.004061477463131656
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Reseñas al mes",
+  "score": 0.003982766657999996
+ },
+ {
+  "a": "Superhost",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.0037403232680723168
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Piscina",
+  "score": 0.003649516700873905
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Reseñas último año",
+  "score": 0.003480165108939767
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Lavavajillas",
+  "score": 0.0034594543499122023
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Distrito",
+  "score": 0.003414887153695594
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Lavavajillas",
+  "score": 0.0032143733987950924
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Distrito",
+  "score": 0.003092164594539656
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Reseñas último año",
+  "score": 0.00302166608723957
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.0030044448508226244
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Superhost",
+  "score": 0.0028447093690418504
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Licencia turística",
+  "score": 0.0026551352015850454
+ },
+ {
+  "a": "Superhost",
+  "b": "Lavavajillas",
+  "score": 0.0026150024251104043
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Lavavajillas",
+  "score": 0.002233810043020114
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Número de reseñas",
+  "score": 0.0021816228832246955
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Camas",
+  "score": 0.0017743284088821915
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Licencia turística",
+  "score": 0.0017202457465535495
+ },
+ {
+  "a": "Distrito",
+  "b": "Foto de perfil",
+  "score": 0.0016883477225213737
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Identidad verificada",
+  "score": 0.0015510769402412284
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Licencia turística",
+  "score": 0.0014307182567967968
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Licencia turística",
+  "score": 0.0012385975784751752
+ },
+ {
+  "a": "Licencia turística",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 0.0010182460225279563
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Licencia turística",
+  "score": 0.0009634623937581923
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Superhost",
+  "score": 0.0006793346487560504
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Distrito",
+  "score": 0.0004142295055404661
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Aire acondicionado",
+  "score": 0.00013415438703714324
+ },
+ {
+  "a": "Licencia turística",
+  "b": "Tiene reseñas",
+  "score": 5.4438378254934564e-14
+ },
+ {
+  "a": "Número de reseñas",
+  "b": "Tiene reseñas",
+  "score": 1.917445266553288e-14
+ },
+ {
+  "a": "Reseñas último año",
+  "b": "Tiene reseñas",
+  "score": 1.9058324988303968e-14
+ },
+ {
+  "a": "Superhost",
+  "b": "Tiene reseñas",
+  "score": 1.676773451625539e-14
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "Densidad de anuncios cercanos",
+  "score": 1.5320143788332893e-14
+ },
+ {
+  "a": "Nivel de precios del barrio",
+  "b": "Tiene reseñas",
+  "score": 9.770143721583746e-15
+ },
+ {
+  "a": "Estancia máxima",
+  "b": "Tiene reseñas",
+  "score": 9.226212441363386e-15
+ },
+ {
+  "a": "Antigüedad del anuncio",
+  "b": "Tiene reseñas",
+  "score": 8.091528844871488e-15
+ },
+ {
+  "a": "Distrito",
+  "b": "Tiene reseñas",
+  "score": 7.604344564087353e-15
+ },
+ {
+  "a": "Reseñas al mes",
+  "b": "Tiene reseñas",
+  "score": 6.377288135835051e-15
+ },
+ {
+  "a": "Identidad verificada",
+  "b": "Tiene reseñas",
+  "score": 5.679380550208064e-15
+ },
+ {
+  "a": "Camas",
+  "b": "Tiene reseñas",
+  "score": 4.048866511706957e-15
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "Nº de amenities",
+  "score": 3.966559012212923e-15
+ },
+ {
+  "a": "Años con cuenta en la plataforma",
+  "b": "Tiene reseñas",
+  "score": 3.0300737159942875e-15
+ },
+ {
+  "a": "Días desde la última reseña",
+  "b": "Tiene reseñas",
+  "score": 2.88911235214304e-15
+ },
+ {
+  "a": "Años como anfitrión",
+  "b": "Tiene reseñas",
+  "score": 2.464304205521008e-15
+ },
+ {
+  "a": "Noches ocupadas último año",
+  "b": "Tiene reseñas",
+  "score": 1.9702163674503844e-15
+ },
+ {
+  "a": "Valoración media",
+  "b": "Tiene reseñas",
+  "score": 1.9153971690023533e-15
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "% de vivienda entera del anfitrión",
+  "score": 1.6262364346310454e-15
+ },
+ {
+  "a": "Distancia al centro",
+  "b": "Tiene reseñas",
+  "score": 1.161526191903574e-15
+ },
+ {
+  "a": "Tipo de propiedad",
+  "b": "Tiene reseñas",
+  "score": 1.1349885945788433e-15
+ },
+ {
+  "a": "Baños",
+  "b": "Tiene reseñas",
+  "score": 9.723324717850758e-16
+ },
+ {
+  "a": "Tipo de alojamiento",
+  "b": "Tiene reseñas",
+  "score": 9.676033328201164e-16
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "Piscina",
+  "score": 7.07001431400822e-16
+ },
+ {
+  "a": "Días disponibles al año",
+  "b": "Tiene reseñas",
+  "score": 5.925227221998613e-16
+ },
+ {
+  "a": "Dormitorios",
+  "b": "Tiene reseñas",
+  "score": 5.198468474205411e-16
+ },
+ {
+  "a": "Anuncios que gestiona",
+  "b": "Tiene reseñas",
+  "score": 5.076526217249565e-16
+ },
+ {
+  "a": "Huéspedes",
+  "b": "Tiene reseñas",
+  "score": 4.007377465337355e-16
+ },
+ {
+  "a": "Estancia mínima",
+  "b": "Tiene reseñas",
+  "score": 1.3202358537257338e-16
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "Foto de perfil",
+  "score": 0.0
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "Aire acondicionado",
+  "score": 0.0
+ },
+ {
+  "a": "Tiene reseñas",
+  "b": "Lavavajillas",
+  "score": 0.0
+ }
+]

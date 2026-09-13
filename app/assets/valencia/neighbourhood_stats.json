@@ -1,0 +1,590 @@
+{
+ "Aiora": {
+  "district": "Camins al Grau",
+  "lat": 39.465572,
+  "lon": -0.34408,
+  "price_encoded": 179.71,
+  "n_listings": 326
+ },
+ "Albors": {
+  "district": "Camins al Grau",
+  "lat": 39.468161,
+  "lon": -0.352795,
+  "price_encoded": 123.39,
+  "n_listings": 95
+ },
+ "Arrancapins": {
+  "district": "Extramurs",
+  "lat": 39.465131,
+  "lon": -0.384757,
+  "price_encoded": 147.4,
+  "n_listings": 188
+ },
+ "Benicalap": {
+  "district": "Benicalap",
+  "lat": 39.492741,
+  "lon": -0.391666,
+  "price_encoded": 172.46,
+  "n_listings": 105
+ },
+ "Beniferri": {
+  "district": "Poblats de l'Oest",
+  "lat": 39.49587,
+  "lon": -0.40386,
+  "price_encoded": 153.63,
+  "n_listings": 10
+ },
+ "Benimaclet": {
+  "district": "Benimaclet",
+  "lat": 39.484884,
+  "lon": -0.360041,
+  "price_encoded": 144.04,
+  "n_listings": 73
+ },
+ "Benimamet": {
+  "district": "Poblats de l'Oest",
+  "lat": 39.502672,
+  "lon": -0.421987,
+  "price_encoded": 129.21,
+  "n_listings": 45
+ },
+ "Betero": {
+  "district": "Poblats Maritims",
+  "lat": 39.471667,
+  "lon": -0.336278,
+  "price_encoded": 156.31,
+  "n_listings": 76
+ },
+ "Cabanyal-Canyamelar": {
+  "district": "Poblats Maritims",
+  "lat": 39.468723,
+  "lon": -0.33005,
+  "price_encoded": 195.17,
+  "n_listings": 712
+ },
+ "Cami Fondo": {
+  "district": "Camins al Grau",
+  "lat": 39.465163,
+  "lon": -0.353508,
+  "price_encoded": 206.89,
+  "n_listings": 34
+ },
+ "Cami Real": {
+  "district": "Jesus",
+  "lat": 39.440739,
+  "lon": -0.39014,
+  "price_encoded": 137.56,
+  "n_listings": 19
+ },
+ "Cami de Vera": {
+  "district": "Benimaclet",
+  "lat": 39.489357,
+  "lon": -0.357361,
+  "price_encoded": 160.07,
+  "n_listings": 6
+ },
+ "Campanar": {
+  "district": "Campanar",
+  "lat": 39.481203,
+  "lon": -0.393632,
+  "price_encoded": 135.25,
+  "n_listings": 39
+ },
+ "Carpesa": {
+  "district": "Poblats del Nord",
+  "lat": 39.51585,
+  "lon": -0.37786,
+  "price_encoded": 194.63,
+  "n_listings": 1
+ },
+ "Castellar-l'Oliveral": {
+  "district": "Poblats del Sud",
+  "lat": 39.429131,
+  "lon": -0.358542,
+  "price_encoded": 148.5,
+  "n_listings": 6
+ },
+ "Ciutat Fallera": {
+  "district": "Benicalap",
+  "lat": 39.498765,
+  "lon": -0.394767,
+  "price_encoded": 199.98,
+  "n_listings": 19
+ },
+ "Ciutat Jardi": {
+  "district": "Algiros",
+  "lat": 39.471317,
+  "lon": -0.345645,
+  "price_encoded": 147.93,
+  "n_listings": 80
+ },
+ "Ciutat Universitaria": {
+  "district": "El Pla del Real",
+  "lat": 39.478327,
+  "lon": -0.356957,
+  "price_encoded": 164.86,
+  "n_listings": 11
+ },
+ "Ciutat de les Arts i de les Ciencies": {
+  "district": "Quatre Carreres",
+  "lat": 39.454918,
+  "lon": -0.359272,
+  "price_encoded": 195.82,
+  "n_listings": 89
+ },
+ "El Botanic": {
+  "district": "Extramurs",
+  "lat": 39.475145,
+  "lon": -0.385339,
+  "price_encoded": 170.27,
+  "n_listings": 132
+ },
+ "El Calvari": {
+  "district": "Campanar",
+  "lat": 39.487131,
+  "lon": -0.390305,
+  "price_encoded": 144.3,
+  "n_listings": 10
+ },
+ "El Carme": {
+  "district": "Ciutat Vella",
+  "lat": 39.47831,
+  "lon": -0.379699,
+  "price_encoded": 169.96,
+  "n_listings": 266
+ },
+ "El Forn d'Alcedo": {
+  "district": "Poblats del Sud",
+  "lat": 39.433019,
+  "lon": -0.375626,
+  "price_encoded": 153.69,
+  "n_listings": 2
+ },
+ "El Grau": {
+  "district": "Poblats Maritims",
+  "lat": 39.459858,
+  "lon": -0.335531,
+  "price_encoded": 164.7,
+  "n_listings": 249
+ },
+ "El Mercat": {
+  "district": "Ciutat Vella",
+  "lat": 39.473454,
+  "lon": -0.378447,
+  "price_encoded": 199.75,
+  "n_listings": 297
+ },
+ "El Palmar": {
+  "district": "Poblats del Sud",
+  "lat": 39.314244,
+  "lon": -0.313765,
+  "price_encoded": 154.63,
+  "n_listings": 2
+ },
+ "El Perellonet": {
+  "district": "Poblats del Sud",
+  "lat": 39.29698,
+  "lon": -0.28837,
+  "price_encoded": 159.39,
+  "n_listings": 37
+ },
+ "El Pilar": {
+  "district": "Ciutat Vella",
+  "lat": 39.473314,
+  "lon": -0.382046,
+  "price_encoded": 171.4,
+  "n_listings": 139
+ },
+ "El Pla del Remei": {
+  "district": "L'Eixample",
+  "lat": 39.46902,
+  "lon": -0.367915,
+  "price_encoded": 180.9,
+  "n_listings": 55
+ },
+ "El Saler": {
+  "district": "Poblats del Sud",
+  "lat": 39.359581,
+  "lon": -0.322621,
+  "price_encoded": 161.85,
+  "n_listings": 43
+ },
+ "Els Orriols": {
+  "district": "Rascanya",
+  "lat": 39.492805,
+  "lon": -0.370322,
+  "price_encoded": 117.42,
+  "n_listings": 64
+ },
+ "En Corts": {
+  "district": "Quatre Carreres",
+  "lat": 39.45644,
+  "lon": -0.371245,
+  "price_encoded": 144.05,
+  "n_listings": 200
+ },
+ "Exposicio": {
+  "district": "El Pla del Real",
+  "lat": 39.475555,
+  "lon": -0.361706,
+  "price_encoded": 181.64,
+  "n_listings": 16
+ },
+ "Faitanar": {
+  "district": "Poblats del Sud",
+  "lat": 39.43288,
+  "lon": -0.396082,
+  "price_encoded": 151.89,
+  "n_listings": 20
+ },
+ "Favara": {
+  "district": "Patraix",
+  "lat": 39.454249,
+  "lon": -0.392855,
+  "price_encoded": 145.72,
+  "n_listings": 11
+ },
+ "Jaume Roig": {
+  "district": "El Pla del Real",
+  "lat": 39.48159,
+  "lon": -0.362218,
+  "price_encoded": 158.68,
+  "n_listings": 22
+ },
+ "L'Amistat": {
+  "district": "Algiros",
+  "lat": 39.472419,
+  "lon": -0.351668,
+  "price_encoded": 119.88,
+  "n_listings": 68
+ },
+ "L'Hort de Senabre": {
+  "district": "Jesus",
+  "lat": 39.453117,
+  "lon": -0.390303,
+  "price_encoded": 126.93,
+  "n_listings": 43
+ },
+ "L'Illa Perduda": {
+  "district": "Algiros",
+  "lat": 39.468931,
+  "lon": -0.339371,
+  "price_encoded": 152.24,
+  "n_listings": 53
+ },
+ "La Carrasca": {
+  "district": "Algiros",
+  "lat": 39.476657,
+  "lon": -0.345427,
+  "price_encoded": 133.4,
+  "n_listings": 60
+ },
+ "La Creu Coberta": {
+  "district": "Jesus",
+  "lat": 39.451634,
+  "lon": -0.38526,
+  "price_encoded": 133.67,
+  "n_listings": 8
+ },
+ "La Creu del Grau": {
+  "district": "Camins al Grau",
+  "lat": 39.462264,
+  "lon": -0.345237,
+  "price_encoded": 155.4,
+  "n_listings": 113
+ },
+ "La Fonteta S.lluis": {
+  "district": "Quatre Carreres",
+  "lat": 39.443813,
+  "lon": -0.367029,
+  "price_encoded": 156.29,
+  "n_listings": 13
+ },
+ "La Fontsanta": {
+  "district": "L'Olivereta",
+  "lat": 39.465385,
+  "lon": -0.409388,
+  "price_encoded": 160.75,
+  "n_listings": 4
+ },
+ "La Gran Via": {
+  "district": "L'Eixample",
+  "lat": 39.465272,
+  "lon": -0.366473,
+  "price_encoded": 188.6,
+  "n_listings": 69
+ },
+ "La Llum": {
+  "district": "L'Olivereta",
+  "lat": 39.46797,
+  "lon": -0.412153,
+  "price_encoded": 159.09,
+  "n_listings": 5
+ },
+ "La Malva-Rosa": {
+  "district": "Poblats Maritims",
+  "lat": 39.479897,
+  "lon": -0.328339,
+  "price_encoded": 188.07,
+  "n_listings": 232
+ },
+ "La Petxina": {
+  "district": "Extramurs",
+  "lat": 39.473549,
+  "lon": -0.390565,
+  "price_encoded": 165.29,
+  "n_listings": 122
+ },
+ "La Punta": {
+  "district": "Quatre Carreres",
+  "lat": 39.44805,
+  "lon": -0.341669,
+  "price_encoded": 151.43,
+  "n_listings": 44
+ },
+ "La Raiosa": {
+  "district": "Jesus",
+  "lat": 39.45771,
+  "lon": -0.386436,
+  "price_encoded": 143.71,
+  "n_listings": 126
+ },
+ "La Roqueta": {
+  "district": "Extramurs",
+  "lat": 39.466641,
+  "lon": -0.380115,
+  "price_encoded": 177.48,
+  "n_listings": 167
+ },
+ "La Seu": {
+  "district": "Ciutat Vella",
+  "lat": 39.476333,
+  "lon": -0.376179,
+  "price_encoded": 241.26,
+  "n_listings": 185
+ },
+ "La Torre": {
+  "district": "Poblats del Sud",
+  "lat": 39.435092,
+  "lon": -0.390726,
+  "price_encoded": 141.79,
+  "n_listings": 5
+ },
+ "La Vega Baixa": {
+  "district": "Algiros",
+  "lat": 39.476541,
+  "lon": -0.349329,
+  "price_encoded": 99.02,
+  "n_listings": 53
+ },
+ "La Xerea": {
+  "district": "Ciutat Vella",
+  "lat": 39.474044,
+  "lon": -0.371863,
+  "price_encoded": 168.57,
+  "n_listings": 109
+ },
+ "Les Tendetes": {
+  "district": "Campanar",
+  "lat": 39.483494,
+  "lon": -0.386214,
+  "price_encoded": 146.88,
+  "n_listings": 42
+ },
+ "Mahuella-Tauladella": {
+  "district": "Poblats del Nord",
+  "lat": 39.542854,
+  "lon": -0.334211,
+  "price_encoded": 178.86,
+  "n_listings": 1
+ },
+ "Malilla": {
+  "district": "Quatre Carreres",
+  "lat": 39.45058,
+  "lon": -0.3759,
+  "price_encoded": 162.34,
+  "n_listings": 55
+ },
+ "Marxalenes": {
+  "district": "La Saidia",
+  "lat": 39.486276,
+  "lon": -0.383496,
+  "price_encoded": 173.64,
+  "n_listings": 43
+ },
+ "Massarrojos": {
+  "district": "Poblats del Nord",
+  "lat": 39.538846,
+  "lon": -0.407293,
+  "price_encoded": 166.27,
+  "n_listings": 1
+ },
+ "Mestalla": {
+  "district": "El Pla del Real",
+  "lat": 39.471142,
+  "lon": -0.357164,
+  "price_encoded": 157.86,
+  "n_listings": 86
+ },
+ "Mont-Olivet": {
+  "district": "Quatre Carreres",
+  "lat": 39.459248,
+  "lon": -0.363754,
+  "price_encoded": 155.38,
+  "n_listings": 267
+ },
+ "Morvedre": {
+  "district": "La Saidia",
+  "lat": 39.483967,
+  "lon": -0.375811,
+  "price_encoded": 161.31,
+  "n_listings": 135
+ },
+ "Na Rovella": {
+  "district": "Quatre Carreres",
+  "lat": 39.453843,
+  "lon": -0.364882,
+  "price_encoded": 136.26,
+  "n_listings": 57
+ },
+ "Natzaret": {
+  "district": "Poblats Maritims",
+  "lat": 39.449087,
+  "lon": -0.333454,
+  "price_encoded": 135.34,
+  "n_listings": 103
+ },
+ "Nou Moles": {
+  "district": "L'Olivereta",
+  "lat": 39.471026,
+  "lon": -0.397975,
+  "price_encoded": 147.92,
+  "n_listings": 159
+ },
+ "Patraix": {
+  "district": "Patraix",
+  "lat": 39.462437,
+  "lon": -0.390806,
+  "price_encoded": 152.46,
+  "n_listings": 109
+ },
+ "Penya-Roja": {
+  "district": "Camins al Grau",
+  "lat": 39.460765,
+  "lon": -0.351544,
+  "price_encoded": 214.16,
+  "n_listings": 87
+ },
+ "Pinedo": {
+  "district": "Poblats del Sud",
+  "lat": 39.420778,
+  "lon": -0.337126,
+  "price_encoded": 155.23,
+  "n_listings": 4
+ },
+ "Poble Nou": {
+  "district": "Poblats del Nord",
+  "lat": 39.499599,
+  "lon": -0.379461,
+  "price_encoded": 162.59,
+  "n_listings": 2
+ },
+ "Russafa": {
+  "district": "L'Eixample",
+  "lat": 39.461717,
+  "lon": -0.373245,
+  "price_encoded": 191.96,
+  "n_listings": 485
+ },
+ "Safranar": {
+  "district": "Patraix",
+  "lat": 39.45974,
+  "lon": -0.396845,
+  "price_encoded": 154.04,
+  "n_listings": 29
+ },
+ "Sant Antoni": {
+  "district": "La Saidia",
+  "lat": 39.489143,
+  "lon": -0.37302,
+  "price_encoded": 135.95,
+  "n_listings": 40
+ },
+ "Sant Francesc": {
+  "district": "Ciutat Vella",
+  "lat": 39.470498,
+  "lon": -0.376228,
+  "price_encoded": 197.61,
+  "n_listings": 244
+ },
+ "Sant Isidre": {
+  "district": "Patraix",
+  "lat": 39.452788,
+  "lon": -0.403772,
+  "price_encoded": 151.62,
+  "n_listings": 4
+ },
+ "Sant Llorens": {
+  "district": "Rascanya",
+  "lat": 39.492974,
+  "lon": -0.363445,
+  "price_encoded": 151.98,
+  "n_listings": 23
+ },
+ "Sant Marcel.li": {
+  "district": "Jesus",
+  "lat": 39.444748,
+  "lon": -0.390399,
+  "price_encoded": 110.35,
+  "n_listings": 28
+ },
+ "Sant Pau": {
+  "district": "Campanar",
+  "lat": 39.484636,
+  "lon": -0.403305,
+  "price_encoded": 148.34,
+  "n_listings": 34
+ },
+ "Soternes": {
+  "district": "L'Olivereta",
+  "lat": 39.471808,
+  "lon": -0.408057,
+  "price_encoded": 154.39,
+  "n_listings": 19
+ },
+ "Tormos": {
+  "district": "La Saidia",
+  "lat": 39.489471,
+  "lon": -0.378865,
+  "price_encoded": 144.97,
+  "n_listings": 45
+ },
+ "Torrefiel": {
+  "district": "Rascanya",
+  "lat": 39.494307,
+  "lon": -0.37531,
+  "price_encoded": 117.47,
+  "n_listings": 70
+ },
+ "Tres Forques": {
+  "district": "L'Olivereta",
+  "lat": 39.467494,
+  "lon": -0.401544,
+  "price_encoded": 109.49,
+  "n_listings": 23
+ },
+ "Trinitat": {
+  "district": "La Saidia",
+  "lat": 39.483923,
+  "lon": -0.368467,
+  "price_encoded": 169.25,
+  "n_listings": 45
+ },
+ "Vara de Quart": {
+  "district": "Patraix",
+  "lat": 39.461355,
+  "lon": -0.405873,
+  "price_encoded": 135.34,
+  "n_listings": 16
+ }
+}

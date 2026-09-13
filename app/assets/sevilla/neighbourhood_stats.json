@@ -1,0 +1,716 @@
+{
+ "Aeropuerto Viejo": {
+  "district": "Macarena - Norte",
+  "lat": 37.40954,
+  "lon": -5.96541,
+  "price_encoded": 150.43,
+  "n_listings": 1
+ },
+ "Alfalfa": {
+  "district": "Casco Antiguo",
+  "lat": 37.390824,
+  "lon": -5.993016,
+  "price_encoded": 172.01,
+  "n_listings": 864
+ },
+ "Amate": {
+  "district": "Cerro - Amate",
+  "lat": 37.379054,
+  "lon": -5.959244,
+  "price_encoded": 109.84,
+  "n_listings": 6
+ },
+ "Arbol Gordo": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.3998,
+  "lon": -5.973755,
+  "price_encoded": 141.35,
+  "n_listings": 2
+ },
+ "Arenal": {
+  "district": "Casco Antiguo",
+  "lat": 37.386652,
+  "lon": -5.996886,
+  "price_encoded": 154.37,
+  "n_listings": 615
+ },
+ "Avda. de la Paz": {
+  "district": "Sur",
+  "lat": 37.36228,
+  "lon": -5.9596,
+  "price_encoded": 142.47,
+  "n_listings": 1
+ },
+ "Bami": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.36053,
+  "lon": -5.979311,
+  "price_encoded": 104.5,
+  "n_listings": 21
+ },
+ "Barrio León": {
+  "district": "Triana",
+  "lat": 37.379467,
+  "lon": -6.012376,
+  "price_encoded": 158.93,
+  "n_listings": 19
+ },
+ "Bda. Pino Montano": {
+  "district": "Macarena - Norte",
+  "lat": 37.422636,
+  "lon": -5.968241,
+  "price_encoded": 156.51,
+  "n_listings": 4
+ },
+ "Bda. de Pineda": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.3495,
+  "lon": -5.97622,
+  "price_encoded": 141.56,
+  "n_listings": 1
+ },
+ "Begoña, Santa Catalina": {
+  "district": "Macarena",
+  "lat": 37.407372,
+  "lon": -5.976436,
+  "price_encoded": 109.77,
+  "n_listings": 13
+ },
+ "Bellavista": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.322622,
+  "lon": -5.968211,
+  "price_encoded": 126.15,
+  "n_listings": 27
+ },
+ "Campos de Soria": {
+  "district": "Macarena",
+  "lat": 37.404953,
+  "lon": -5.972552,
+  "price_encoded": 138.01,
+  "n_listings": 3
+ },
+ "Carretera de Carmona, María Auxiliadora, Fontanal": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.396864,
+  "lon": -5.979077,
+  "price_encoded": 116.19,
+  "n_listings": 36
+ },
+ "Cisneo Alto, Santa María de Graccia": {
+  "district": "Macarena",
+  "lat": 37.403006,
+  "lon": -5.972043,
+  "price_encoded": 140.59,
+  "n_listings": 3
+ },
+ "Ciudad Jardín": {
+  "district": "Nervión",
+  "lat": 37.378751,
+  "lon": -5.963853,
+  "price_encoded": 138.83,
+  "n_listings": 17
+ },
+ "Colores, Entreparques": {
+  "district": "Este - Alcosa - Torreblanca",
+  "lat": 37.392454,
+  "lon": -5.914761,
+  "price_encoded": 137.0,
+  "n_listings": 28
+ },
+ "Consolación": {
+  "district": "Macarena - Norte",
+  "lat": 37.416917,
+  "lon": -5.96802,
+  "price_encoded": 117.43,
+  "n_listings": 5
+ },
+ "Cruz Roja, Capuchinos": {
+  "district": "Macarena",
+  "lat": 37.400637,
+  "lon": -5.981492,
+  "price_encoded": 92.31,
+  "n_listings": 47
+ },
+ "Doctor Barraquer, G. Renfe, Policlínico": {
+  "district": "Macarena",
+  "lat": 37.404526,
+  "lon": -5.990622,
+  "price_encoded": 114.89,
+  "n_listings": 52
+ },
+ "El Cano, Los Bermejales": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.348507,
+  "lon": -5.97947,
+  "price_encoded": 131.99,
+  "n_listings": 4
+ },
+ "El Carmen": {
+  "district": "Macarena",
+  "lat": 37.406432,
+  "lon": -5.984778,
+  "price_encoded": 179.89,
+  "n_listings": 7
+ },
+ "El Cerro": {
+  "district": "Cerro - Amate",
+  "lat": 37.37257,
+  "lon": -5.956566,
+  "price_encoded": 176.35,
+  "n_listings": 27
+ },
+ "El Gordillo": {
+  "district": "Macarena - Norte",
+  "lat": 37.440561,
+  "lon": -5.944731,
+  "price_encoded": 219.33,
+  "n_listings": 4
+ },
+ "El Juncal, Híspalis": {
+  "district": "Sur",
+  "lat": 37.372639,
+  "lon": -5.966429,
+  "price_encoded": 172.44,
+  "n_listings": 5
+ },
+ "El Plantinar": {
+  "district": "Sur",
+  "lat": 37.375262,
+  "lon": -5.972598,
+  "price_encoded": 152.17,
+  "n_listings": 8
+ },
+ "El Porvenir": {
+  "district": "Sur",
+  "lat": 37.372503,
+  "lon": -5.982805,
+  "price_encoded": 220.3,
+  "n_listings": 42
+ },
+ "El Rocío": {
+  "district": "Macarena",
+  "lat": 37.408101,
+  "lon": -5.982276,
+  "price_encoded": 124.29,
+  "n_listings": 4
+ },
+ "El Tardón, El Carmen": {
+  "district": "Triana",
+  "lat": 37.376934,
+  "lon": -6.010421,
+  "price_encoded": 119.45,
+  "n_listings": 23
+ },
+ "El Torrejón, El Cerezo": {
+  "district": "Macarena",
+  "lat": 37.409344,
+  "lon": -5.983987,
+  "price_encoded": 104.78,
+  "n_listings": 13
+ },
+ "Encarnación, Regina": {
+  "district": "Casco Antiguo",
+  "lat": 37.394162,
+  "lon": -5.993719,
+  "price_encoded": 126.66,
+  "n_listings": 417
+ },
+ "Felipe II, Los Diez Mandamientos": {
+  "district": "Sur",
+  "lat": 37.37111,
+  "lon": -5.973377,
+  "price_encoded": 132.32,
+  "n_listings": 3
+ },
+ "Feria": {
+  "district": "Casco Antiguo",
+  "lat": 37.397593,
+  "lon": -5.991092,
+  "price_encoded": 147.19,
+  "n_listings": 511
+ },
+ "Giralda Sur": {
+  "district": "Sur",
+  "lat": 37.374333,
+  "lon": -5.976183,
+  "price_encoded": 137.25,
+  "n_listings": 7
+ },
+ "Heliópolis": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.354341,
+  "lon": -5.985024,
+  "price_encoded": 171.84,
+  "n_listings": 10
+ },
+ "Hermandades, La Carrasca": {
+  "district": "Macarena",
+  "lat": 37.409437,
+  "lon": -5.980721,
+  "price_encoded": 123.17,
+  "n_listings": 9
+ },
+ "Huerta de Santa Teresa": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.389584,
+  "lon": -5.970231,
+  "price_encoded": 166.9,
+  "n_listings": 40
+ },
+ "Huerta de la Salud": {
+  "district": "Sur",
+  "lat": 37.376423,
+  "lon": -5.981855,
+  "price_encoded": 159.33,
+  "n_listings": 31
+ },
+ "Huerta del Pilar": {
+  "district": "Nervión",
+  "lat": 37.385859,
+  "lon": -5.978789,
+  "price_encoded": 146.15,
+  "n_listings": 19
+ },
+ "Juan XXIII": {
+  "district": "Cerro - Amate",
+  "lat": 37.375537,
+  "lon": -5.950577,
+  "price_encoded": 92.84,
+  "n_listings": 22
+ },
+ "La Bachillera": {
+  "district": "Macarena - Norte",
+  "lat": 37.423798,
+  "lon": -5.981997,
+  "price_encoded": 160.05,
+  "n_listings": 12
+ },
+ "La Barzola": {
+  "district": "Macarena",
+  "lat": 37.406263,
+  "lon": -5.980694,
+  "price_encoded": 134.22,
+  "n_listings": 4
+ },
+ "La Buhaira": {
+  "district": "Nervión",
+  "lat": 37.382638,
+  "lon": -5.975263,
+  "price_encoded": 174.66,
+  "n_listings": 57
+ },
+ "La Calzada": {
+  "district": "Nervión",
+  "lat": 37.388771,
+  "lon": -5.978165,
+  "price_encoded": 111.8,
+  "n_listings": 36
+ },
+ "La Corza": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.402221,
+  "lon": -5.968195,
+  "price_encoded": 155.29,
+  "n_listings": 3
+ },
+ "La Florida": {
+  "district": "Nervión",
+  "lat": 37.387007,
+  "lon": -5.984159,
+  "price_encoded": 116.67,
+  "n_listings": 48
+ },
+ "La Oliva": {
+  "district": "Sur",
+  "lat": 37.36393,
+  "lon": -5.97029,
+  "price_encoded": 143.02,
+  "n_listings": 1
+ },
+ "La Palmilla, Doctor Marañón": {
+  "district": "Macarena",
+  "lat": 37.408327,
+  "lon": -5.986924,
+  "price_encoded": 130.48,
+  "n_listings": 5
+ },
+ "La Paz, Las Golondrinas": {
+  "district": "Macarena",
+  "lat": 37.411591,
+  "lon": -5.986499,
+  "price_encoded": 121.59,
+  "n_listings": 5
+ },
+ "La Plata": {
+  "district": "Cerro - Amate",
+  "lat": 37.372261,
+  "lon": -5.949528,
+  "price_encoded": 104.59,
+  "n_listings": 10
+ },
+ "Las Avenidas": {
+  "district": "Macarena",
+  "lat": 37.410691,
+  "lon": -5.985412,
+  "price_encoded": 134.23,
+  "n_listings": 6
+ },
+ "Las Huertas": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.39797,
+  "lon": -5.968875,
+  "price_encoded": 138.17,
+  "n_listings": 2
+ },
+ "Las Letanías": {
+  "district": "Sur",
+  "lat": 37.363082,
+  "lon": -5.964351,
+  "price_encoded": 120.79,
+  "n_listings": 3
+ },
+ "León XIII, Los Naranjos": {
+  "district": "Macarena",
+  "lat": 37.403712,
+  "lon": -5.984166,
+  "price_encoded": 108.85,
+  "n_listings": 34
+ },
+ "Los Carteros": {
+  "district": "Macarena - Norte",
+  "lat": 37.411835,
+  "lon": -5.97108,
+  "price_encoded": 145.7,
+  "n_listings": 1
+ },
+ "Los Pajaros": {
+  "district": "Cerro - Amate",
+  "lat": 37.386107,
+  "lon": -5.957747,
+  "price_encoded": 135.2,
+  "n_listings": 3
+ },
+ "Los Príncipes, La Fontanilla": {
+  "district": "Macarena",
+  "lat": 37.412455,
+  "lon": -5.976178,
+  "price_encoded": 163.44,
+  "n_listings": 4
+ },
+ "Los Remedios": {
+  "district": "Los Remedios",
+  "lat": 37.375382,
+  "lon": -5.998995,
+  "price_encoded": 155.43,
+  "n_listings": 153
+ },
+ "Los arcos": {
+  "district": "Macarena - Norte",
+  "lat": 37.40807,
+  "lon": -5.967259,
+  "price_encoded": 137.86,
+  "n_listings": 2
+ },
+ "Museo": {
+  "district": "Casco Antiguo",
+  "lat": 37.390747,
+  "lon": -6.000127,
+  "price_encoded": 156.14,
+  "n_listings": 295
+ },
+ "Nervión": {
+  "district": "Nervión",
+  "lat": 37.383343,
+  "lon": -5.965786,
+  "price_encoded": 145.25,
+  "n_listings": 75
+ },
+ "Palacio Congresos, Urbadiez, Entrepuentes, Jardines del Eden": {
+  "district": "Este - Alcosa - Torreblanca",
+  "lat": 37.402215,
+  "lon": -5.941519,
+  "price_encoded": 117.5,
+  "n_listings": 14
+ },
+ "Palmete": {
+  "district": "Cerro - Amate",
+  "lat": 37.377835,
+  "lon": -5.934907,
+  "price_encoded": 129.8,
+  "n_listings": 6
+ },
+ "Parque Alcosa": {
+  "district": "Este - Alcosa - Torreblanca",
+  "lat": 37.408884,
+  "lon": -5.921486,
+  "price_encoded": 142.23,
+  "n_listings": 3
+ },
+ "Pedro Salvador, Las Palmeritas": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.354604,
+  "lon": -5.977353,
+  "price_encoded": 121.41,
+  "n_listings": 7
+ },
+ "Pino Flores": {
+  "district": "Macarena",
+  "lat": 37.407791,
+  "lon": -5.972515,
+  "price_encoded": 160.85,
+  "n_listings": 2
+ },
+ "Pio XII": {
+  "district": "Macarena",
+  "lat": 37.405782,
+  "lon": -5.978431,
+  "price_encoded": 130.29,
+  "n_listings": 17
+ },
+ "Polígono Norte": {
+  "district": "Macarena",
+  "lat": 37.412184,
+  "lon": -5.979211,
+  "price_encoded": 113.72,
+  "n_listings": 5
+ },
+ "Polígono Sur": {
+  "district": "Sur",
+  "lat": 37.363886,
+  "lon": -5.971933,
+  "price_encoded": 145.14,
+  "n_listings": 8
+ },
+ "Prado, Parque María Luisa": {
+  "district": "Sur",
+  "lat": 37.37525,
+  "lon": -5.984872,
+  "price_encoded": 143.05,
+  "n_listings": 4
+ },
+ "Retiro Obrero": {
+  "district": "Macarena",
+  "lat": 37.40261,
+  "lon": -5.979317,
+  "price_encoded": 133.93,
+  "n_listings": 3
+ },
+ "Rochelambert": {
+  "district": "Cerro - Amate",
+  "lat": 37.37472,
+  "lon": -5.954357,
+  "price_encoded": 114.56,
+  "n_listings": 7
+ },
+ "San Bartolomé": {
+  "district": "Casco Antiguo",
+  "lat": 37.388438,
+  "lon": -5.987165,
+  "price_encoded": 165.24,
+  "n_listings": 541
+ },
+ "San Bernardo": {
+  "district": "Nervión",
+  "lat": 37.38309,
+  "lon": -5.984038,
+  "price_encoded": 169.27,
+  "n_listings": 95
+ },
+ "San Carlos, Tartessos": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.398639,
+  "lon": -5.971824,
+  "price_encoded": 139.65,
+  "n_listings": 8
+ },
+ "San Diego": {
+  "district": "Macarena - Norte",
+  "lat": 37.41175,
+  "lon": -5.970475,
+  "price_encoded": 136.85,
+  "n_listings": 2
+ },
+ "San Gil": {
+  "district": "Casco Antiguo",
+  "lat": 37.401504,
+  "lon": -5.991192,
+  "price_encoded": 126.14,
+  "n_listings": 316
+ },
+ "San Jerónimo": {
+  "district": "Macarena - Norte",
+  "lat": 37.423998,
+  "lon": -5.984176,
+  "price_encoded": 94.4,
+  "n_listings": 18
+ },
+ "San José Obrero": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.394591,
+  "lon": -5.978551,
+  "price_encoded": 119.88,
+  "n_listings": 48
+ },
+ "San Julián": {
+  "district": "Casco Antiguo",
+  "lat": 37.397638,
+  "lon": -5.986115,
+  "price_encoded": 105.16,
+  "n_listings": 207
+ },
+ "San Lorenzo": {
+  "district": "Casco Antiguo",
+  "lat": 37.399177,
+  "lon": -5.996299,
+  "price_encoded": 148.41,
+  "n_listings": 281
+ },
+ "San Matías": {
+  "district": "Macarena - Norte",
+  "lat": 37.404452,
+  "lon": -5.966473,
+  "price_encoded": 142.29,
+  "n_listings": 1
+ },
+ "San Pablo A y B": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.394373,
+  "lon": -5.967087,
+  "price_encoded": 117.18,
+  "n_listings": 8
+ },
+ "San Pablo C": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.3953,
+  "lon": -5.96221,
+  "price_encoded": 141.66,
+  "n_listings": 1
+ },
+ "San Pablo D y E": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.401005,
+  "lon": -5.95848,
+  "price_encoded": 133.51,
+  "n_listings": 4
+ },
+ "San Vicente": {
+  "district": "Casco Antiguo",
+  "lat": 37.395396,
+  "lon": -5.999691,
+  "price_encoded": 142.46,
+  "n_listings": 316
+ },
+ "Santa Aurelia, Cantábrico, Atlántico, La Romería": {
+  "district": "Cerro - Amate",
+  "lat": 37.384193,
+  "lon": -5.943817,
+  "price_encoded": 119.03,
+  "n_listings": 7
+ },
+ "Santa Catalina": {
+  "district": "Casco Antiguo",
+  "lat": 37.39309,
+  "lon": -5.986055,
+  "price_encoded": 135.47,
+  "n_listings": 300
+ },
+ "Santa Clara": {
+  "district": "San Pablo - Santa Justa",
+  "lat": 37.395542,
+  "lon": -5.95635,
+  "price_encoded": 130.0,
+  "n_listings": 11
+ },
+ "Santa Cruz": {
+  "district": "Casco Antiguo",
+  "lat": 37.386122,
+  "lon": -5.991577,
+  "price_encoded": 171.04,
+  "n_listings": 662
+ },
+ "Santa María de Ordas, San Nicolas": {
+  "district": "Macarena",
+  "lat": 37.4034,
+  "lon": -5.97362,
+  "price_encoded": 135.6,
+  "n_listings": 4
+ },
+ "Sector Sur, La Palmera, Reina Mercedes": {
+  "district": "Palmera - Bellavista",
+  "lat": 37.364441,
+  "lon": -5.986612,
+  "price_encoded": 113.74,
+  "n_listings": 24
+ },
+ "Tablada": {
+  "district": "Los Remedios",
+  "lat": 37.369697,
+  "lon": -6.001792,
+  "price_encoded": 158.76,
+  "n_listings": 5
+ },
+ "Tabladilla, La Estrella": {
+  "district": "Sur",
+  "lat": 37.367383,
+  "lon": -5.978499,
+  "price_encoded": 149.32,
+  "n_listings": 3
+ },
+ "Tiro de Línea, Santa Genoveva": {
+  "district": "Sur",
+  "lat": 37.368112,
+  "lon": -5.976344,
+  "price_encoded": 137.54,
+  "n_listings": 8
+ },
+ "Triana Casco Antiguo": {
+  "district": "Triana",
+  "lat": 37.384719,
+  "lon": -6.003428,
+  "price_encoded": 180.01,
+  "n_listings": 473
+ },
+ "Triana Este": {
+  "district": "Triana",
+  "lat": 37.379962,
+  "lon": -6.003177,
+  "price_encoded": 112.06,
+  "n_listings": 200
+ },
+ "Triana Oeste": {
+  "district": "Triana",
+  "lat": 37.386528,
+  "lon": -6.009371,
+  "price_encoded": 199.86,
+  "n_listings": 158
+ },
+ "Valdezorras": {
+  "district": "Macarena - Norte",
+  "lat": 37.429337,
+  "lon": -5.917741,
+  "price_encoded": 153.98,
+  "n_listings": 4
+ },
+ "Villegas": {
+  "district": "Macarena",
+  "lat": 37.409626,
+  "lon": -5.976911,
+  "price_encoded": 121.22,
+  "n_listings": 5
+ },
+ "an Roque": {
+  "district": "Nervión",
+  "lat": 37.390689,
+  "lon": -5.982749,
+  "price_encoded": 145.52,
+  "n_listings": 101
+ },
+ "no asignado": {
+  "district": "Este - Alcosa - Torreblanca",
+  "lat": 37.408367,
+  "lon": -5.933789,
+  "price_encoded": 116.11,
+  "n_listings": 23
+ }
+}

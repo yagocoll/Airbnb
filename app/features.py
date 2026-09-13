@@ -1,6 +1,6 @@
-"""Reconstruye el vector de 66 features que espera price_model.pkl a partir
-de un formulario simple, sin obligar al usuario a conocer columnas derivadas
-como neighbourhood_price_encoded o distance_to_center_km.
+"""Reconstruye el vector de features que espera price_model.pkl (uno por ciudad,
+ver set_city) a partir de un formulario simple, sin obligar al usuario a conocer
+columnas derivadas como neighbourhood_price_encoded o distance_to_center_km.
 """
 
 import json
@@ -9,25 +9,155 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import streamlit as st
 from sklearn.neighbors import BallTree
 
 APP_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = APP_DIR.parent
 
-with open(PROJECT_DIR / "models" / "model_metadata.json", encoding="utf-8") as f:
-    METADATA = json.load(f)
+# Ciudades soportadas por la app. Añadir una nueva ciudad implica: datos en
+# data/raw/<city>/, notebooks en notebooks/<city>/, modelo en models/<city>/ y
+# assets en app/assets/<city>/ (mismo esquema para las tres), más una entrada
+# en cada uno de estos diccionarios.
+CITIES = ["barcelona", "madrid", "valencia", "malaga", "sevilla", "mallorca", "euskadi"]
+CITY_LABELS = {
+    "barcelona": "Barcelona", "madrid": "Madrid", "valencia": "Valencia", "malaga": "Málaga",
+    "sevilla": "Sevilla", "mallorca": "Mallorca", "euskadi": "Euskadi",
+}
+CITY_CENTERS = {
+    "barcelona": (41.3874, 2.1686),  # Plaça Catalunya
+    "madrid": (40.4168, -3.7038),  # Puerta del Sol
+    "valencia": (39.4699, -0.3763),  # Plaza del Ayuntamiento
+    "malaga": (36.7213, -4.4214),  # Plaza de la Constitución
+    "sevilla": (37.3826, -5.9963),  # Catedral de Sevilla
+    "mallorca": (39.5673, 2.6474),  # Catedral de Palma (La Seu)
+    # Centro geográfico del bounding box de anuncios (no un hito real): Euskadi no
+    # tiene un único centro (ver distance_to_center_km más abajo) y este punto solo
+    # se usa para centrar el mapa de "Explora el mercado" de forma que las 3
+    # provincias queden visibles a la vez.
+    "euskadi": (42.9646, -2.5991),
+}
+CITY_CENTER_NAMES = {
+    "barcelona": "Plaça Catalunya", "madrid": "Puerta del Sol", "valencia": "Plaza del Ayuntamiento",
+    "malaga": "Plaza de la Constitución", "sevilla": "Catedral de Sevilla",
+    "mallorca": "Catedral de Palma (La Seu)",
+    "euskadi": "la capital de provincia más cercana (Bilbao, Donostia-San Sebastián o Vitoria-Gasteiz)",
+}
+DEFAULT_DISTRICT = {
+    "barcelona": "Eixample", "madrid": "Centro", "valencia": "Ciutat Vella", "malaga": "Centro",
+    "sevilla": "Casco Antiguo", "mallorca": "Palma de Mallorca", "euskadi": "Vizcaya",
+}
+# Distritos con muestra pequeña en el test de 05_model_evaluation.ipynb de cada
+# ciudad, para el aviso de confianza en confidence_flags().
+LOW_SAMPLE_DISTRICTS = {
+    "barcelona": ("Horta-Guinardó", "Nou Barris"),
+    "madrid": ("Vicálvaro", "Moratalaz", "Villa de Vallecas"),
+    "valencia": ("Poblats del Nord", "Benimaclet", "Poblats de l'Oest"),
+    "malaga": ("Puerto de la Torre", "Campanillas", "Teatinos-Universidad"),
+    "sevilla": ("Macarena - Norte", "Este - Alcosa - Torreblanca", "Cerro - Amate"),
+    "mallorca": ("Santa Eugènia", "Estellencs", "Consell"),
+    # Las 3 provincias tienen muestra grande de sobra en test (89-605 filas, ver
+    # 05_model_evaluation.ipynb de Euskadi, sección 4.2): ninguna necesita este aviso.
+    "euskadi": (),
+}
 
-FEATURE_COLS = METADATA["feature_cols"]
+# Palabra para la unidad geográfica más fina que se pide en el Formulario, usada en
+# los textos de la home: "Barrio" en las ciudades, "Municipio" en Euskadi (que no es
+# una sola ciudad con barrios, sino una región de varios municipios independientes).
+GEO_UNIT_WORD = {
+    "euskadi": "Municipio",
+}
 
-# Árbol espacial sobre los anuncios reales (mismo universo y radio que
-# n_nearby_150m en 02_feature_engineering.ipynb), para poder calcular la densidad
-# de un anuncio nuevo/simulado sin tener que recorrer los ~13000 anuncios cada vez.
+
+def geo_unit_word(city):
+    return GEO_UNIT_WORD.get(city, "Barrio")
+
+ROOM_TYPES = ["Entire home/apt", "Private room", "Shared room", "Hotel room"]
+
+# Euskadi no tiene un único centro (ver 02_feature_engineering.ipynb de Euskadi,
+# sección 8.1): distance_to_center_km ahí se calcula como la distancia a la capital
+# de provincia más cercana de las tres, no a un único punto. Se replica aquí para
+# que la predicción en vivo use la misma definición que el modelo entrenado.
+_EUSKADI_CAPITALS = {
+    "Bilbao": (43.2630, -2.9350),
+    "Donostia-San Sebastián": (43.3183, -1.9812),
+    "Vitoria-Gasteiz": (42.8467, -2.6716),
+}
+
 _EARTH_R_KM = 6371.0
 _NEARBY_RADIUS_M = 150
-_nearby_coords = pd.read_csv(
-    PROJECT_DIR / "data" / "processed" / "listings_full_clean.csv", usecols=["latitude", "longitude"]
-)
-_NEARBY_TREE = BallTree(np.radians(_nearby_coords[["latitude", "longitude"]].to_numpy()), metric="haversine")
+
+
+@st.cache_resource(show_spinner=False)
+def _load_city_bundle(city: str):
+    """Carga todo lo que depende de la ciudad activa: metadatos del modelo, columnas
+    de features, estadísticas de barrio y el árbol espacial para la densidad de
+    anuncios cercanos. Cacheado por ciudad: cambiar de ciudad en el selector solo
+    recalcula la primera vez, las siguientes veces reutiliza lo ya cargado."""
+    with open(PROJECT_DIR / "models" / city / "model_metadata.json", encoding="utf-8") as f:
+        metadata = json.load(f)
+    feature_cols = metadata["feature_cols"]
+
+    with open(APP_DIR / "assets" / city / "neighbourhood_stats.json", encoding="utf-8") as f:
+        neighbourhood_stats = json.load(f)
+    districts = sorted({v["district"] for v in neighbourhood_stats.values()})
+    neighbourhoods_by_district = {
+        d: sorted(n for n, v in neighbourhood_stats.items() if v["district"] == d) for d in districts
+    }
+    # Málaga no tiene nivel de barrio por debajo del distrito (ver 02_feature_engineering.ipynb
+    # de Málaga, sección 5.2): cada distrito mapea a un único "barrio" (él mismo). En ese caso
+    # la app no debe mostrar distrito y barrio como si fueran dos cosas distintas.
+    has_neighbourhood_level = any(len(v) > 1 for v in neighbourhoods_by_district.values())
+
+    # Las categorías de property_type que sobrevivieron al agrupado por frecuencia
+    # en 02_feature_engineering.ipynb (>=30 apariciones) varían de una ciudad a
+    # otra: se leen directamente de feature_cols en vez de mantener una lista
+    # aparte, para que nunca se puedan desincronizar del modelo real.
+    property_types = sorted(
+        c[len("property_type_"):] for c in feature_cols if c.startswith("property_type_") and c != "property_type_Other"
+    )
+    if any(c == "property_type_Other" for c in feature_cols):
+        property_types.append("Other")
+
+    # Árbol espacial sobre los anuncios reales de esta ciudad (mismo universo y
+    # radio que n_nearby_150m en 02_feature_engineering.ipynb), para poder calcular
+    # la densidad de un anuncio nuevo/simulado sin recorrer todos los anuncios.
+    nearby_coords = pd.read_csv(
+        PROJECT_DIR / "data" / "processed" / city / "listings_full_clean.csv", usecols=["latitude", "longitude"]
+    )
+    nearby_tree = BallTree(np.radians(nearby_coords[["latitude", "longitude"]].to_numpy()), metric="haversine")
+
+    return {
+        "metadata": metadata,
+        "feature_cols": feature_cols,
+        "neighbourhood_stats": neighbourhood_stats,
+        "districts": districts,
+        "neighbourhoods_by_district": neighbourhoods_by_district,
+        "has_neighbourhood_level": has_neighbourhood_level,
+        "property_types": property_types,
+        "nearby_tree": nearby_tree,
+    }
+
+
+def set_city(city: str):
+    """Activa `city` como ciudad actual: recarga (o reutiliza de caché) todo lo que
+    depende de ella y lo deja en variables de módulo, para que el resto de este
+    fichero y de app.py sigan usando los mismos nombres de siempre (METADATA,
+    DISTRICTS...) sin tener que pasar la ciudad de función en función."""
+    global CITY, METADATA, FEATURE_COLS, NEIGHBOURHOOD_STATS, DISTRICTS
+    global NEIGHBOURHOODS_BY_DISTRICT, HAS_NEIGHBOURHOOD_LEVEL, PROPERTY_TYPES, CITY_CENTER, _NEARBY_TREE
+
+    bundle = _load_city_bundle(city)
+    CITY = city
+    METADATA = bundle["metadata"]
+    FEATURE_COLS = bundle["feature_cols"]
+    NEIGHBOURHOOD_STATS = bundle["neighbourhood_stats"]
+    DISTRICTS = bundle["districts"]
+    NEIGHBOURHOODS_BY_DISTRICT = bundle["neighbourhoods_by_district"]
+    HAS_NEIGHBOURHOOD_LEVEL = bundle["has_neighbourhood_level"]
+    PROPERTY_TYPES = bundle["property_types"]
+    CITY_CENTER = CITY_CENTERS[city]
+    _NEARBY_TREE = bundle["nearby_tree"]
 
 
 def count_nearby(lat, lon, radius_m=_NEARBY_RADIUS_M):
@@ -35,38 +165,8 @@ def count_nearby(lat, lon, radius_m=_NEARBY_RADIUS_M):
     count = _NEARBY_TREE.query_radius(np.radians([[lat, lon]]), r=radius_rad, count_only=True)
     return int(count[0])
 
-with open(APP_DIR / "assets" / "neighbourhood_stats.json", encoding="utf-8") as f:
-    NEIGHBOURHOOD_STATS = json.load(f)
 
-DISTRICTS = sorted({v["district"] for v in NEIGHBOURHOOD_STATS.values()})
-
-NEIGHBOURHOODS_BY_DISTRICT = {
-    district: sorted(n for n, v in NEIGHBOURHOOD_STATS.items() if v["district"] == district)
-    for district in DISTRICTS
-}
-
-ROOM_TYPES = ["Entire home/apt", "Private room", "Shared room", "Hotel room"]
-
-# Mismas 13 categorías que quedaron como columnas propias en 02_feature_engineering.ipynb
-# (>=30 apariciones en el dataset); el resto se agrupa en "Other".
-PROPERTY_TYPES = [
-    "Entire rental unit",
-    "Private room in rental unit",
-    "Entire serviced apartment",
-    "Entire condo",
-    "Room in hotel",
-    "Private room in hostel",
-    "Entire loft",
-    "Private room in home",
-    "Room in boutique hotel",
-    "Entire home",
-    "Private room in condo",
-    "Shared room in hostel",
-    "Private room in bed and breakfast",
-    "Other",
-]
-
-CITY_CENTER = (41.3874, 2.1686)  # Plaça Catalunya, misma referencia que en 02_feature_engineering.ipynb
+set_city("barcelona")
 
 FEATURE_LABELS = {
     "minimum_nights": "Estancia mínima (noches)",
@@ -99,6 +199,7 @@ FEATURE_LABELS = {
     "has_ac": "Aire acondicionado",
     "has_pool": "Piscina",
     "has_dishwasher": "Lavavajillas",
+    "has_sea_view": "Vistas al mar",
     "n_amenities": "Nº de amenities",
     "n_nearby_150m": "Anuncios cercanos (150m)",
 }
@@ -147,8 +248,13 @@ def build_features(inputs: dict):
     neigh_stats = NEIGHBOURHOOD_STATS[inputs["neighbourhood"]]
     lat = inputs.get("latitude") or neigh_stats["lat"]
     lon = inputs.get("longitude") or neigh_stats["lon"]
-    distance_to_center_km = haversine_km(lat, lon, *CITY_CENTER)
-    n_nearby_150m = count_nearby(lat, lon)
+    if CITY == "euskadi":
+        distance_to_center_km = min(haversine_km(lat, lon, *c) for c in _EUSKADI_CAPITALS.values())
+    else:
+        distance_to_center_km = haversine_km(lat, lon, *CITY_CENTER)
+    # Se puede forzar con inputs["n_nearby_150m"] (usado por el simulador "qué pasaría
+    # si..." de Predicción); si no viene, se calcula a partir de las coordenadas.
+    n_nearby_150m = inputs.get("n_nearby_150m", count_nearby(lat, lon))
 
     listings_count = inputs["calculated_host_listings_count"]
     tier = host_size_tier(listings_count)
@@ -210,7 +316,8 @@ def build_features(inputs: dict):
         "host_user_tenure_years": inputs["host_user_tenure_years"],
         "has_ac": inputs["has_ac"],
         "has_pool": inputs["has_pool"],
-        "has_dishwasher": inputs["has_dishwasher"],
+        "has_dishwasher": inputs.get("has_dishwasher", False),
+        "has_sea_view": inputs.get("has_sea_view", False),
         "n_amenities": inputs["n_amenities"],
         "n_nearby_150m": n_nearby_150m,
     }
@@ -237,11 +344,11 @@ def confidence_flags(inputs: dict):
     flags = []
     if inputs["bedrooms"] >= 7 or inputs["accommodates"] >= 10:
         flags.append(
-            "Este tamaño de alojamiento (Group Flat) es donde el modelo subestima "
-            "más el precio en los datos históricos: trata el resultado como orientativo."
+            "Este tamaño de alojamiento (Group Flat) tiene pocos anuncios de referencia "
+            "en los datos históricos: trata el resultado como orientativo."
         )
     neigh_stats = NEIGHBOURHOOD_STATS[inputs["neighbourhood"]]
-    if neigh_stats["district"] in ("Horta-Guinardó", "Nou Barris"):
+    if neigh_stats["district"] in LOW_SAMPLE_DISTRICTS.get(CITY, ()):
         flags.append(
             f"{neigh_stats['district']} tiene poca representación en los datos de entrenamiento, "
             "así que la predicción es menos fiable que en distritos con más anuncios."
