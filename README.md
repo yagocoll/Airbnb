@@ -6,7 +6,7 @@ comparándolo con anuncios reales parecidos al tuyo.
 
 Trabajo Fin de Máster (Universidad Complutense de Madrid, 2026).
 
-**App en vivo:** _(añade aquí la URL de Streamlit Cloud)_
+**App en vivo:** https://yagocoll-fair-night-airbnb-price-predictor.streamlit.app/
 
 ## Qué hace
 
