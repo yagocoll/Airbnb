@@ -756,52 +756,46 @@ un precio.
 
 <h2>7.1 Resultados</h2>
 <p>
-El modelo final (Hist Gradient Boosting, elegido tras comparar 4 familias con validación cruzada y ajuste de
-hiperparámetros) mejora de forma sustancial sobre el baseline de regresión lineal en Barcelona (RMSE de
-172€ a 141€, MAE de 63€ a 51€, R&sup2; de 0,69 a 0,79), con la misma metodología aplicada de forma
-independiente a las otras 6 ciudades. El hallazgo más relevante del trabajo, que
-<code>minimum_nights</code> separa dos mercados de precio muy distinto dentro de un mismo anuncio con una
-frontera legal real en España, aparece primero en el EDA (Sección 2.3), se confirma como la variable
-dominante del modelo por dos métodos distintos (Sección 5.1&ndash;5.2), y determina cómo la propia
-aplicación agrupa sus comparables (Sección 6.1). Por el camino, se detectó y corrigió una fuga de
-información real (<code>neighbourhood_price_encoded</code> calculada sobre todo el dataset antes del
-<i>split</i>, Sección 3.4), y se documentó honestamente que el R&sup2; en euros no es comparable entre
-ciudades de dispersión de precio muy distinta (Sección 4.5). El resultado se lleva a producción como una
-aplicación completa, no como un notebook aislado (Sección 6).
+El modelo final (Hist Gradient Boosting, elegido tras comparar 4 familias con validación cruzada) mejora
+sustancialmente el baseline lineal en Barcelona (RMSE 172€&rarr;141€, MAE 63€&rarr;51€, R&sup2;
+0,69&rarr;0,79), con la misma metodología en las otras 6 ciudades. El hallazgo más relevante, que
+<code>minimum_nights</code> separa dos mercados de precio muy distinto con una frontera legal real, aparece
+en el EDA (Sección 2.3), se confirma como variable dominante por dos métodos (Sección 5.1&ndash;5.2), y
+determina cómo la app agrupa comparables (Sección 6.1). Por el camino se corrigió una fuga real
+(<code>neighbourhood_price_encoded</code>, Sección 3.4) y se documentó que el R&sup2; en euros no es
+comparable entre ciudades (Sección 4.5); el resultado se lleva a producción como aplicación completa
+(Sección 6).
 </p>
 
-<h2>7.2 Limitaciones</h2>
+<h2>7.2 Dos hallazgos interpretables por ciudad</h2>
+<p>
+Más allá de <code>minimum_nights</code> como variable dominante común (Sección 5.1): en
+<b>Barcelona</b>, concentra el 63% de la importancia del modelo (frente al 29% de Madrid), y coincide con
+que es la primera ciudad española en anunciar la eliminación de licencias turísticas para 2028. En
+<b>Mallorca</b>, el centro no manda: Palma está entre los municipios más baratos (mediana 262€) mientras
+pueblos remotos o de costa exclusiva encabezan el ranking.
+</p>
+
+<h2>7.3 Limitaciones</h2>
 <ul>
     <li>Los datos son una única captura (<i>snapshot</i>) de Inside Airbnb: el modelo no ve estacionalidad
     real ni evolución del mercado en el tiempo.</li>
-    <li>El precio que se predice es el <b>publicado</b>, no el efectivamente cobrado: un anuncio caro con
-    ocupación estimada muy baja entra al entrenamiento con el mismo peso que uno con demanda real
-    (Sección 7.3).</li>
-    <li>En mercados con colas de precio muy largas y dispersas (Sevilla, Mallorca), el error absoluto en
-    euros sigue siendo alto aunque el error relativo (MAPE) sea consistente con el resto de ciudades.</li>
-    <li>La importancia por permutación y SHAP (Secciones 5.1 y 5.2) reparten crédito entre variables
-    correlacionadas de forma no única: como <code>accommodates</code>, <code>bedrooms</code>, <code>beds</code>
-    y <code>bathrooms</code> están correlacionadas entre sí (0,80&ndash;0,84, Sección 3.3), el modelo cubre
-    gran parte de la señal de tamaño con <code>accommodates</code> y apenas necesita apoyarse en las demás,
-    que aparecen con importancia baja. Eso es fiel a lo que hace <i>este modelo</i>, pero no equivale a que
-    <code>bedrooms</code> o <code>bathrooms</code> sean irrelevantes para el precio en la realidad: es
-    redundancia entre variables, no ausencia de importancia real.</li>
+    <li>El precio que se predice es el <b>publicado</b>, no el cobrado: un anuncio caro con ocupación baja
+    entra al entrenamiento con el mismo peso que uno con demanda real (Sección 7.4).</li>
+    <li>La importancia por permutación y SHAP (Sección 5.1&ndash;5.2) reparte crédito entre variables
+    correlacionadas (Sección 3.3) de forma no única: el modelo cubre el tamaño con <code>accommodates</code>
+    y apenas necesita <code>bedrooms</code>/<code>bathrooms</code>, que salen bajos sin ser irrelevantes en
+    la realidad.</li>
 </ul>
 
-<h2>7.3 Trabajo futuro</h2>
+<h2>7.4 Trabajo futuro</h2>
 <ul>
     <li><b>Ponderar el entrenamiento por ocupación real</b> (<code>estimated_occupancy_l365d</code>, ya
-    presente como feature): dar menos peso a anuncios caros que apenas se alquilan, para que su precio
-    publicado influya menos en lo que el modelo considera "normal".</li>
-    <li><b>Actualización periódica</b>: los 5 notebooks por ciudad (EDA &rarr; feature engineering &rarr;
-    baseline &rarr; entrenamiento &rarr; evaluación) ya son un pipeline reproducible; automatizarlo contra
-    nuevos <i>snapshots</i> de Inside Airbnb mantendría el modelo al día sin trabajo manual.</li>
-    <li><b>Filtro de comparables más fino</b> en la pantalla Comparar (por ejemplo, <code>bedrooms</code>
-    como filtro duro), evaluando el coste en tamaño de muestra frente a la ganancia en precisión del
-    peer-group, como se exploró durante el desarrollo de la aplicación.</li>
-    <li><b>Extender a más ciudades</b> reutilizando el mismo pipeline de 5 notebooks, ya preparado para las
-    particularidades de datos que puedan aparecer (ausencia de columnas, categorías nuevas de
-    <code>property_type</code>, etc.).</li>
+    presente): menos peso a anuncios caros con poca demanda real.</li>
+    <li><b>Actualización periódica</b>: automatizar el pipeline de 5 notebooks contra nuevos
+    <i>snapshots</i> de Inside Airbnb.</li>
+    <li><b>Filtro de comparables más fino</b> en Comparar (<code>bedrooms</code> como filtro duro), y
+    extender a más ciudades con el mismo pipeline.</li>
 </ul>
 
 </div>

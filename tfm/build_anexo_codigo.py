@@ -76,23 +76,32 @@ HEAD = """<html>
     <p>Trabajo Fin de Máster, Modalidad Semipresencial<br>Yago Coll Crespo, Septiembre 2026</p>
 </div>
 
-<h1>Código completo: aplicación FairNight y pipeline de Barcelona</h1>
+<h1>Código completo: pipeline de modelización de Barcelona y aplicación FairNight</h1>
 <p>
-Este anexo recoge el código fuente completo de dos partes del proyecto: la aplicación FairNight
-(<code>app/</code>) en su totalidad, y el pipeline de modelización de <b>Barcelona</b>
-(<code>notebooks/barcelona/</code>, solo celdas de código; el razonamiento y los resultados de cada celda,
-en markdown, tablas y gráficas, ya están recogidos en la memoria y en el Anexo II). Barcelona se toma
-como ciudad de referencia por ser la más documentada; las otras 6 ciudades ejecutan el <b>mismo pipeline</b>
-sobre sus propios datos (Sección 2.4 y 4.5 de la memoria, Anexo I Sección L y Anexo II Sección M detallan en
-qué difiere cada una), así que no se repite aquí: su código está disponible en el repositorio público de
-GitHub, <a href="https://github.com/yagocoll/Airbnb">github.com/yagocoll/Airbnb</a>.
+Este anexo recoge el código fuente completo de dos partes del proyecto, en el orden en que se desarrollaron:
+primero el <b>pipeline de modelización</b> de <b>Barcelona</b> (<code>notebooks/barcelona/</code>, solo
+celdas de código; el razonamiento y los resultados de cada celda, en markdown, tablas y gráficas, ya están
+recogidos en la memoria y en el Anexo II), y después la <b>aplicación FairNight</b> (<code>app/</code>) en
+su totalidad. Barcelona se toma como ciudad de referencia por ser la más documentada; las otras 6 ciudades
+ejecutan el <b>mismo pipeline</b> sobre sus propios datos (Sección 2.4 y 4.5 de la memoria, Anexo I Sección
+L y Anexo II Sección M detallan en qué difiere cada una), así que no se repite aquí: su código está
+disponible en el repositorio público de GitHub,
+<a href="https://github.com/yagocoll/Airbnb">github.com/yagocoll/Airbnb</a>.
+</p>
+<p>
+<b>Nota sobre el uso de IA:</b> en el pipeline de modelización (los 5 notebooks, por ciudad), la IA se ha
+usado solo puntualmente, para casos concretos donde el código se complicaba o para optimización, nunca para
+decidir el enfoque: todas las decisiones de modelización (qué variables entran, cómo se tratan los nulos y
+outliers, qué familias de modelos comparar, cómo interpretar cada resultado) son del autor, y todo el
+código generado así se ha revisado y entendido línea a línea antes de incorporarlo. En la aplicación
+FairNight, en cambio, sí se ha dejado trabajar a estas herramientas de forma mucho más amplia, como es
+habitual en el desarrollo de producto; el diseño de las pantallas, las decisiones de qué mostrar y cómo, y
+la validación de que el código productiza correctamente los resultados del pipeline, siguen siendo trabajo
+propio del autor.
 </p>
 
 <h2>Estructura del repositorio</h2>
 __REPO_TREE__
-
-<h2>Dependencias de la aplicación</h2>
-<p>Versiones exactas fijadas en <code>app/requirements.txt</code>:</p>
 """
 
 REPO_TREE = """Airbnb/
@@ -166,7 +175,11 @@ def build_requirements_table():
 
 
 def build_app_section():
-    parts = ["<h1>Aplicación FairNight</h1>"]
+    parts = [
+        "<h1>Aplicación FairNight</h1>",
+        "<p><i>Desarrollada dejando trabajar de forma más amplia a herramientas de generación de "
+        "código por IA (ver nota al inicio del anexo).</i></p>",
+    ]
     files = [
         ("app/app.py", "Interfaz Streamlit completa: formulario de descripción del anuncio, "
          "predicción, explicación (SHAP), comparables y mapa."),
@@ -195,7 +208,11 @@ def extract_notebook_code(nb_path: Path) -> str:
 
 
 def build_notebooks_section():
-    parts = ["<h1>Pipeline de modelización (Barcelona)</h1>"]
+    parts = [
+        "<h1>Pipeline de modelización (Barcelona)</h1>",
+        "<p><i>Decisiones y enfoque, del autor; IA solo puntualmente, para casos concretos "
+        "(ver nota al inicio del anexo).</i></p>",
+    ]
     notebooks = [
         ("01_eda.ipynb", "Carga, tipado, nulos, duplicados, análisis univariante/bivariante, "
          "correlaciones, geografía y amenities. Detalle narrativo completo en el Anexo II."),
@@ -218,7 +235,12 @@ def build_notebooks_section():
 
 def main():
     head = HEAD.replace("__REPO_TREE__", code_html(REPO_TREE))
-    html_out = head + build_requirements_table() + build_app_section() + build_notebooks_section() + FOOTER
+    deps_section = (
+        "<h2>Dependencias de la aplicación</h2>"
+        "<p>Versiones exactas fijadas en <code>app/requirements.txt</code>:</p>"
+        + build_requirements_table()
+    )
+    html_out = head + build_notebooks_section() + deps_section + build_app_section() + FOOTER
     src = TFM_DIR / "anexo_codigo.html"
     dest = TFM_DIR / "anexo_codigo.pdf"
     src.write_text(html_out, encoding="utf-8")
