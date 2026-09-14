@@ -115,3 +115,8 @@ snapshot (`listings.csv.gz` y `neighbourhoods.geojson`).
 ## Autor
 
 Yago Coll Crespo, Trabajo Fin de Máster, Universidad Complutense de Madrid, 2026.
+
+## Licencia
+
+Publicado con fines de evaluación académica y de consulta. Todos los derechos reservados, ver
+[LICENSE](LICENSE) para el uso permitido.
