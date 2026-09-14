@@ -779,6 +779,13 @@ aplicación completa, no como un notebook aislado (Sección 6).
     (Sección 7.3).</li>
     <li>En mercados con colas de precio muy largas y dispersas (Sevilla, Mallorca), el error absoluto en
     euros sigue siendo alto aunque el error relativo (MAPE) sea consistente con el resto de ciudades.</li>
+    <li>La importancia por permutación y SHAP (Secciones 5.1 y 5.2) reparten crédito entre variables
+    correlacionadas de forma no única: como <code>accommodates</code>, <code>bedrooms</code>, <code>beds</code>
+    y <code>bathrooms</code> están correlacionadas entre sí (0,80&ndash;0,84, Sección 3.3), el modelo cubre
+    gran parte de la señal de tamaño con <code>accommodates</code> y apenas necesita apoyarse en las demás,
+    que aparecen con importancia baja. Eso es fiel a lo que hace <i>este modelo</i>, pero no equivale a que
+    <code>bedrooms</code> o <code>bathrooms</code> sean irrelevantes para el precio en la realidad: es
+    redundancia entre variables, no ausencia de importancia real.</li>
 </ul>
 
 <h2>7.3 Trabajo futuro</h2>
