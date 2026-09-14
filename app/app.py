@@ -38,6 +38,15 @@ def _count_listings(city):
 MOSTRAR_ERROR_EN_CARDS = False
 
 ZONES_DIR = APP_DIR / "assets" / "zonas"
+BRANDING_DIR = APP_DIR / "assets" / "branding"
+
+
+@st.cache_data(show_spinner=False)
+def _welcome_logo_base64():
+    """Logotipo grande (icono + FairNight) para la pantalla de bienvenida, cacheado
+    para no releer/recodificar el archivo del disco en cada rerun."""
+    path = BRANDING_DIR / "logo_lockup.png"
+    return base64.b64encode(path.read_bytes()).decode("ascii")
 
 
 @st.cache_data(show_spinner=False)
@@ -106,10 +115,23 @@ def _inject_welcome_css():
         padding arriba, título y subtítulo más pegados, foto menos alta (2.4:1 en vez de
         3:2) y menos aire dentro de cada card. */
         .block-container {padding-top: 1.2rem; padding-bottom: 0.5rem;}
+        /* El PNG del logo trae su propio fondo casi blanco (no transparente) con una
+        textura irregular tipo viñeteado: intentar recortarlo a transparente dejaba
+        restos visibles del patrón. En vez de eso, la tarjeta usa ese mismo tono cálido
+        (~#F8F7F5, la media de las esquinas del PNG) para que no haya costura visible
+        entre la imagen y el fondo de la tarjeta. */
+        .welcome-logo { text-align: center; margin: 48px 0 10px 0; }
+        .welcome-logo .logo-card {
+            display: inline-block; background: #F8F7F5; border-radius: 16px;
+            padding: 14px 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .welcome-logo img { height: 64px; display: block; }
         h1 { font-size: 2rem !important; margin-bottom: 2px !important; }
         /* Única leyenda de esta pantalla (el subtítulo bajo el título): sin este margen
-        extra, sobraba un hueco de sobra antes de la primera fila de cards. */
+        extra, sobraba un hueco de sobra antes de la primera fila de cards. Tamaño subido
+        (pedido explícito) respecto al resto de captions de la app. */
         [data-testid="stCaptionContainer"] { margin-bottom: 4px; }
+        [data-testid="stCaptionContainer"] p { font-size: 1.05rem !important; }
 
         .st-key-zone_grid [data-testid="stHorizontalBlock"] {
             display: grid;
@@ -123,6 +145,12 @@ def _inject_welcome_css():
             width: 100% !important;
             min-width: 0 !important;
             flex: none !important;
+            align-self: stretch !important;
+        }
+        .st-key-zone_grid [data-testid="stColumn"] > div,
+        .st-key-zone_grid [data-testid="stColumn"] [data-testid="stLayoutWrapper"],
+        .st-key-zone_grid [data-testid="stColumn"] [data-testid="stVerticalBlock"] {
+            height: 100%;
         }
         @media (max-width: 1100px) {
             .st-key-zone_grid [data-testid="stHorizontalBlock"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -198,10 +226,15 @@ def render_welcome_screen():
     de la sidebar, páginas, features.set_city...) no llega a ejecutarse hasta que
     el usuario elige."""
     _inject_welcome_css()
+    st.markdown(
+        f'<div class="welcome-logo"><div class="logo-card">'
+        f'<img src="data:image/png;base64,{_welcome_logo_base64()}"></div></div>',
+        unsafe_allow_html=True,
+    )
     st.title("Recomendador de precio · Airbnb")
     st.caption(
         "Descubre a qué precio publicar tu anuncio, comparándolo con miles de anuncios reales. "
-        "Elige tu zona — cada una tiene su propio modelo, entrenado solo con datos de esa zona."
+        "Elige tu zona: cada una tiene su propio modelo, entrenado solo con datos de esa zona."
     )
 
     zones, _ = load_zone_registry()
@@ -1607,9 +1640,20 @@ def load_interaction_scores(city):
 
 
 @st.cache_data
-def load_test_matrix(city):
+def load_full_matrix(city):
+    """Todos los anuncios (train + test) con las mismas features que ve el modelo, para
+    vistas descriptivas (PDP, interacción, resumen SHAP) que no son una métrica de
+    rendimiento: aquí no hay riesgo de fuga por incluir train, solo se cuenta cuántos
+    anuncios reales respaldan cada tramo, no se mide acierto. No se usa
+    listings_full_features.csv porque su neighbourhood_price_encoded se calculó sobre
+    todo el dataset antes del split (02_feature_engineering.ipynb), la versión con fuga
+    que 03_model_baseline.ipynb corrigió solo en train/test; concatenar train+test evita
+    reintroducir esa fuga aquí.
+    """
+    train_df = pd.read_csv(PROJECT_DIR / "data" / "processed" / city / "listings_train.csv")
     test_df = pd.read_csv(PROJECT_DIR / "data" / "processed" / city / "listings_test.csv")
-    X = test_df[FEATURE_COLS].copy()
+    full_df = pd.concat([train_df, test_df], ignore_index=True)
+    X = full_df[FEATURE_COLS].copy()
     for c in X.select_dtypes(include="bool").columns:
         X[c] = X[c].astype(int)
     return X
@@ -1814,11 +1858,12 @@ def explain(explainer, X):
 
 @st.cache_data
 def load_shap_summary(city, sample_size=400):
-    """Contribución SHAP de cada variable numérica/booleana en una muestra del test set,
-    con el valor real de esa variable normalizado (0-1) para colorear cada punto."""
-    X_test = load_test_matrix(city)
-    n = min(sample_size, len(X_test))
-    X_sample = X_test.sample(n=n, random_state=42).reset_index(drop=True)
+    """Contribución SHAP de cada variable numérica/booleana en una muestra de todos los
+    anuncios (train + test, ver load_full_matrix), con el valor real de esa variable
+    normalizado (0-1) para colorear cada punto."""
+    X_full = load_full_matrix(city)
+    n = min(sample_size, len(X_full))
+    X_sample = X_full.sample(n=n, random_state=42).reset_index(drop=True)
     explainer = get_shap_explainer(model, city)
     shap_values = explain(explainer, X_sample).values
     col_index = {c: i for i, c in enumerate(X_sample.columns)}
@@ -2904,12 +2949,12 @@ def page_analisis():
                 "respaldan cada tramo: pocos anuncios = tramo poco fiable."
             )
             pdp_choice = st.selectbox("Variable a explorar", list(PDP_GROUPS.keys()), key="pdp_choice")
-            X_test_matrix = load_test_matrix(CITY)
-            pdp_values, pdp_results, pdp_kind = pdp_curve(model, X_test_matrix, pdp_choice)
+            X_full_matrix = load_full_matrix(CITY)
+            pdp_values, pdp_results, pdp_kind = pdp_curve(model, X_full_matrix, pdp_choice)
             raw_values, _ = pdp_axis_values(pdp_choice)
 
             if pdp_kind == "numeric":
-                real_values = pdp_real_values(X_test_matrix, pdp_choice)
+                real_values = pdp_real_values(X_full_matrix, pdp_choice)
                 # La curva PDP se muestrea en puntos fijos (WHATIF_NUMERIC_VALUES) que llegan
                 # muy lejos a propósito, para el simulador de Predicción. Aquí, para no gastar
                 # medio ancho del gráfico en una cola sin apenas anuncios reales, se recorta el
@@ -2952,7 +2997,7 @@ def page_analisis():
                 )
                 pdp_chart = alt.vconcat(line_chart, hist_chart, spacing=4).resolve_scale(x="shared")
             else:
-                counts = pdp_category_counts(X_test_matrix, pdp_choice, raw_values)
+                counts = pdp_category_counts(X_full_matrix, pdp_choice, raw_values)
                 labels_with_counts = [f"{lbl} ({c})" for lbl, c in zip(pdp_values, counts)]
                 pdp_chart = chart_hbar(labels_with_counts, pdp_results, x_title="Precio medio predicho (€)")
             st.altair_chart(pdp_chart, use_container_width=True)
@@ -2993,7 +3038,7 @@ def page_analisis():
         top_n_shap = 12
         st.caption(
             f"Top {top_n_shap} de las {len(shap_order)} variables numéricas o Sí/No con más impacto. Cada punto es "
-            "un anuncio de test: su posición indica cuánto sube o baja el precio predicho, y el color si el valor "
+            "un anuncio real: su posición indica cuánto sube o baja el precio predicho, y el color si el valor "
             "de la variable era bajo (azul) o alto (rojo). Las agrupadas (distrito, tipo...) ya están en el "
             "ranking de importancia de la izquierda."
         )
@@ -3042,7 +3087,7 @@ def page_analisis():
             options_b = [g for g in group_names if g != inter_a]
             inter_b = st.selectbox("Variable en eje Y", options_b, index=0, key="inter_b")
 
-        grid_df, order_a, order_b = pdp_surface(model, X_test_matrix, inter_a, inter_b)
+        grid_df, order_a, order_b = pdp_surface(model, X_full_matrix, inter_a, inter_b)
         heatmap = (
             alt.Chart(grid_df)
             .mark_rect()
@@ -3226,6 +3271,7 @@ def page_formulario():
             st.markdown("#### :material/apartment: Alojamiento")
             room_type = st.selectbox(
                 "Tipo de alojamiento", ROOM_TYPES,
+                format_func=lambda rt: ROOM_TYPE_ICONS[rt].split(": ", 1)[1],
                 help=(
                     "Cómo se comparte el espacio con otros huéspedes:\n\n"
                     "- **Vivienda entera**: el huésped tiene todo el piso para él\n"
@@ -3883,7 +3929,15 @@ def page_prediccion():
                 unsafe_allow_html=True,
             )
             chart = chart_waterfall(pd.DataFrame(rows), x_title="Precio (€)")
-            st.altair_chart(chart, use_container_width=True)
+            # key dinámica (no fija): cuando se activa/desactiva la simulación, o cambia la
+            # variable/valor simulado, la capa rayada "antes" aparece/desaparece y el spec de
+            # Vega cambia de forma (nº de capas y datasets). Con una key fija, Streamlit intenta
+            # parchear la vista de Vega anterior en vez de recrearla, y eso dispara un error real
+            # de Vega-Embed ("Unrecognized data set") que deja el gráfico en blanco de forma
+            # permanente (visible solo en la consola del navegador, no en Python). Cambiar la key
+            # cuando cambia la forma del spec fuerza a remontar el componente en vez de parchearlo.
+            waterfall_key = f"chart_shap_waterfall_{simulating}_{whatif_key}_{sim_val}"
+            st.altair_chart(chart, use_container_width=True, key=waterfall_key)
 
     with col_whatif:
         with st.container(border=True, key="section_prediccion_whatif"):

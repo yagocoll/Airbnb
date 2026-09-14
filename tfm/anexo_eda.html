@@ -1,0 +1,429 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    @page {
+        size: A4;
+        margin: 2.6cm 2.4cm 2.2cm 2.4cm;
+        @frame footer_frame {
+            -pdf-frame-content: footer_content;
+            bottom: 1.1cm; margin-left: 2.4cm; margin-right: 2.4cm; height: 1cm;
+        }
+    }
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.42;
+        color: #1a1a1a;
+    }
+    #footer_content { text-align: center; font-size: 8.5pt; color: #777; }
+
+    h1 { font-size: 16pt; margin-top: 0; margin-bottom: 6pt; color: #111; }
+    h2 { font-size: 12pt; margin-top: 16pt; margin-bottom: 6pt; color: #111; }
+    h3 { font-size: 10.5pt; margin-top: 12pt; margin-bottom: 4pt; color: #222; }
+    p { margin: 0 0 8pt 0; text-align: justify; }
+    ul, ol { margin: 0 0 8pt 0; padding-left: 18pt; }
+    li { margin-bottom: 3pt; }
+
+    table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt 0; font-size: 9pt; }
+    th, td { border: 0.5pt solid #999; padding: 3.5pt 5pt; text-align: left; vertical-align: top; }
+    th { background-color: #e8e8e8; font-weight: bold; }
+    td.col-var { width: 52%; }
+    td.col-fate { width: 48%; }
+
+    .portada {
+        text-align: center;
+        padding-top: 100pt;
+        page-break-after: always;
+    }
+    .portada h1 { font-size: 20pt; margin-bottom: 8pt; }
+    .portada p { text-align: center; }
+
+    .leyenda {
+        background: #f5f5f0;
+        border: 0.5pt solid #ccc;
+        padding: 8pt 12pt;
+        margin: 8pt 0 14pt 0;
+        font-size: 9.5pt;
+    }
+    .leyenda b { color: #111; }
+
+    .figura { text-align: center; margin: 10pt 0; }
+    .figura img { width: 100%; }
+    .figura .caption { font-size: 9pt; color: #555; margin-top: 3pt; font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="footer_content">Anexo II. Página <pdf:pagenumber /> de <pdf:pagecount /></div>
+
+<div class="portada">
+    <h1>Anexo II<br>Análisis exploratorio de datos (EDA)</h1>
+    <p>FairNight: un sistema de recomendación de precios para anuncios de Airbnb</p>
+    <p>Trabajo Fin de Máster, Modalidad Semipresencial<br>Yago Coll Crespo, Septiembre 2026</p>
+</div>
+
+<h1>Análisis exploratorio de datos: el recorrido completo sobre Barcelona</h1>
+<p>
+Este anexo desarrolla en detalle el análisis exploratorio resumido en la Sección 2 de la memoria: carga y
+tipado, tratamiento de nulos y duplicados, análisis univariante y bivariante de cada variable, correlaciones,
+geografía y <code>amenities</code>. <b>Todo el recorrido está construido sobre el notebook
+<code>01_eda.ipynb</code> de Barcelona</b>, tomada como referencia por ser la ciudad con el proceso más
+documentado. Las otras 6 ciudades parten del mismo fichero (<code>listings.csv.gz</code> de Inside Airbnb, 90
+columnas) y siguen el mismo criterio, pero cada una tiene su propio recorrido completo, con sus propios
+hallazgos y particularidades: la última sección de este anexo (M) recoge, ciudad a ciudad, en qué se aparta
+cada una de lo descrito aquí para Barcelona.
+</p>
+
+<h2>A. Carga y estructura del dataset</h2>
+<p>
+El fichero de origen trae <b>15.293 filas y 90 columnas</b>: 42 <code>float64</code>, 30 <code>object</code> y
+18 <code>int64</code>. Dos cosas llaman la atención de inmediato: <code>price</code> llega como texto
+(<code>"$409.00"</code>, con símbolo de moneda y separador de miles) en vez de numérico, y hay columnas
+<code>float64</code> cuyo nombre sugiere texto o fecha (<code>host_since</code>, <code>host_response_time</code>).
+Resultan ser parte de un bloque de <b>12 columnas completamente vacías</b> (100% nulas): <code>neighbourhood</code>,
+<code>host_acceptance_rate</code>, <code>host_response_time</code>, <code>host_thumbnail_url</code>,
+<code>host_neighbourhood</code>, <code>host_total_listings_count</code>, <code>host_verifications</code>,
+<code>host_since</code>, <code>host_response_rate</code>, <code>instant_bookable</code>,
+<code>neighborhood_overview</code>, <code>calendar_updated</code>. De las 90 columnas, solo 78 tienen algún
+dato real en este snapshot.
+</p>
+<p>
+También aparece un grupo de cinco columnas no estándar de Inside Airbnb, <code>price_quote_*</code>
+(<code>price_quote_total_price</code>, <code>price_quote_price_per_night</code>, fechas de check-in/check-out,
+JSON de la cotización): parecen una cotización para unas fechas concretas, no el precio base del anuncio. Su
+destino se decide más adelante, al analizar <code>price</code> a fondo (Sección 3.1 de la memoria).
+</p>
+
+<h2>B. Corrección de tipos</h2>
+<p>
+Cuatro ajustes antes de poder trabajar con las columnas: <code>price</code> se limpia de símbolo de moneda y
+separador de miles y se convierte a <code>float</code>; <code>last_scraped</code>, <code>first_review</code>,
+<code>last_review</code> y <code>calendar_last_scraped</code> pasan de texto a <code>datetime</code>
+(<code>host_since</code> se deja fuera, es una de las 12 columnas vacías); los flags de texto
+<code>"t"</code>/<code>"f"</code> (<code>host_is_superhost</code>, <code>host_has_profile_pic</code>,
+<code>host_identity_verified</code>, <code>has_availability</code>) se mapean a <code>boolean</code> nullable;
+y <code>host_profile_id</code>, inferido como <code>float64</code> por tener 87 nulos, se pasa a
+<code>Int64</code> (entero nullable).
+</p>
+
+<h2>C. Tratamiento de nulos</h2>
+<p>
+Con 90 columnas hay muchos más nulos que en un dataset resumido. Cada grupo se trata según su causa, no con
+una regla única:
+</p>
+<table>
+    <tr><th class="col-var">Grupo de columnas</th><th class="col-fate">Tratamiento y motivo</th></tr>
+    <tr><td class="col-var">12 columnas 100% vacías</td>
+    <td class="col-fate">Se eliminan: no aportan ninguna información. El dataset pasa de 90 a 78
+    columnas.</td></tr>
+    <tr><td class="col-var"><code>bathrooms</code> (23,3% nulo, 3.565 filas)</td>
+    <td class="col-fate">Se recupera desde <code>bathrooms_text</code> (solo 0,09% nulo), extrayendo el número
+    con una expresión regular y mapeando <code>"half-bath"</code> a 0,5. Se recuperan 3.556 de 3.565 valores
+    (99,7%), en vez de imputar o descartar filas.</td></tr>
+    <tr><td class="col-var">Reviews (<code>reviews_per_month</code>, <code>first_review</code>/
+    <code>last_review</code>, <code>review_scores_*</code>, ~23% nulo)</td>
+    <td class="col-fate">Se confirma que el nulo coincide al 100% con <code>number_of_reviews == 0</code>
+    (alojamiento sin reseñas todavía). <code>reviews_per_month</code> se imputa a 0 (valor real). El resto se
+    deja como <code>NaN</code>/<code>NaT</code> genuino: inventar una puntuación sería el peor tipo de dato
+    falso posible.</td></tr>
+    <tr><td class="col-var"><code>license</code> (19,9% nulo)</td>
+    <td class="col-fate">El nulo se interpreta como "sin licencia registrada": se guarda como flag
+    <code>has_license</code> antes de imputar el texto a <code>"Sin licencia"</code>.</td></tr>
+    <tr><td class="col-var"><code>price</code> (12,67% nulo, 1.938 filas)</td>
+    <td class="col-fate">Variable objetivo: no se imputa, se descartan las filas sin precio.</td></tr>
+    <tr><td class="col-var">13 columnas de bajo volumen (host, estancia; ~1,16% del dataset)</td>
+    <td class="col-fate">Identificadores y metadatos de cuenta con muy pocas filas afectadas: no compensa
+    imputarlos, se descartan las filas.</td></tr>
+    <tr><td class="col-var"><code>bedrooms</code> (11,56% nulo) / <code>beds</code> (5,23% nulo)</td>
+    <td class="col-fate">El nulo no es aleatorio: se concentra en <code>Private room</code> (41,2%) y
+    <code>Shared room</code> (12,4%) frente a <code>Entire home/apt</code> (2,8%). Se imputa con la mediana de
+    cada variable <b>dentro de cada <code>room_type</code></b>, no con una mediana global.</td></tr>
+    <tr><td class="col-var"><code>has_availability</code></td>
+    <td class="col-fate">Tras los descartes anteriores queda con un único valor (<code>True</code> en el 100%
+    de las filas): ya no distingue nada, se elimina.</td></tr>
+    <tr><td class="col-var"><code>host_about</code>, <code>host_location</code>, <code>description</code>
+    (texto libre)</td>
+    <td class="col-fate">Se dejan tal cual: un nulo en texto libre no bloquea nada.</td></tr>
+</table>
+<p>
+Tras toda la limpieza, el dataset de Barcelona queda con <b>13.258 filas y 78 columnas</b> (de las 15.293
+filas y 90 columnas de origen).
+</p>
+
+<h2>D. Duplicados</h2>
+<p>
+0 filas duplicadas de fila completa, 0 <code>id</code> repetidos, y 0 filas idénticas en todo salvo
+<code>id</code>: no hay ningún duplicado que eliminar. Sí aparecen 221 filas (83 grupos) que comparten
+<code>name</code>, <code>host_name</code>, <code>latitude</code> y <code>longitude</code> — "duplicados
+lógicos" del mismo edificio o del mismo anfitrión, pero con datos propios en el resto de columnas (reviews,
+disponibilidad, licencia): son anuncios reales distintos, no se tocan.
+</p>
+
+<h2>E. Variables categóricas</h2>
+<p>
+Con 79 columnas hace falta algo más que "identificador" vs. "categórica". Se distinguen cuatro grupos:
+<b>URLs</b> (<code>listing_url</code>, <code>picture_url</code>...), con cardinalidad casi igual al número de
+filas y cero valor analítico; <b>cuasi-identificadores de texto libre</b> (<code>name</code>,
+<code>description</code>, <code>host_about</code>, <code>amenities</code>, <code>license</code>), diferidos a
+feature engineering; <code>bathrooms_text</code>, ya explotada en la Sección C; y las <b>categóricas reales de
+baja cardinalidad</b>, las únicas que se analizan aquí:
+</p>
+<table>
+    <tr><th>Variable</th><th>Distribución</th></tr>
+    <tr><td><code>room_type</code> (4 categorías)</td><td><code>Entire home/apt</code> domina (10.107,
+    76,2%), <code>Private room</code> 2.996 (22,6%), <code>Shared room</code> y <code>Hotel room</code> casi
+    residuales (97 y 58).</td></tr>
+    <tr><td><code>property_type</code> (47 categorías)</td><td>Dominado por <code>Entire rental unit</code>
+    (69%) y <code>Private room in rental unit</code> (16%); el resto es cola larga de categorías con poca
+    muestra (hoteles, hostales, lofts). Necesitará agrupación de categorías raras si se usa como feature.</td></tr>
+    <tr><td><code>neighbourhood_group_cleansed</code> (10 distritos)</td><td><code>Eixample</code> (5.170) y
+    <code>Ciutat Vella</code> (2.757) concentran la mayoría; <code>Nou Barris</code> (141) y
+    <code>Sant Andreu</code> (180) son los más pequeños.</td></tr>
+    <tr><td><code>source</code> (2 categorías)</td><td>96,2% <code>city scrape</code> / 3,8%
+    <code>previous scrape</code>: metadato de cómo se recolectó el anuncio, sin relación esperable con
+    <code>price</code>.</td></tr>
+    <tr><td>Booleanos: <code>host_has_profile_pic</code>, <code>host_identity_verified</code></td>
+    <td>97,8% y 96,5% a <code>True</code>: poca variabilidad, aportarán poco como predictoras.</td></tr>
+    <tr><td><code>host_is_superhost</code> (27,8% <code>True</code>) / <code>has_license</code> (86,6%
+    <code>True</code>)</td><td>Más equilibradas, con potencial real de señal (se confirma en la Sección H).</td></tr>
+</table>
+
+<h2>F. Variables numéricas: estadísticos y asimetría</h2>
+<p>
+De las 49 columnas numéricas, tras descartar identificadores y agrupar familias redundantes (estancia:
+<code>minimum_nights</code>/<code>minimum_minimum_nights</code> correlacionan 1,00 entre sí, literalmente el
+mismo dato; disponibilidad: <code>availability_30</code> a <code>_365</code>, solape moderado 0,34&ndash;0,90),
+el análisis se centra en 14 variables clave. Casi todas muestran asimetría positiva fuerte
+(<code>number_of_reviews_ltm</code> 14,97, <code>reviews_per_month</code> 13,69, <code>beds</code> 11,57,
+<code>price</code> 9,02); <code>review_scores_rating</code> es la única con asimetría <b>negativa</b> fuerte
+(&minus;3,74): la mayoría puntúa muy alto, cerca de 5, y son los pocos malos los que estiran la cola hacia
+abajo.
+</p>
+<div class="figura">
+    <img src="assets/eda/fig_eda_hist_grid.png">
+    <div class="caption">Figura A1. Distribución de las 14 variables numéricas clave de Barcelona.</div>
+</div>
+
+<h2>G. Outliers</h2>
+<p>
+Con el método de rango intercuartílico (IQR), <code>calculated_host_listings_count</code> (18,7%) y
+<code>number_of_reviews</code> (10,6%) encabezan la proporción de valores extremos, seguidos de
+<code>price</code> (4,4%). Es nuevo el caso de <code>review_scores_rating</code> (3,6%): al concentrarse casi
+todas las notas cerca de 5, el IQR marca como "outlier" cualquier puntuación algo más baja, la otra cara de su
+asimetría negativa.
+</p>
+<div class="figura">
+    <img src="assets/eda/fig_eda_box_grid.png">
+    <div class="caption">Figura A2. Diagramas de caja de las 14 variables numéricas clave de Barcelona.</div>
+</div>
+<p>
+El caso más investigado a fondo es <code>beds</code> (máximo 127) y <code>bedrooms</code> (máximo 29). Casi
+todos los valores altos son "Group Flats" reales: pisos de 16&ndash;26 dormitorios, capacidad para 16 personas
+(el máximo de <code>accommodates</code> en Airbnb) y precios de 1.800&ndash;3.700€/noche, consistentes entre
+sí. Hay una única excepción real: un anuncio con <code>beds=127</code> pero solo 2 <code>bedrooms</code> y
+<code>accommodates=4</code>, inconsistente con el resto de la fila — un error de captura genuino, corregido
+con la misma regla que un nulo (mediana de <code>beds</code> por <code>room_type</code>). Con esa única
+excepción corregida, <b>no se recorta ningún otro outlier por IQR</b>: precios altos, muchas reseñas o
+Group Flats son variabilidad real del mercado.
+</p>
+
+<h2>H. Relación con el precio (análisis bivariante)</h2>
+<p>
+Por barrio, <code>Eixample</code> es el más caro por media (309,57€); <code>Ciutat Vella</code> baja mucho por
+mediana (114,12€ frente a una media de 190,95€), efecto de los pisos de lujo del centro histórico que inflan
+la media. Por tipo, <code>Entire home/apt</code> (284,80€ de media) está muy por encima de
+<code>Private room</code> (97,36€) y <code>Shared room</code> (73,97€).
+</p>
+<p>
+Las variables de <b>tamaño</b> son, con diferencia, las más relacionadas con el precio de todo el proyecto:
+<code>bedrooms</code> (Pearson 0,66), <code>accommodates</code> (0,65), <code>beds</code> (0,62) y
+<code>bathrooms</code> (0,59). La relación <code>bedrooms</code>&rarr;<code>price</code> es casi monótona: 1
+dormitorio ≈ 98€ de mediana, 2 ≈ 210€, 3 ≈ 279€... hasta los Group Flats de 9+ dormitorios, ≈1.800€.
+</p>
+<div class="figura">
+    <img src="assets/eda/fig_eda_bedrooms_price.png">
+    <div class="caption">Figura A3. Precio por número de dormitorios (limitado a ≤6 para que los Group Flats
+    no aplasten la escala).</div>
+</div>
+<p>
+<code>has_license</code> muestra una diferencia grande (mediana 203€ con licencia vs. 73€ sin ella), que se
+mantiene dentro de cada <code>room_type</code> (p. ej. <code>Entire home/apt</code>: 234€ vs. 103€), así que
+no es solo un efecto de tipo de alojamiento. <code>host_is_superhost</code> pesa mucho menos (220€ vs. 161€ de
+mediana, pero correlación real casi nula, 0,004: la comparación de dos medianas exageraba el efecto).
+<code>review_scores_rating</code> sorprende por no aportar casi nada (correlación 0,08): casi todo el mundo
+puntúa alto, la nota apenas distingue entre anuncios. Por <code>property_type</code>,
+<code>Entire serviced apartment</code> es el más caro por mediana (282€), por delante incluso de
+<code>Entire rental unit</code> (221€).
+</p>
+
+<h2>I. Correlación multivariante</h2>
+<p>
+La correlación de Pearson asume una relación lineal, pero varias variables (reviews, <code>minimum_nights</code>)
+tienen colas largas, así que conviene compararla con Spearman:
+</p>
+<table>
+    <tr><th>Variable</th><th>Pearson</th><th>Spearman</th></tr>
+    <tr><td><code>bedrooms</code></td><td>0,66</td><td>0,55</td></tr>
+    <tr><td><code>accommodates</code></td><td>0,65</td><td>0,69</td></tr>
+    <tr><td><code>beds</code></td><td>0,62</td><td>0,61</td></tr>
+    <tr><td><code>bathrooms</code></td><td>0,59</td><td>0,28</td></tr>
+    <tr><td><code>estimated_revenue_l365d</code></td><td>0,20</td><td>0,49</td></tr>
+    <tr><td><code>number_of_reviews</code></td><td>0,05</td><td>0,43</td></tr>
+    <tr><td><code>has_license</code></td><td>0,15</td><td>0,35</td></tr>
+    <tr><td><code>minimum_nights</code></td><td>&minus;0,33</td><td>&minus;0,65</td></tr>
+    <tr><td><code>host_is_superhost</code></td><td>0,004</td><td>0,13</td></tr>
+</table>
+<p>
+Las variables de tamaño se mantienen arriba con ambos métodos; las de reviews solo destacan con Spearman
+(señal mucho más robusta que Pearson sobre el precio en bruto). El heatmap confirma además que
+<code>accommodates</code>/<code>bedrooms</code>/<code>beds</code>/<code>bathrooms</code> están muy
+correlacionadas entre sí (0,80&ndash;0,84), un aviso de multicolinealidad para un modelo lineal (Sección 3.3
+de la memoria).
+</p>
+<div class="figura">
+    <img src="assets/eda/fig_eda_heatmap.png">
+    <div class="caption">Figura A4. Matriz de correlación (Spearman) de las variables numéricas y flags
+    booleanos con <code>price</code>.</div>
+</div>
+<div class="figura">
+    <img src="assets/eda/fig_eda_pairplot.png">
+    <div class="caption">Figura A5. Relación entre <code>price</code> (en <code>log1p</code>),
+    <code>bedrooms</code> y <code>accommodates</code>. La línea vertical marca <code>accommodates=16</code>,
+    el máximo permitido en Airbnb; la esquina superior derecha aísla a los Group Flats.</div>
+</div>
+
+<h2>J. Análisis geográfico</h2>
+<p>
+El rango de coordenadas es coherente con Barcelona (latitud 41,35&ndash;41,46, longitud 2,09&ndash;2,22). Los
+distritos forman regiones geográficas compactas y reconocibles, lo que confirma que
+<code>neighbourhood_group_cleansed</code> está bien asignado, y el precio es visiblemente más alto hacia el
+centro.
+</p>
+<div class="figura">
+    <img src="assets/eda/fig_eda_map_districts.png">
+    <div class="caption">Figura A6. Anuncios de Barcelona por distrito.</div>
+</div>
+<div class="figura">
+    <img src="assets/eda/fig_eda_map_price.png">
+    <div class="caption">Figura A7. Precio (<code>log1p</code>) por ubicación geográfica.</div>
+</div>
+<p>
+El 75% de los Group Flats (59 de 79 anuncios con 10+ dormitorios) se concentra en <code>Eixample</code>, que
+tiene los edificios de ensanche con plantas grandes, aptas para convertir en pisos de varias habitaciones.
+Como complemento a la distancia al centro, se cuenta también cuántos anuncios hay en un radio de 150 metros
+alrededor de cada uno (con <code>BallTree</code> y distancia haversine): media de ~55, con correlación
+positiva pero modesta con el precio (0,12), consistente con que las zonas más densas en Airbnb coinciden con
+las más céntricas y caras, sin un "descuento por competencia" visible a este nivel.
+</p>
+
+<h2>K. Amenities</h2>
+<p>
+<code>amenities</code> llega como una lista en formato JSON, sin nulos, con una media de ~30 elementos por
+anuncio. Parseándola aparecen <b>2.337 valores distintos</b>, y más de la mitad (57%) aparece en un único
+anuncio: una cola larguísima de variantes hiperespecíficas (marcas, modelos, velocidades de wifi) que hace
+inviable un <i>one-hot</i> directo. Además, un mismo concepto se escribe de varias formas: el aire
+acondicionado aparece como <code>"Air conditioning"</code> (8.682), <code>"AC - split type ductless system"</code>
+(1.362), <code>"Central air conditioning"</code> (1.139) y <code>"Portable air conditioning"</code> (121),
+cuatro strings distintos para la misma idea.
+</p>
+<p>
+Se prueban cuatro candidatas por palabra clave (agrupando variantes), para ver si alguna correlaciona con
+<code>price</code> lo suficiente como para justificarla:
+</p>
+<table>
+    <tr><th>Candidata</th><th>Prevalencia</th><th>Correlación con <code>price</code></th></tr>
+    <tr><td><code>n_amenities</code> (recuento total)</td><td>media 29,7</td><td>0,163</td></tr>
+    <tr><td><code>has_dishwasher</code></td><td>47,6%</td><td>0,155</td></tr>
+    <tr><td><code>has_ac</code></td><td>84,8%</td><td>0,144</td></tr>
+    <tr><td><code>has_pool</code></td><td>3,7%</td><td>0,036</td></tr>
+</table>
+<p>
+Las tres primeras correlacionan 0,14&ndash;0,16, señal real pero modesta, del mismo orden que
+<code>distance_to_center_km</code>. <code>has_pool</code> sale más débil, pero se mantiene igual que
+<code>review_scores_rating</code> en la Sección H: una correlación débil no descarta una variable, solo baja
+las expectativas. Las cuatro se construyen en <code>02_feature_engineering.ipynb</code>.
+</p>
+
+<h2>L. Conclusiones del EDA de Barcelona</h2>
+<p>
+De las 15.293 filas y 90 columnas originales quedan <b>13.258 filas × 78 columnas</b>. El hallazgo principal
+es que <b>el tamaño manda</b>: <code>bedrooms</code>, <code>accommodates</code>, <code>beds</code> y
+<code>bathrooms</code> son, con diferencia, las variables más correlacionadas con <code>price</code> de todo
+el proyecto, muy por delante de <code>calculated_host_listings_count</code> (0,21). Le sigue
+<code>has_license</code>, con un efecto grande y consistente. Dos sorpresas negativas:
+<code>review_scores_rating</code> apenas explica el precio, y <code>host_is_superhost</code> parece importar
+por comparación de medianas pero su correlación real es casi nula. De cara al modelado quedan diferidas
+varias decisiones: multicolinealidad entre variables de tamaño, agrupación de <code>property_type</code>
+(47 categorías), y las familias redundantes de estancia/disponibilidad, que se resuelven en
+<code>02_feature_engineering.ipynb</code> (Sección 3 de la memoria).
+</p>
+
+<h2>M. Diferencias por ciudad respecto a Barcelona</h2>
+<p>
+Todo lo anterior (secciones A a L) describe el EDA de Barcelona. Las otras 6 ciudades siguen el mismo
+recorrido notebook a notebook, pero cada una tiene su propia historia: artefactos de datos distintos,
+hallazgos geográficos propios y matices en qué variable correlaciona más con el precio. Esta sección recoge,
+ciudad a ciudad, en qué se aparta cada una de lo descrito para Barcelona; lo que no se menciona es porque
+coincide con Barcelona.
+</p>
+<table>
+    <tr><th class="col-var" style="width: 14%;">Ciudad</th><th class="col-fate" style="width: 86%;">
+    Diferencias respecto a Barcelona</th></tr>
+    <tr><td class="col-var">Madrid</td><td class="col-fate">22.708 filas de origen &rarr; 18.949 tras la
+    limpieza. Dos artefactos de datos que no aparecían en Barcelona: 32 anuncios con "precio de bloqueo" por
+    host (3 hosts, mismo precio repetido en todos sus anuncios, sin reseñas) y 40 más con precio de bloqueo
+    individual (&gt;500€ por plaza y noche, sin reserva ni reseña reciente), ambos eliminados. La correlación
+    de Pearson entre tamaño y precio es mucho menos fiable aquí (0,19&ndash;0,33 en bruto) que con Spearman o
+    <code>log(price)</code> (0,49&ndash;0,65, similar a Barcelona): para cualquier análisis de importancia en
+    Madrid conviene usar Spearman, no Pearson sobre precio en crudo. Concentración geográfica más fuerte
+    (<code>Centro</code> agrupa el 42% de los anuncios) y los pisos grandes no se concentran en un distrito
+    concreto, a diferencia del 75% en Eixample de Barcelona.</td></tr>
+    <tr><td class="col-var">Valencia</td><td class="col-fate">7.851 filas de origen &rarr; 7.234 tras la
+    limpieza. Primer artefacto de "precio disuasorio" del proyecto: 20 anuncios a 9.900€ o 3.000€ exactos, 19
+    de ellos del mismo anfitrión (un camping con varios bungalows), eliminados por no ser precio de mercado
+    real. Al quitarlos, la correlación de <code>accommodates</code> con <code>price</code> sube de 0,23 a
+    0,35 en Pearson. Patrón de tamaño más débil que Barcelona y con más diferencia entre métodos
+    (<code>accommodates</code>: Pearson 0,35 frente a Spearman 0,63), señal de una cola de precio más
+    marcada. <code>has_pool</code> tiene más potencial que en Barcelona.</td></tr>
+    <tr><td class="col-var">Málaga</td><td class="col-fate">9.568 filas de origen. Mismo patrón de precio
+    disuasorio que Valencia, pero como 2 valores únicos y aislados (112.070€ y 11.991€, de hosts distintos),
+    no un cluster de un solo host: al quitarlos, <code>accommodates</code> pasa de 0,07 a <b>0,52</b> de
+    Pearson, el salto más grande de las 7 ciudades. Sin <code>neighbourhood_group_cleansed</code>:
+    <code>neighbourhood_cleansed</code> (11 valores, <code>Centro</code> con el 67,5%) hace de distrito y de
+    barrio a la vez, así que no hace falta el <i>target encoding</i> de barrio usado en Barcelona. Hallazgo
+    propio: <code>has_pool</code> correlaciona 0,229 con <code>price</code> pese a solo un 8,8% de
+    prevalencia, la señal de amenities más fuerte de las 7 ciudades hasta Euskadi.</td></tr>
+    <tr><td class="col-var">Sevilla</td><td class="col-fate">8.245 filas de origen &rarr; 7.640 tras la
+    limpieza. A diferencia de Valencia y Málaga, <b>no hay un artefacto de precio disuasorio limpio</b>: la
+    cola alta baja de forma continua desde el palacio genuino más caro (10.970€) hasta indicios sueltos
+    ("Rent it if you can afford it!", 8.052€) sin frontera objetiva, así que no se descarta ninguna fila por
+    este motivo. El patrón de tamaño es el más ruidoso de las 7 ciudades (<code>accommodates</code> Spearman
+    0,50 pero Pearson solo 0,22): ni <code>has_license</code> (94,4% de prevalencia, casi sin variación) ni
+    <code>host_is_superhost</code> aportan señal apreciable.</td></tr>
+    <tr><td class="col-var">Mallorca</td><td class="col-fate">14.817 filas de origen, con la mayor proporción
+    de filas sin <code>price</code> de las 7 ciudades (25,4%). Sin artefactos de precio que limpiar. Mismo
+    caso que Málaga en geografía (sin <code>neighbourhood_group_cleansed</code>), pero aquí
+    <code>neighbourhood_cleansed</code> llega a 53 municipios. La isla <b>invierte la lógica centro-periferia</b>:
+    Palma, la capital, está entre los municipios más baratos (mediana 262€), mientras que pueblos pequeños del
+    interior o de costa exclusiva (Marratxí, Deyá, Esporles, Andratx) encabezan el ranking. El precio depende
+    sobre todo del tipo de propiedad (<code>Entire villa</code>/<code>Entire home</code> suman el 59,3%) y del
+    tamaño, no de la centralidad. Mercado mucho más profesionalizado (mediana de 10 anuncios por anfitrión,
+    frente a un dígito en el resto). <code>has_license</code> casi constante (99,6% <code>True</code>), poca
+    utilidad predictiva esperable. Introduce <code>has_sea_view</code> junto a <code>has_pool</code>
+    (70% de prevalencia).</td></tr>
+    <tr><td class="col-var">Euskadi</td><td class="col-fate">6.248 filas de origen &rarr; 5.670 tras la
+    limpieza (9,15% descartado por <code>price</code> nulo). Requiere una corrección adicional que no aparece
+    en ninguna otra ciudad: mojibake en los nombres de municipio y de provincia (20 de 207 municipios
+    afectados). <b>Donostia-San Sebastián (mediana 331€) casi duplica a Bilbao (168€)</b>
+    con un volumen casi idéntico de anuncios (1.410 vs. 1.492); Vitoria-Gasteiz, la capital autonómica, es la
+    más barata de las tres (132,5€), prueba de que ser capital política no implica ser destino turístico caro.
+    Hallazgo puntual único del proyecto: 12 anuncios en Bilbao renombrados explícitamente para la semana de la
+    final de la Europa League 2026 en San Mamés, con mediana de precio (405€) más del doble de la general y
+    picos de hasta 4.222€/noche — un pico de demanda real y verificable, no un error. <code>has_dishwasher</code>
+    (49,7% de prevalencia, correlación 0,197) es la amenity candidata más fuerte de las 7 ciudades, y
+    <code>property_type</code> llega a 61 categorías, la cifra más alta del proyecto.</td></tr>
+</table>
+
+</body>
+</html>

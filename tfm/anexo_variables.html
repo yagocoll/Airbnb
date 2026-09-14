@@ -1,0 +1,387 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    @page {
+        size: A4;
+        margin: 2.6cm 2.4cm 2.2cm 2.4cm;
+        @frame footer_frame {
+            -pdf-frame-content: footer_content;
+            bottom: 1.1cm; margin-left: 2.4cm; margin-right: 2.4cm; height: 1cm;
+        }
+    }
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.42;
+        color: #1a1a1a;
+    }
+    #footer_content { text-align: center; font-size: 8.5pt; color: #777; }
+
+    h1 { font-size: 16pt; margin-top: 0; margin-bottom: 6pt; color: #111; }
+    h2 { font-size: 12pt; margin-top: 16pt; margin-bottom: 6pt; color: #111; }
+    p { margin: 0 0 8pt 0; text-align: justify; }
+
+    table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt 0; font-size: 9pt; }
+    th, td { border: 0.5pt solid #999; padding: 3.5pt 5pt; text-align: left; vertical-align: top; }
+    th { background-color: #e8e8e8; font-weight: bold; }
+    td.col-var { width: 52%; }
+    td.col-fate { width: 48%; }
+
+    .portada {
+        text-align: center;
+        padding-top: 100pt;
+        page-break-after: always;
+    }
+    .portada h1 { font-size: 20pt; margin-bottom: 8pt; }
+    .portada p { text-align: center; }
+
+    .leyenda {
+        background: #f5f5f0;
+        border: 0.5pt solid #ccc;
+        padding: 8pt 12pt;
+        margin: 8pt 0 14pt 0;
+        font-size: 9.5pt;
+    }
+    .leyenda b { color: #111; }
+</style>
+</head>
+<body>
+
+<div id="footer_content">Anexo I. Página <pdf:pagenumber /> de <pdf:pagecount /></div>
+
+<div class="portada">
+    <h1>Anexo I<br>Glosario de variables</h1>
+    <p>FairNight: un sistema de recomendación de precios para anuncios de Airbnb</p>
+    <p>Trabajo Fin de Máster, Modalidad Semipresencial<br>Yago Coll Crespo, Septiembre 2026</p>
+</div>
+
+<h1>Glosario de variables: de las 90 columnas del origen a las que usa el modelo</h1>
+<p>
+Este anexo recoge, agrupadas por bloque temático, las 90 columnas que trae el fichero
+<code>listings.csv.gz</code> de Inside Airbnb, con una definición breve de cada una y qué se hizo con ella:
+si se mantiene tal cual, si se transforma en otra variable, o si se descarta (y por qué). <b>Todo el
+glosario está construido sobre el pipeline de Barcelona</b> (descrito con más detalle en la Sección 3 de la
+memoria), tomada como referencia por ser la ciudad con el proceso más documentado. Las otras 6 ciudades
+parten de los mismos 90 campos y aplican el mismo criterio, pero no todas terminan con exactamente el mismo
+conjunto de variables: la última sección de este anexo recoge, ciudad a ciudad, en qué se aparta cada una
+de lo descrito aquí para Barcelona.
+</p>
+<div class="leyenda">
+    <b>Cómo leer la columna "Qué se hizo con ella"</b>: "Se mantiene" significa que la variable (o una
+    transformación directa suya, como su logaritmo) entra tal cual al modelo final de 71 columnas de la
+    Sección 3.7. "Se transforma en X" significa que no sobrevive con su propio nombre, pero su información sí
+    entra al modelo dentro de otra variable. "Se descarta" significa que no se usa en absoluto. Un nombre
+    terminado en asterisco, como <code>district_*</code>, no es una única columna sino una familia entera:
+    representa todas las columnas <i>one-hot</i> que empiezan por ese prefijo, una por cada categoría (por
+    ejemplo, <code>district_Eixample</code>, <code>district_Retiro</code>, etc.).
+</div>
+
+<h2>A. Identificadores y metadatos de scraping</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>id</code>: identificador único del anuncio.</td>
+    <td class="col-fate">Se mantiene como identificador de referencia (no es una feature: no describe el
+    alojamiento).</td></tr>
+    <tr><td class="col-var"><code>listing_url</code>: URL pública del anuncio.</td>
+    <td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>scrape_id</code>: identificador interno de la sesión de scraping de
+    Inside Airbnb.</td><td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>last_scraped</code>: fecha en la que se capturó ese anuncio concreto.</td>
+    <td class="col-fate">Se descarta como feature; se usa solo para fijar la fecha del snapshot de cada
+    ciudad (Sección 1.4 de la memoria).</td></tr>
+    <tr><td class="col-var"><code>source</code>: cómo se encontró el anuncio en el rastreo (búsqueda por
+    ciudad o por vecindario).</td><td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>host_id</code>: identificador único del anfitrión.</td>
+    <td class="col-fate">Se mantiene como identificador de referencia (no feature).</td></tr>
+    <tr><td class="col-var"><code>host_url</code>: URL del perfil del anfitrión.</td>
+    <td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>host_profile_id</code>: identificador del perfil del anfitrión, distinto
+    de <code>host_id</code> en este snapshot.</td>
+    <td class="col-fate">Se mantiene como identificador de referencia (no feature).</td></tr>
+    <tr><td class="col-var"><code>host_profile_url</code>: URL del perfil del anfitrión (duplica
+    <code>host_url</code>).</td><td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>picture_url</code>: URL de la foto principal del anuncio.</td>
+    <td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>host_thumbnail_url</code>: URL de la miniatura de perfil del
+    anfitrión.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_picture_url</code>: URL de la foto de perfil del anfitrión.</td>
+    <td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>calendar_updated</code>: fecha de la última actualización del
+    calendario.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>calendar_last_scraped</code>: fecha en la que se capturó el calendario de
+    disponibilidad.</td><td class="col-fate">Se descarta.</td></tr>
+</table>
+
+<h2>B. Texto libre del anuncio y del anfitrión</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>name</code>: título del anuncio, escrito por el anfitrión.</td>
+    <td class="col-fate">Se descarta: es texto de marketing, no una descripción objetiva del
+    alojamiento.</td></tr>
+    <tr><td class="col-var"><code>description</code>: descripción larga del anuncio.</td>
+    <td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>neighborhood_overview</code>: descripción del barrio, escrita por el
+    anfitrión.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_name</code>: nombre del anfitrión.</td>
+    <td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>host_about</code>: biografía del anfitrión.</td>
+    <td class="col-fate">Se descarta: redundante con las señales de host que ya se capturan de forma
+    estructurada (antigüedad, tamaño de portfolio, Superhost).</td></tr>
+    <tr><td class="col-var"><code>host_location</code>: ciudad de residencia declarada por el
+    anfitrión.</td><td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+</table>
+
+<h2>C. El anfitrión</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>host_since</code>: fecha de alta del anfitrión en Airbnb.</td>
+    <td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>hosts_time_as_user_years</code>: años como usuario de Airbnb (huésped o
+    anfitrión).</td><td class="col-fate">Se transforma, junto con la siguiente, en
+    <code>host_user_tenure_years</code> (no entra al modelo final, se calculó por coherencia con la de
+    abajo).</td></tr>
+    <tr><td class="col-var"><code>hosts_time_as_user_months</code>: meses (resto) como usuario de
+    Airbnb.</td><td class="col-fate">Igual que la anterior.</td></tr>
+    <tr><td class="col-var"><code>hosts_time_as_host_years</code>: años como anfitrión.</td>
+    <td class="col-fate">Se transforma, junto con la siguiente, en <code>host_tenure_years</code> (esta sí
+    se mantiene como feature del modelo).</td></tr>
+    <tr><td class="col-var"><code>hosts_time_as_host_months</code>: meses (resto) como anfitrión.</td>
+    <td class="col-fate">Igual que la anterior.</td></tr>
+    <tr><td class="col-var"><code>host_response_time</code>: rapidez media de respuesta del anfitrión.</td>
+    <td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_response_rate</code>: % de mensajes que responde el anfitrión.</td>
+    <td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_acceptance_rate</code>: % de solicitudes que acepta el
+    anfitrión.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_is_superhost</code>: si el anfitrión tiene el distintivo
+    "Superhost".</td><td class="col-fate">Se mantiene tal cual.</td></tr>
+    <tr><td class="col-var"><code>host_neighbourhood</code>: barrio de residencia declarado por el
+    anfitrión.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_listings_count</code>: nº de anuncios que el propio anfitrión
+    declara tener.</td><td class="col-fate">Se descarta: redundante con
+    <code>calculated_host_listings_count</code>, que Inside Airbnb recalcula a partir del scraping real y
+    es más fiable.</td></tr>
+    <tr><td class="col-var"><code>host_total_listings_count</code>: variante del anterior.</td>
+    <td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_verifications</code>: lista de verificaciones de identidad del
+    anfitrión (email, teléfono...).</td><td class="col-fate">Se descarta (columna vacía en el
+    snapshot).</td></tr>
+    <tr><td class="col-var"><code>host_has_profile_pic</code>: si el anfitrión tiene foto de perfil.</td>
+    <td class="col-fate">Se mantiene tal cual.</td></tr>
+    <tr><td class="col-var"><code>host_identity_verified</code>: si el anfitrión verificó su
+    identidad.</td><td class="col-fate">Se mantiene tal cual.</td></tr>
+</table>
+
+<h2>D. Ubicación</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>neighbourhood</code>: barrio declarado por el anfitrión, en texto libre y
+    sin normalizar.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+    <tr><td class="col-var"><code>neighbourhood_cleansed</code>: barrio normalizado por Inside Airbnb
+    contra el callejero oficial.</td><td class="col-fate">Se transforma en
+    <code>neighbourhood_price_encoded</code> (Sección 3.4 de la memoria), la variable que sí entra al
+    modelo; el texto original se descarta después.</td></tr>
+    <tr><td class="col-var"><code>neighbourhood_group_cleansed</code>: distrito normalizado.</td>
+    <td class="col-fate">Se mantiene, codificada con <i>one-hot</i> (<code>district_*</code>). Ausente en
+    los datos de Málaga (Sección 3.6 de la memoria).</td></tr>
+    <tr><td class="col-var"><code>latitude</code>: latitud del anuncio.</td>
+    <td class="col-fate">Se mantiene tal cual, y además es la base de <code>distance_to_center_km</code> y
+    <code>n_nearby_150m</code>.</td></tr>
+    <tr><td class="col-var"><code>longitude</code>: longitud del anuncio.</td>
+    <td class="col-fate">Igual que la anterior.</td></tr>
+</table>
+
+<h2>E. Alojamiento: tipo y tamaño</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>property_type</code>: tipo de propiedad detallado (por ejemplo, "Entire
+    rental unit").</td><td class="col-fate">Se transforma: las categorías raras se agrupan en "Other" y el
+    resultado se codifica con <i>one-hot</i> (<code>property_type_*</code>).</td></tr>
+    <tr><td class="col-var"><code>room_type</code>: tipo de alojamiento a alto nivel (vivienda entera,
+    habitación privada, compartida u hotel).</td><td class="col-fate">Se mantiene, codificada con
+    <i>one-hot</i> (<code>room_type_*</code>).</td></tr>
+    <tr><td class="col-var"><code>accommodates</code>: nº máximo de huéspedes.</td>
+    <td class="col-fate">Se mantiene tal cual.</td></tr>
+    <tr><td class="col-var"><code>bathrooms</code>: nº de baños (numérico).</td>
+    <td class="col-fate">Se mantiene tal cual, más su versión <code>bathrooms_log</code>.</td></tr>
+    <tr><td class="col-var"><code>bathrooms_text</code>: nº de baños en texto libre (por ejemplo, "1.5
+    baths").</td><td class="col-fate">Se usa para recuperar <code>bathrooms</code> cuando falta; el texto
+    se descarta después.</td></tr>
+    <tr><td class="col-var"><code>bedrooms</code>: nº de dormitorios.</td>
+    <td class="col-fate">Se mantiene tal cual, más su versión <code>bedrooms_log</code>.</td></tr>
+    <tr><td class="col-var"><code>beds</code>: nº de camas.</td>
+    <td class="col-fate">Se mantiene tal cual, más su versión <code>beds_log</code>.</td></tr>
+    <tr><td class="col-var"><code>amenities</code>: lista de comodidades del anuncio, en texto.</td>
+    <td class="col-fate">Se transforma en 4 variables (<code>has_ac</code>, <code>has_pool</code>,
+    <code>has_dishwasher</code>, <code>n_amenities</code>); el texto original se descarta.</td></tr>
+</table>
+
+<h2>F. Precio y cotización</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>price</code>: precio por noche publicado.</td>
+    <td class="col-fate">Es la variable objetivo del modelo (no una feature).</td></tr>
+    <tr><td class="col-var"><code>price_quote_checkin_date</code>: fecha de entrada usada para pedir una
+    cotización de ejemplo durante el scraping.</td><td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>price_quote_checkout_date</code>: fecha de salida de esa cotización.</td>
+    <td class="col-fate">Se descarta.</td></tr>
+    <tr><td class="col-var"><code>price_quote_total_price</code>: precio total de esa cotización.</td>
+    <td class="col-fate">Se descarta: coincide con <code>price</code> recalculado, sería fuga de
+    información.</td></tr>
+    <tr><td class="col-var"><code>price_quote_price_per_night</code>: precio por noche de esa
+    cotización.</td><td class="col-fate">Se descarta por el mismo motivo: coincide de forma exacta con
+    <code>price</code>.</td></tr>
+    <tr><td class="col-var"><code>price_quote_raw</code>: JSON completo de la cotización consultada.</td>
+    <td class="col-fate">Se descarta como feature; se usó puntualmente en el EDA para diagnosticar los
+    precios disuasorios (Sección 2.4 de la memoria).</td></tr>
+</table>
+
+<h2>G. Condiciones de estancia</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>minimum_nights</code>: estancia mínima exigida, en noches.</td>
+    <td class="col-fate">Se mantiene tal cual; es la variable más importante del modelo (Sección 5 de la
+    memoria).</td></tr>
+    <tr><td class="col-var"><code>maximum_nights</code>: estancia máxima permitida.</td>
+    <td class="col-fate">Se mantiene tal cual.</td></tr>
+    <tr><td class="col-var"><code>minimum_minimum_nights</code>: estancia mínima más baja fijada en el
+    calendario.</td><td class="col-fate">Se descarta: correlaciona 1,00 con <code>minimum_nights</code>, es
+    el mismo dato.</td></tr>
+    <tr><td class="col-var"><code>maximum_minimum_nights</code>: estancia mínima más alta fijada en el
+    calendario.</td><td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+    <tr><td class="col-var"><code>minimum_maximum_nights</code>: estancia máxima más baja fijada en el
+    calendario.</td><td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+    <tr><td class="col-var"><code>maximum_maximum_nights</code>: estancia máxima más alta fijada en el
+    calendario.</td><td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+    <tr><td class="col-var"><code>minimum_nights_avg_ntm</code>: estancia mínima media de los próximos
+    meses.</td><td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+    <tr><td class="col-var"><code>maximum_nights_avg_ntm</code>: estancia máxima media de los próximos
+    meses.</td><td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+</table>
+
+<h2>H. Disponibilidad</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>has_availability</code>: si el anuncio tenía disponibilidad en el
+    momento del scraping.</td><td class="col-fate">Se descarta: queda constante tras el resto de la
+    limpieza.</td></tr>
+    <tr><td class="col-var"><code>availability_30</code>: noches libres en los próximos 30 días.</td>
+    <td class="col-fate">Se descarta por redundancia con <code>availability_365</code>.</td></tr>
+    <tr><td class="col-var"><code>availability_60</code>: noches libres en los próximos 60 días.</td>
+    <td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+    <tr><td class="col-var"><code>availability_90</code>: noches libres en los próximos 90 días.</td>
+    <td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+    <tr><td class="col-var"><code>availability_365</code>: noches libres en el próximo año.</td>
+    <td class="col-fate">Se mantiene, como referencia única de disponibilidad.</td></tr>
+    <tr><td class="col-var"><code>availability_eoy</code>: noches libres hasta fin de año natural.</td>
+    <td class="col-fate">Se descarta por la misma redundancia.</td></tr>
+</table>
+
+<h2>I. Reseñas y ocupación</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>number_of_reviews</code>: nº total de reseñas históricas.</td>
+    <td class="col-fate">Se mantiene tal cual, más su versión <code>number_of_reviews_log</code>.</td></tr>
+    <tr><td class="col-var"><code>number_of_reviews_ltm</code>: reseñas en los últimos 12 meses.</td>
+    <td class="col-fate">Se mantiene tal cual, más su versión log.</td></tr>
+    <tr><td class="col-var"><code>number_of_reviews_l30d</code>: reseñas en los últimos 30 días.</td>
+    <td class="col-fate">Se descarta: ventana demasiado fina, redundante con las anteriores.</td></tr>
+    <tr><td class="col-var"><code>number_of_reviews_ly</code>: reseñas del año natural anterior.</td>
+    <td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>estimated_occupancy_l365d</code>: ocupación estimada por Inside Airbnb en
+    el último año.</td><td class="col-fate">Se mantiene tal cual.</td></tr>
+    <tr><td class="col-var"><code>estimated_revenue_l365d</code>: ingresos estimados en el último año.</td>
+    <td class="col-fate">Se descarta: se calcula como <code>price</code> × ocupación, así que usarla sería
+    fuga de información directa (Sección 3.1 de la memoria).</td></tr>
+    <tr><td class="col-var"><code>first_review</code>: fecha de la primera reseña.</td>
+    <td class="col-fate">Se transforma en <code>listing_age_days</code> (antigüedad del anuncio); la fecha
+    original se descarta.</td></tr>
+    <tr><td class="col-var"><code>last_review</code>: fecha de la última reseña.</td>
+    <td class="col-fate">Se transforma en <code>days_since_last_review</code>; la fecha original se
+    descarta.</td></tr>
+    <tr><td class="col-var"><code>review_scores_rating</code>: valoración media general (escala
+    0-5).</td><td class="col-fate">Se mantiene tal cual, sin imputar los <code>NaN</code> de anuncios sin
+    reseñas.</td></tr>
+    <tr><td class="col-var"><code>review_scores_accuracy</code>: valoración de precisión de la
+    descripción.</td><td class="col-fate">Se descarta: correlaciona 0,59-0,86 con
+    <code>review_scores_rating</code>, el mismo tipo de señal.</td></tr>
+    <tr><td class="col-var"><code>review_scores_cleanliness</code>: valoración de limpieza.</td>
+    <td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>review_scores_checkin</code>: valoración del proceso de entrada.</td>
+    <td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>review_scores_communication</code>: valoración de la comunicación con
+    el anfitrión.</td><td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>review_scores_location</code>: valoración de la ubicación.</td>
+    <td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>review_scores_value</code>: valoración de relación calidad-precio.</td>
+    <td class="col-fate">Se descarta por el mismo motivo.</td></tr>
+    <tr><td class="col-var"><code>reviews_per_month</code>: ritmo medio de reseñas por mes.</td>
+    <td class="col-fate">Se mantiene tal cual, más su versión log; imputado a 0 en anuncios sin
+    reseñas.</td></tr>
+</table>
+
+<h2>J. Normativa y reservas</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>license</code>: nº de licencia turística (texto), o su ausencia.</td>
+    <td class="col-fate">Se transforma en el flag <code>has_license</code> (mantenido); el texto original
+    se descarta.</td></tr>
+    <tr><td class="col-var"><code>instant_bookable</code>: si se puede reservar sin aprobación del
+    anfitrión.</td><td class="col-fate">Se descarta (columna vacía en el snapshot).</td></tr>
+</table>
+
+<h2>K. Actividad del anfitrión en otros anuncios</h2>
+<table>
+    <tr><th class="col-var">Variable</th><th class="col-fate">Qué se hizo con ella</th></tr>
+    <tr><td class="col-var"><code>calculated_host_listings_count</code>: nº de anuncios que Inside Airbnb
+    atribuye a ese anfitrión (recuento propio a partir del scraping, más fiable que el
+    autodeclarado).</td><td class="col-fate">Se mantiene tal cual, más su versión log; también es la base
+    de la variable categórica de tamaño de portfolio (<code>host_size_*</code>).</td></tr>
+    <tr><td class="col-var">Las tres variantes de <code>calculated_host_listings_count</code> por tipo
+    (<code>_entire_homes</code>, <code>_private_rooms</code>, <code>_shared_rooms</code>): de esos
+    anuncios, cuántos son vivienda entera, habitación privada u habitación compartida,
+    respectivamente.</td><td class="col-fate">Se combinan las tres en <code>host_entire_homes_ratio</code>
+    (mantenida); el desglose original se descarta.</td></tr>
+</table>
+
+<h2>L. Diferencias por ciudad respecto a Barcelona</h2>
+<p>
+Todo lo anterior (secciones A a K) describe el pipeline construido sobre Barcelona. Las otras 6 ciudades
+parten de los mismos 90 campos y aplican el mismo criterio de limpieza y transformación, columna por
+columna, pero el resultado final no es idéntico en las siete: algunas variables cambian de granularidad,
+alguna llega vacía donde en Barcelona no lo estaba, y en dos ciudades se sustituye o se añade alguna
+variable de comodidades. Esta tabla recoge, ciudad a ciudad, en qué se aparta cada una de lo descrito para
+Barcelona; lo que no se menciona en una fila es porque coincide con Barcelona.
+</p>
+<table>
+    <tr><th class="col-var" style="width: 14%;">Ciudad</th><th class="col-fate" style="width: 86%;">
+    Diferencias respecto a Barcelona</th></tr>
+    <tr><td class="col-var">Madrid</td><td class="col-fate">Mismo conjunto de variables que Barcelona.
+    Cambia solo la granularidad de las categóricas: 21 distritos en <code>district_*</code> (frente a 10)
+    y 20 categorías en <code>property_type_*</code> tras agrupar (frente a 14).</td></tr>
+    <tr><td class="col-var">Valencia</td><td class="col-fate">Mismo conjunto de variables. 19 distritos en
+    <code>district_*</code> y 15 categorías en <code>property_type_*</code>.</td></tr>
+    <tr><td class="col-var">Málaga</td><td class="col-fate"><code>neighbourhood_group_cleansed</code>
+    (distrito) llega completamente vacía en el fichero de origen (Sección 3.6 de la memoria): "distrito"
+    cae sobre el mismo nivel que barrio, así que los 11 valores de <code>district_*</code> son en realidad
+    sus 11 barrios, no distritos administrativos. 16 categorías en <code>property_type_*</code>.</td></tr>
+    <tr><td class="col-var">Sevilla</td><td class="col-fate">Mismo conjunto de variables que Barcelona. 11
+    distritos en <code>district_*</code> y 13 categorías en <code>property_type_*</code>, la cardinalidad
+    más baja de las 7 ciudades.</td></tr>
+    <tr><td class="col-var">Mallorca</td><td class="col-fate">Mismo caso que Málaga:
+    <code>neighbourhood_group_cleansed</code> llega vacía y "distrito" cae sobre
+    <code>neighbourhood_cleansed</code>, aquí a nivel de municipio: 53 valores en <code>district_*</code>,
+    la granularidad geográfica más fina de las 7 ciudades. Su <code>room_type</code> no tiene ninguna
+    categoría "Shared room" en los datos (3 categorías en vez de 4). En comodidades, sustituye
+    <code>has_dishwasher</code> por <code>has_sea_view</code>: en un mercado insular dominado por villas,
+    el lavavajillas no distingue nada y la vista al mar sí.</td></tr>
+    <tr><td class="col-var">Euskadi</td><td class="col-fate">Mismo conjunto base de variables, con una
+    añadida: conserva <code>has_dishwasher</code> y además incorpora <code>has_sea_view</code> (litoral de
+    Donostia a Bilbao), la única de las 7 ciudades con 5 variables de comodidades en vez de 4. Solo 3
+    valores en <code>district_*</code> (Bilbao, Donostia y Vitoria), la granularidad más gruesa del
+    proyecto, frente a los 10-53 del resto.</td></tr>
+</table>
+
+</body>
+</html>

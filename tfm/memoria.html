@@ -1,0 +1,836 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    @page {
+        size: A4;
+        margin: 2.6cm 2.4cm 2.2cm 2.4cm;
+        @frame footer_frame {
+            -pdf-frame-content: footer_content;
+            bottom: 1.1cm; margin-left: 2.4cm; margin-right: 2.4cm; height: 1cm;
+        }
+    }
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.45;
+        color: #1a1a1a;
+    }
+    #footer_content { text-align: center; font-size: 8.5pt; color: #777; }
+
+    h1 { font-size: 15pt; margin-top: 0; margin-bottom: 10pt; color: #111; }
+    h2 { font-size: 12pt; margin-top: 16pt; margin-bottom: 6pt; color: #111; }
+    h3 { font-size: 10.5pt; margin-top: 12pt; margin-bottom: 4pt; color: #222; font-style: italic; }
+    p { margin: 0 0 8pt 0; text-align: justify; }
+    ul, ol { margin: 0 0 8pt 0; padding-left: 16pt; }
+    li { margin-bottom: 3pt; }
+
+    table { border-collapse: collapse; width: 100%; margin: 8pt 0 12pt 0; font-size: 9.5pt; }
+    th, td { border: 0.5pt solid #999; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+    th { background-color: #e8e8e8; font-weight: bold; }
+
+    .nota-pie { font-size: 8.5pt; color: #555; margin: -4pt 0 8pt 0; }
+
+    a { color: #1a54c4; text-decoration: underline; }
+    .sublista { margin: -4pt 0 8pt 0; padding-left: 34pt; }
+
+    .pendiente {
+        color: #b30000; font-weight: bold; background-color: #fdeaea;
+        padding: 2pt 4pt; border: 0.5pt dashed #b30000;
+    }
+
+    .section-break { page-break-before: always; }
+
+    .figura { text-align: center; margin: 10pt 0; }
+    .figura img { width: 100%; }
+    .figura .caption { font-size: 9pt; color: #555; margin-top: 3pt; font-style: italic; }
+
+    /* ---- Portada ---- */
+    .portada {
+        page-break-after: always;
+        height: 100%;
+    }
+    .portada .logo { text-align: center; margin-top: 30pt; }
+    .portada .universidad { font-size: 10.5pt; text-align: center; margin-top: 14pt; }
+    .portada .titulo {
+        font-size: 22pt; font-weight: bold; text-align: center;
+        margin-top: 140pt; margin-bottom: 10pt; color: #111;
+    }
+    .portada .subtitulo { font-size: 13pt; text-align: center; color: #444; margin-bottom: 100pt; }
+    .portada .datos { font-size: 11pt; text-align: center; line-height: 1.9; }
+
+    /* ---- Índice ---- */
+    /* Sin page-break-after aquí: el .section-break de la Sección 1 ya fuerza el salto;
+    tenerlo en los dos sitios generaba una página en blanco de más. */
+    .indice h1 { margin-bottom: 18pt; }
+    .indice table { border: none; }
+    .indice td { border: none; padding: 3pt 4pt; font-size: 10.5pt; }
+    .indice td.num { width: 30pt; }
+    .indice td.pag { width: 40pt; text-align: right; color: #666; }
+</style>
+</head>
+<body>
+
+<div id="footer_content">Página <pdf:pagenumber /> de <pdf:pagecount /></div>
+
+<!-- ============================================================ -->
+<!-- PORTADA (no cuenta en el límite de 20 páginas)                -->
+<!-- ============================================================ -->
+<div class="portada">
+    <div class="logo"><img src="assets/logo_ucm.png" width="90" height="103"></div>
+    <div class="universidad">
+        Universidad Complutense de Madrid<br>
+        Máster en Big Data, Data Science e Inteligencia Artificial
+    </div>
+    <div class="titulo">FairNight: un sistema de recomendación<br>de precios para anuncios de Airbnb</div>
+    <div class="subtitulo">Trabajo Fin de Máster, Modalidad Semipresencial<br>Orientación Data Scientist</div>
+    <div class="datos">
+        Autor: Yago Coll Crespo<br>
+        Tutores: Carlos Ortega y Santiago Mota<br>
+        Septiembre 2026
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ÍNDICE (no cuenta en el límite de 20 páginas)                  -->
+<!-- ============================================================ -->
+<div class="indice">
+    <h1>Índice</h1>
+    <table>
+        <tr><td class="num">1.</td><td>Introducción y planteamiento del problema</td><td class="pag">3</td></tr>
+        <tr><td class="num">2.</td><td>Datos y análisis exploratorio (EDA)</td><td class="pag">5</td></tr>
+        <tr><td class="num">3.</td><td>Preparación de datos y feature engineering</td><td class="pag">9</td></tr>
+        <tr><td class="num">4.</td><td>Modelización</td><td class="pag">11</td></tr>
+        <tr><td class="num">5.</td><td>Interpretabilidad</td><td class="pag">15</td></tr>
+        <tr><td class="num">6.</td><td>Productización: la aplicación FairNight</td><td class="pag">18</td></tr>
+        <tr><td class="num">7.</td><td>Conclusiones y trabajo futuro</td><td class="pag">21</td></tr>
+        <tr><td class="num">8.</td><td>Bibliografía</td><td class="pag">22</td></tr>
+    </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 1 (empieza el límite real de 20 páginas)               -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>1. Introducción y planteamiento del problema</h1>
+
+<h2>1.1 Contexto y motivación</h2>
+<p>
+Fijar el precio de un anuncio en Airbnb es una decisión que la mayoría de los anfitriones toma de forma
+intuitiva, ya sea por comparación visual con dos o tres anuncios cercanos, por ensayo y error, o
+simplemente copiando lo que cobraba el anuncio anterior en la misma zona. Esta falta de referencia
+objetiva tiene un coste real en ambas direcciones. Un precio demasiado bajo deja ingresos sobre la mesa
+noche tras noche, y un precio demasiado alto puede mantener el anuncio prácticamente vacío durante meses
+sin que el anfitrión llegue a saber por qué.
+</p>
+<p>
+El problema no es solo de intuición. Incluso un anfitrión dispuesto a analizar el mercado se encuentra con
+que "el mercado" no es una cifra única, ya que el precio adecuado depende de decenas de factores que
+interactúan entre sí (ubicación exacta, capacidad, tipo de propiedad, estancia mínima, reputación del
+anfitrión, historial de reseñas) y de cómo esos factores se combinan en un mercado que, además, no es
+homogéneo. Dentro de una misma ciudad conviven un segmento turístico de estancias cortas y otro de
+temporada larga, con dinámicas de precio distintas.
+</p>
+
+<h2>1.2 Objetivo del TFM</h2>
+<p>Este trabajo aborda ese problema en dos partes:</p>
+<ol>
+    <li><b>Modelización</b>: construir un modelo de <i>machine learning</i> capaz de predecir el precio de
+    mercado de un anuncio de Airbnb a partir de sus características, entrenado y validado sobre datos
+    reales, comparando distintas familias de algoritmos y justificando la elección final con métricas de
+    error y con un análisis de qué variables explican esa predicción.</li>
+    <li><b>Productización</b>: llevar ese modelo más allá del notebook, en forma de una aplicación web
+    (<b>FairNight</b>, disponible en
+    <a href="https://yagocoll-airbnb-appapp-rx9n7q.streamlit.app">yagocoll-airbnb-appapp-rx9n7q.streamlit.app</a>)
+    que un anfitrión real pueda usar para describir su anuncio, recibir un precio recomendado, entender qué
+    factores lo justifican y contrastarlo con anuncios reales y comparables de su propia zona: no solo
+    "cuánto", sino "por qué" y "comparado con qué".</li>
+</ol>
+<p class="nota-pie">
+Nota: para el código de la aplicación FairNight (Sección 6) se han utilizado herramientas de generación de
+código con IA, siempre partiendo de un entendimiento previo completo de los notebooks y el pipeline de
+modelización de las Secciones 2 a 5.
+</p>
+
+<h2>1.3 Alcance</h2>
+<p>
+El trabajo cubre <b>7 ciudades españolas</b> (Barcelona, Madrid, Valencia, Málaga, Sevilla, Mallorca y
+Euskadi<sup>*</sup>), con un modelo independiente por ciudad, dado que cada mercado tiene su propia estructura
+de precios, su propia oferta de tipos de propiedad y, como se detalla en la Sección 2, particularidades
+propias que un modelo único no podría capturar bien (por ejemplo, la profesionalización del mercado en
+Mallorca o la ausencia de nivel de distrito en los datos de Málaga). En conjunto, el estudio se apoya sobre
+<b>más de 72.500 anuncios reales</b>, con volúmenes por ciudad de entre 5.670 (Euskadi) y 18.949 (Madrid).
+</p>
+<p class="nota-pie">
+* Euskadi no es una ciudad, sino la Comunidad Autónoma del País Vasco: los datos de Inside Airbnb vienen
+agregados así y se ha mantenido esa agrupación tal cual, sin dividir por ciudades (Bilbao, San Sebastián,
+Vitoria...), porque cada una por separado dejaría muestras demasiado pequeñas frente al resto de mercados
+del estudio.
+</p>
+
+<h2>1.4 Fuente de datos</h2>
+<p>
+Los datos proceden de <b>Inside Airbnb</b> (insideairbnb.com), un proyecto independiente de datos abiertos
+que publica capturas periódicas y de acceso público de los anuncios activos en Airbnb, sin restricción de
+derechos de autor sobre su uso analítico. Cada ciudad se apoya en su propio snapshot, verificado a partir
+de la fecha de rastreo (<code>last_scraped</code>) de cada anuncio: Madrid, del 20 de junio al 2 de julio de
+2026; Mallorca, del 23 de junio al 2 de julio; Barcelona y Valencia, del 24 y 26 de junio respectivamente
+al 3 de julio; y Sevilla, Málaga y Euskadi, del 30 de junio al 3 de julio. Todos los ficheros se descargaron
+desde insideairbnb.com/get-the-data, tomando por ciudad únicamente <code>listings.csv.gz</code> y
+<code>neighbourhoods.geojson</code>; la página de cada ciudad (por ejemplo, insideairbnb.com/barcelona para
+Barcelona, y análogamente para el resto) permite explorar el mismo snapshot de forma visual.
+</p>
+
+<h2>1.5 Estructura del documento</h2>
+<p>
+El resto del documento sigue el proceso estándar de un proyecto de <i>data science</i>. La Sección 2 describe
+los datos y el análisis exploratorio; la Sección 3, la preparación y transformación de variables; la Sección 4
+compara distintas técnicas de modelización y justifica la elegida; la Sección 5 interpreta esa elección
+mediante importancia de variables y SHAP; la Sección 6 presenta la aplicación FairNight como resultado
+productivizado del modelo; y la Sección 7 cierra con las conclusiones y las líneas de trabajo futuro. Tres
+anexos completan el trabajo: el Anexo I recoge el glosario de las 90 columnas de origen y qué se hizo con
+cada una; el Anexo II desarrolla el análisis exploratorio completo; y el Anexo III recoge el código fuente
+completo de la aplicación FairNight y del pipeline de modelización de Barcelona.
+</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 2: EDA                                                 -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>2. Datos y análisis exploratorio (EDA)</h1>
+
+<h2>2.1 Descripción general del dataset</h2>
+<p>
+Cada ciudad se analiza de forma independiente, sobre su propio snapshot de Inside Airbnb. Tras la
+limpieza inicial (eliminación de columnas vacías, recuperación de <code>bathrooms</code> desde
+<code>bathrooms_text</code>, tratamiento de nulos en campos de reseñas), los siete datasets quedan así:
+</p>
+<table>
+    <tr><th>Ciudad</th><th>Anuncios (tras limpieza)</th></tr>
+    <tr><td>Madrid</td><td>18.949</td></tr>
+    <tr><td>Barcelona</td><td>13.258</td></tr>
+    <tr><td>Mallorca</td><td>11.044</td></tr>
+    <tr><td>Málaga</td><td>8.742</td></tr>
+    <tr><td>Sevilla</td><td>7.640</td></tr>
+    <tr><td>Valencia</td><td>7.234</td></tr>
+    <tr><td>Euskadi</td><td>5.670</td></tr>
+    <tr><td><b>Total</b></td><td><b>72.537</b></td></tr>
+</table>
+<p>
+El resto de esta sección desarrolla el EDA de <b>Barcelona</b> como caso detallado (la ciudad con el proceso
+de limpieza más documentado y una de las de mayor volumen); el EDA completo, notebook a notebook, se
+desarrolla en el Anexo II. En el caso de Barcelona, de 15.293 filas y 90 columnas originales
+quedan 13.258 filas y 78 columnas, tras eliminar 12 columnas completamente vacías y recuperar 3.556 de
+3.565 valores de <code>bathrooms</code> a partir del texto libre de <code>bathrooms_text</code>.
+</p>
+
+<h2>2.2 Distribución del precio</h2>
+<p>
+El precio por noche está fuertemente sesgado a la derecha: la mayoría de los anuncios se concentra entre
+30€ y 300€, pero la cola llega hasta anuncios de lujo de varios miles de euros. Este sesgo es la razón por
+la que, más adelante, el modelo se entrena sobre <code>log1p(price)</code> en lugar de sobre el precio en
+euros directamente.
+</p>
+<div class="figura">
+    <img src="assets/fig_precio_dist_bcn.png">
+    <div class="caption">Figura 1. Distribución del precio en Barcelona, en euros (recortado a 1.000€ para
+    legibilidad; el repunte final agrupa todo lo que supera esa cifra, no es un pico real) y en
+    log(1+precio).</div>
+</div>
+
+<h2>2.3 Un hallazgo estructural: dos mercados dentro de cada ciudad</h2>
+<p>
+Uno de los hallazgos más relevantes del EDA, con implicaciones directas en la modelización (Sección 4) y
+en la interpretabilidad (Sección 5), es que <code>minimum_nights</code> no es una variable más, sino que separa dos
+negocios distintos que conviven bajo el mismo anuncio de Airbnb. Un alquiler con estancia mínima de hasta
+30 noches compite con hoteles (mercado <b>turístico</b>); a partir de 31 noches, deja de considerarse
+vivienda de uso turístico a efectos legales en España y compite con el alquiler residencial normal (mercado
+de <b>temporada</b>), con precios por noche mucho más bajos.
+</p>
+<div class="figura">
+    <img src="assets/fig_turistico_temporada.png">
+    <div class="caption">Figura 2. Mediana de precio en el segmento turístico (&le;30 noches) frente al de
+    temporada (&gt;30 noches), por ciudad.</div>
+</div>
+<table>
+    <tr><th>Ciudad</th><th>% turístico</th><th>Mediana turístico</th><th>Mediana temporada</th><th>Ratio</th></tr>
+    <tr><td>Barcelona</td><td>63,5%</td><td>251€</td><td>78€</td><td>3,2×</td></tr>
+    <tr><td>Madrid</td><td>94,8%</td><td>126€</td><td>86€</td><td>1,5×</td></tr>
+    <tr><td>Valencia</td><td>98,5%</td><td>152€</td><td>30€</td><td>5,1×</td></tr>
+    <tr><td>Málaga</td><td>98,1%</td><td>171€</td><td>32€</td><td>5,4×</td></tr>
+    <tr><td>Sevilla</td><td>98,3%</td><td>109€</td><td>26€</td><td>4,3×</td></tr>
+    <tr><td>Mallorca</td><td>97,9%</td><td>403€</td><td>119€</td><td>3,4×</td></tr>
+    <tr><td>Euskadi</td><td>96,7%</td><td>199€</td><td>96€</td><td>2,1×</td></tr>
+</table>
+<p>
+El patrón no es el mismo en todas las ciudades, y esa diferencia es en sí misma un resultado del EDA:
+en <b>Barcelona</b>, los dos mercados tienen un tamaño comparable (63,5%/36,5%) con un salto de precio
+brusco justo en la frontera legal de 31 noches. En el resto de ciudades el turístico domina casi todo el
+catálogo (95-98%), pero con matices: en <b>Madrid</b> el precio baja de forma progresiva según crece la
+estancia mínima exigida, sin ningún salto en las 30 noches; en <b>Málaga, Sevilla, Mallorca y Euskadi</b> el
+precio se mantiene estable durante la primera semana y cae con fuerza a partir de ahí (especialmente
+en Mallorca, donde la frontera de negocio real está en 7 noches, no en 30), de forma que gran parte de la
+caída ya ocurre <i>dentro</i> del propio segmento "turístico" legal. Esta es la razón, como se verá en la
+Sección 5, de que <code>minimum_nights</code> resulte la variable más importante del modelo en todas las
+ciudades.
+</p>
+
+<h2>2.4 Particularidades por ciudad</h2>
+<p>
+Más allá del volumen de datos, cada ciudad presenta rasgos propios que condicionan decisiones posteriores
+de limpieza y modelado. El más relevante aparece en varias ciudades pero no en todas, así que conviene
+explicarlo antes de comparar.
+</p>
+
+<h3>Precios disuasorios: un anuncio "abierto" que en realidad no se puede reservar</h3>
+<p>
+Algunos anfitriones, en vez de bloquear el calendario en una fecha en la que no quieren alquilar, le ponen
+un precio absurdamente alto (miles de euros por noche) para que el anuncio siga apareciendo como
+disponible, aunque en la práctica nadie vaya a pagarlo. El dato en sí está bien capturado, no es un fallo
+del scraping, pero tampoco es un precio de mercado real: si no se detecta, distorsiona la relación entre
+tamaño y precio de todo el dataset.
+</p>
+<ul>
+    <li><b>Valencia</b>: 20 anuncios afectados, a 9.900€ o 3.000€ exactos, 19 de ellos del mismo anfitrión
+    (un camping con varios bungalows). Al descartar esas 20 filas, la correlación de
+    <code>accommodates</code> con <code>price</code> sube de 0,23 a 0,35.</li>
+    <li><b>Málaga</b>: solo 2 anuncios, aislados y de anfitriones distintos (112.070€ y 11.991€). Al
+    descartarlos, esa misma correlación pasa de 0,07 a <b>0,52</b>, el salto más grande de las 7 ciudades.</li>
+    <li><b>Sevilla</b>: hay indicios sueltos del mismo patrón (por ejemplo, un anuncio llamado literalmente
+    "Rent it if you can afford it!", a 8.052€), pero se mezclan sin frontera clara con villas de lujo
+    genuinas de precio igual de alto. Al no poder aislarlos con un criterio objetivo, no se descarta
+    ninguna fila por este motivo: es la única de las tres ciudades donde el precio disuasorio queda
+    mezclado con la cola real de precio en vez de eliminado.</li>
+    <li><b>Barcelona y Madrid</b>: no se detecta este patrón en ninguna de las dos; sirven de referencia
+    base, sin precios disuasorios que corregir.</li>
+</ul>
+
+<p>El resto de particularidades, ya sin relación con el precio, son estructurales:</p>
+<table>
+    <tr><th>Ciudad</th><th>Particularidad</th></tr>
+    <tr><td>Málaga</td><td>Sin nivel de distrito en los datos de origen: la comparación "por distrito" cae
+    sobre barrio (Sección 3.6). Además, 47 categorías de <code>property_type</code>.</td></tr>
+    <tr><td>Mallorca</td><td>Mercado mucho más profesionalizado: mediana de 10 anuncios por anfitrión
+    (frente a un dígito en el resto de ciudades), con gestoras de cientos de propiedades. Tampoco tiene un
+    "centro" geográfico único de referencia para calcular distancias.</td></tr>
+    <tr><td>Euskadi</td><td>61 categorías de <code>property_type</code>, la cifra más alta de las 7
+    ciudades; exige la agrupación de categorías raras más agresiva de todo el estudio.</td></tr>
+    <tr><td>Barcelona / Madrid</td><td>Mismo perfil de limpieza (12 columnas vacías, recuperación de
+    <code>bathrooms</code>): sirven de referencia base también en este punto.</td></tr>
+</table>
+
+<h2>2.5 Tratamiento de valores atípicos</h2>
+<p>
+Con la única excepción de una fila con un valor de <code>beds</code> mal capturado (127 camas), <b>no se
+recorta ningún otro valor atípico por rango intercuartílico</b>. Precios muy altos, anuncios con decenas de
+reseñas o alojamientos para grupos grandes (<i>Group Flats</i>) son variabilidad real del mercado, no errores
+de captura, y se tratan como tales: las transformaciones necesarias para modelar (logaritmos, tramos) se
+aplican en la Sección 3, sin eliminar información real del dataset.
+</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 3: FEATURE ENGINEERING                                 -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>3. Preparación de datos y feature engineering</h1>
+
+<h2>3.1 Selección de variables de partida</h2>
+<p>
+De las 78 columnas del dataset limpio de Barcelona, se descartan seis grupos antes de construir ninguna
+feature: identificadores sin valor predictivo, URLs y metadatos de scraping, texto libre sin estructurar
+(<code>name</code>, <code>description</code>, <code>host_about</code>, <code>host_location</code>) y, sobre
+todo, dos descartes que merece la pena detallar porque son decisiones de <b>fuga de información</b>
+(<i>leakage</i>), no de limpieza:
+</p>
+<ul>
+    <li>El grupo de cinco columnas <code>price_quote_</code> (fechas, precio total, precio por noche, JSON
+    de la cotización) se descarta en bloque: <code>price_quote_price_per_night</code> coincide de forma
+    exacta con <code>price</code> en casi todas las filas, el mismo precio recalculado por Airbnb.</li>
+    <li><code>estimated_revenue_l365d</code>: se calcula multiplicando <code>price</code> por
+    <code>estimated_occupancy_l365d</code>. Usarla como feature para predecir <code>price</code> sería fuga
+    de información directa: el modelo vería una variable que ya contiene la respuesta.</li>
+</ul>
+<p>Tras estos descartes quedan 43 columnas de partida (detalle de las 90 originales en el Anexo I).</p>
+
+<h2>3.2 Transformaciones numéricas</h2>
+<p>
+Se aplica <code>log1p</code> a las variables numéricas con distribución muy asimétrica (<code>price</code> y
+las variables de reseñas). También se construyen <code>price_per_accommodate</code> y
+<code>price_per_min_night</code>, pero ambos se excluyen del modelo final por el mismo motivo que
+<code>estimated_revenue_l365d</code>: se calculan directamente a partir de <code>price</code>, y sería fuga
+de información.
+</p>
+
+<h2>3.3 Multicolinealidad</h2>
+<p>
+<code>accommodates</code>, <code>bedrooms</code>, <code>beds</code> y <code>bathrooms</code> están
+correlacionadas entre sí (0,80&ndash;0,84 en la EDA), lo que podría sugerir eliminar alguna. El Factor de
+Inflación de la Varianza (VIF) de las cuatro está entre 1,8 y 4,3, por debajo del umbral habitual de 5: la
+correlación es alta pero no redundante, así que las cuatro se mantienen en el modelo.
+</p>
+
+<h2>3.4 Codificación de variables categóricas</h2>
+<p>
+Cada categórica recibe un tratamiento distinto según su cardinalidad. <code>room_type</code> (4 categorías)
+y <code>neighbourhood_group_cleansed</code> / distrito (10 categorías) se codifican con <i>one-hot</i>
+directo. <code>property_type</code> tiene 47 categorías muy concentradas (2 de ellas explican el 85% del
+dataset, y 34 de las 47 tienen menos de 10 anuncios), así que las categorías raras se agrupan antes del
+<i>one-hot</i>. <code>neighbourhood_cleansed</code> (69 barrios) es demasiado granular para <i>one-hot</i>
+directo: generaría 69 columnas casi todas dispersas. Por eso se usa <i>target encoding</i>: cada barrio pasa
+a ser la media de <code>price</code> en ese barrio, suavizada hacia la media global para que los barrios con
+pocos anuncios no queden con un valor extremo (<code>neighbourhood_price_encoded</code>).
+</p>
+
+<h3>Una fuga detectada y corregida: neighbourhood_price_encoded</h3>
+<p>
+Esta variable se calculó inicialmente sobre <b>todo</b> el dataset, antes de separar train/test: un error
+sutil pero real, ya que el precio del test quedaría parcialmente informado por sí mismo a través de la media
+del barrio. Se detectó en <code>03_model_baseline.ipynb</code> y se corrigió recalculando la media
+<b>solo con las filas de train</b>, la misma disciplina aplicada a
+<code>estimated_revenue_l365d</code>: toda variable derivada de <code>price</code> se audita antes de entrar
+al modelo.
+</p>
+
+<h2>3.5 Otras variables derivadas</h2>
+<p>El resto de variables derivadas, con la columna de partida, la transformación aplicada y el nombre con
+el que quedan en el modelo final:</p>
+<ul>
+    <li><b>Host</b>: <code>hosts_time_as_host_years</code>/<code>_months</code> se combinan en una sola
+    variable continua, <code>host_tenure_years</code>. <code>calculated_host_listings_count</code> no se
+    convierte en un flag binario "profesional" (el umbral más simple, &gt;1 anuncio, ya marcaría al 84,6% de
+    los anfitriones, y la relación con el precio no es monótona: los portfolios medianos cobran más de
+    mediana que los grandes), sino en cuatro categorías por cuartiles, <code>host_size_individual</code> /
+    <code>_pequeno</code> / <code>_mediano</code> / <code>_grande</code>. El tipo de alojamiento por
+    anfitrión se resume en <code>host_entire_homes_ratio</code> (qué parte es vivienda entera).</li>
+    <li><b>Reseñas</b>: <code>number_of_reviews</code>, <code>number_of_reviews_ltm</code>,
+    <code>reviews_per_month</code> y <code>review_scores_rating</code> se mantienen tal cual (las tres
+    primeras, también en log). Se añade <code>has_reviews</code> (22% de los anuncios no tiene ninguna, con
+    <code>review_scores_rating</code> como <code>NaN</code> genuino) y, desde <code>first_review</code>/
+    <code>last_review</code>, <code>listing_age_days</code> y <code>days_since_last_review</code>
+    (correlación débil, 0,13 y 0,08). Los 6 subscores de valoración se descartan: correlacionan mucho entre
+    sí y no aportan más que <code>review_scores_rating</code>.</li>
+    <li><b>Geografía</b>: desde <code>latitude</code>/<code>longitude</code> (que se mantienen) se calculan
+    <code>distance_to_center_km</code>, distancia al centro de la ciudad (correlación débil, &minus;0,11), y
+    <code>n_nearby_150m</code>, anuncios en un radio de 150 metros (correlación modesta, 0,12). Ambas
+    complementan a <code>neighbourhood_price_encoded</code>, no la sustituyen.</li>
+    <li><b>Amenities</b>: de <code>amenities</code> (texto libre) se extraen cuatro flags por palabra clave,
+    descartando el texto: <code>has_ac</code> (~85%), <code>has_dishwasher</code> (~48%),
+    <code>has_pool</code> (~4%) y <code>n_amenities</code> (recuento total).</li>
+</ul>
+
+<h2>3.6 Particularidad de Málaga: sin nivel de distrito</h2>
+<p>
+Málaga no tiene la columna <code>neighbourhood_group_cleansed</code> en los datos de origen. En vez de
+fallar o de simular un distrito artificial, todo el pipeline (aquí y en la app) hace que "distrito" caiga
+sobre el mismo nivel que "barrio" para esta ciudad. Es una decisión explícita y documentada, en vez de un
+caso especial silencioso que pudiera pasar desapercibido más adelante.
+</p>
+
+<h2>3.7 Dataset final</h2>
+<p>
+Tras estas transformaciones, el dataset de Barcelona para modelado queda con <b>71 columnas de features</b>
+(Sección 4), los identificadores (<code>id</code>, <code>host_id</code>) y el objetivo (<code>price</code>).
+El mismo proceso, adaptado a cada ciudad (Sección 2.4), se repite en las otras 6; detalle completo en el
+Anexo I.
+</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 4: MODELIZACIÓN                                        -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>4. Modelización</h1>
+<p>
+Todo el proceso de esta sección se hace sobre un único <i>split</i> 80/20 fijado al principio
+(<code>random_state=42</code>) y guardado en disco: ningún modelo, de los ocho que se comparan en total, ve
+el conjunto de test hasta la evaluación final de la Sección 4.4. Todas las métricas de esta sección están en
+euros (deshaciendo <code>log1p</code> con <code>expm1</code> antes de medir), salvo cuando se indica lo
+contrario.
+</p>
+
+<h2>4.1 Punto de partida: baselines</h2>
+<p>
+Antes de entrenar nada, se fija un suelo mínimo que cualquier modelo real debe superar:
+</p>
+<table>
+    <tr><th>Modelo</th><th>RMSE</th><th>MAE</th><th>R&sup2;</th><th>MAPE</th></tr>
+    <tr><td>Media</td><td>308,22€</td><td>155,87€</td><td>&minus;0,00</td><td>145,6%</td></tr>
+    <tr><td>Mediana</td><td>313,66€</td><td>145,59€</td><td>&minus;0,04</td><td>104,0%</td></tr>
+    <tr><td>Mediana por <code>bedrooms</code></td><td>221,08€</td><td>111,33€</td><td>0,49</td><td>84,7%</td></tr>
+    <tr><td>Regresión lineal (log1p, 71 features)</td><td>172,37€</td><td>62,83€</td><td>0,69</td><td>25,8%</td></tr>
+</table>
+<p>
+Agrupar por <code>bedrooms</code> ya explica casi la mitad de la varianza sin entrenar ningún modelo
+(confirma lo visto en el EDA, Sección 2), y una regresión lineal simple sobre las 71 features ya
+mejora sustancialmente sobre eso. Esta última es el verdadero listón a batir en el resto de la sección.
+</p>
+
+<h2>4.2 Comparativa de cuatro familias de modelos</h2>
+<p>
+Se entrenan cuatro <i>pipelines</i> con hiperparámetros por defecto y se comparan por validación cruzada de
+5 <i>folds</i> sobre el train (sin tocar el test): <b>Ridge</b> (regularización L2, con imputación y
+escalado), <b>Random Forest</b>, <b>Extra Trees</b> e <b>Hist Gradient Boosting</b> (estos tres sin
+escalado; Hist Gradient Boosting admite <code>NaN</code> directamente, sin imputar).
+</p>
+<table>
+    <tr><th>Modelo</th><th>RMSE</th><th>MAE</th><th>R&sup2;</th><th>MAPE</th></tr>
+    <tr><td>Ridge</td><td>195,30€</td><td>64,09€</td><td>0,68</td><td>25,6%</td></tr>
+    <tr><td>Random Forest</td><td>170,41€</td><td>54,51€</td><td>0,75</td><td>21,3%</td></tr>
+    <tr><td>Extra Trees</td><td>164,89€</td><td>53,10€</td><td>0,77</td><td>21,5%</td></tr>
+    <tr><td>Hist Gradient Boosting</td><td>166,92€</td><td>55,13€</td><td>0,76</td><td>21,4%</td></tr>
+</table>
+<p>
+Ridge queda claramente por detrás: <code>price</code> no depende de forma lineal de las variables, y la
+multicolinealidad ya detectada en la Sección 3.3 lo penaliza más que a un modelo de árboles. Entre los tres
+modelos de árboles la diferencia con hiperparámetros por defecto es pequeña: ninguno domina con
+claridad todavía. Así que los tres pasan a la fase de ajuste, no solo el que gana por poco aquí.
+</p>
+
+<h2>4.3 Ajuste de hiperparámetros y elección final</h2>
+<p>
+Los tres modelos de árboles se afinan con <code>RandomizedSearchCV</code> (15 combinaciones, 3 <i>folds</i>,
+45 entrenamientos por modelo). Comparados de nuevo en euros, ya con sus mejores hiperparámetros:
+</p>
+<table>
+    <tr><th>Modelo (afinado)</th><th>RMSE</th><th>MAE</th><th>R&sup2;</th><th>MAPE</th></tr>
+    <tr><td>Random Forest</td><td>167,35€</td><td>53,72€</td><td>0,76</td><td>21,0%</td></tr>
+    <tr><td>Extra Trees</td><td>162,49€</td><td>52,79€</td><td>0,77</td><td>21,0%</td></tr>
+    <tr><td>Hist Gradient Boosting</td><td><b>159,85€</b></td><td>52,89€</td><td><b>0,78</b></td><td><b>20,8%</b></td></tr>
+</table>
+<p>
+<b>Hist Gradient Boosting</b> gana en RMSE, R&sup2; y MAPE, y queda a 10 céntimos de MAE de Extra Trees,
+un empate técnico en esa única métrica. Con tres de cuatro métricas a favor, es la elección más
+sólida, y confirma que mereció la pena afinar los tres modelos y no solo el que iba ligeramente por delante
+sin ajustar (Extra Trees, en la Sección 4.2). Hiperparámetros finales:
+<code>max_leaf_nodes=63</code>, <code>max_iter=300</code>, <code>max_depth=10</code>,
+<code>learning_rate=0.05</code>, <code>l2_regularization=0</code>.
+</p>
+
+<h2>4.4 Evaluación final en test</h2>
+<p>
+Primera y única vez que se toca el test en todo el proceso, con el modelo ya elegido y entrenado sobre el
+train completo:
+</p>
+<table>
+    <tr><th>Conjunto</th><th>RMSE</th><th>MAE</th><th>R&sup2;</th><th>MAPE</th></tr>
+    <tr><td>Train</td><td>133,11€</td><td>34,01€</td><td>0,854</td><td>12,8%</td></tr>
+    <tr><td>Test</td><td>140,96€</td><td>50,82€</td><td>0,791</td><td>20,6%</td></tr>
+</table>
+<p>
+Hay una brecha entre train y test, pero moderada, del tipo esperable entre ambos conjuntos, no el
+patrón de un sobreajuste severo (que mostraría un train casi perfecto, R&sup2;&gt;0,95, con el test muy por
+detrás). Frente al baseline de regresión lineal (RMSE=172,37€, MAE=62,83€, R&sup2;=0,69, MAPE=25,8%), el
+salto es real: <b>RMSE de 172€ a 141€, MAE de 63€ a 51€, R&sup2; de 0,69 a 0,79, MAPE de 26% a 21%</b>. Un
+modelo de árboles bien afinado aporta una mejora sustancial sobre un baseline lineal simple.
+</p>
+
+<h2>4.5 Extensión a las 7 ciudades</h2>
+<p>
+El mismo proceso (baselines &rarr; cuatro familias &rarr; ajuste de hiperparámetros) se repite de forma
+independiente en cada ciudad, sin dar por hecho que el ganador de Barcelona vaya a serlo también en el
+resto: cada ciudad vuelve a comparar Ridge, Random Forest, Extra Trees e Hist Gradient Boosting desde cero,
+con sus propios datos y su propio ajuste de hiperparámetros. Hist Gradient Boosting resulta el mejor modelo
+en las 7 ciudades, aunque no siempre por el mismo margen: en Málaga, Sevilla, Mallorca y Euskadi gana con
+claridad en las cuatro métricas; en Madrid el margen es más ajustado pero consistente antes y después de
+afinar; y Valencia es la única con un empate técnico real (Hist Gradient Boosting gana en RMSE y R&sup2;,
+Extra Trees en MAE y MAPE), resuelto a favor de Hist Gradient Boosting por ganar en las dos métricas más
+sensibles a la cola larga de precio (Sección 2.3). Los resultados finales en test:
+</p>
+<table>
+    <tr><th>Ciudad</th><th>RMSE</th><th>MAE</th><th>R&sup2; (€)</th><th>R&sup2; (log)</th><th>MAPE</th></tr>
+    <tr><td>Barcelona</td><td>141€</td><td>51€</td><td>0,79</td><td>0,89</td><td>20,6%</td></tr>
+    <tr><td>Madrid</td><td>150€</td><td>45€</td><td>0,40</td><td>0,77</td><td>24,6%</td></tr>
+    <tr><td>Valencia</td><td>110€</td><td>40€</td><td>0,37</td><td>0,76</td><td>24,1%</td></tr>
+    <tr><td>Málaga</td><td>155€</td><td>52€</td><td>0,57</td><td>0,78</td><td>22,3%</td></tr>
+    <tr><td>Sevilla</td><td>273€</td><td>56€</td><td>0,17</td><td>0,60</td><td>26,9%</td></tr>
+    <tr><td>Mallorca</td><td>606€</td><td>212€</td><td>0,54</td><td>0,78</td><td>30,6%</td></tr>
+    <tr><td>Euskadi</td><td>162€</td><td>71€</td><td>0,59</td><td>0,77</td><td>27,1%</td></tr>
+</table>
+<p>
+El R&sup2; en euros varía mucho entre ciudades (de 0,17 en Sevilla a 0,79 en Barcelona) y, a primera vista,
+podría leerse como que el modelo solo funciona bien en Barcelona. Esa lectura es engañosa: el R&sup2; en
+euros depende de la varianza total del precio en cada mercado, y ciudades como Sevilla (con una cola de
+precio muy larga y sin frontera limpia, Sección 2.4) o Mallorca (villas de lujo que disparan el RMSE a
+606€) tienen mercados intrínsecamente más dispersos, no modelos peor entrenados. El <b>R&sup2; en escala
+logarítmica</b> (la escala sobre la que el modelo realmente optimiza) es mucho más estable
+(0,60&ndash;0,89) y es la comparación justa entre ciudades; el <b>MAPE</b> (20&ndash;31%) cuenta la misma
+historia: un margen de error relativo consistente, no un modelo que falla en unas ciudades y acierta en
+otras.
+</p>
+
+<h2>4.6 Bondades y debilidades de cada técnica</h2>
+<table>
+    <tr><th>Técnica</th><th>Bondades</th><th>Debilidades</th></tr>
+    <tr><td>Regresión lineal / Ridge</td><td>Rápida, interpretable coeficiente a coeficiente (cuando no hay
+    multicolinealidad severa)</td><td>Asume relaciones lineales; aquí <code>price</code> no depende
+    linealmente de las variables, y la multicolinealidad detectada le penaliza especialmente</td></tr>
+    <tr><td>Random Forest</td><td>Robusta, poca necesidad de ajuste fino, tolera bien el ruido</td>
+    <td>Más lenta de entrenar y de predecir que Extra Trees o Hist Gradient Boosting con resultados
+    comparables o peores en este problema</td></tr>
+    <tr><td>Extra Trees</td><td>Mejor que Random Forest por defecto, entrenamiento rápido</td>
+    <td>Sin importancia de variables nativa tan directa de interpretar como Random Forest; en este caso
+    queda a un paso de Hist Gradient Boosting tras el ajuste fino</td></tr>
+    <tr><td><b>Hist Gradient Boosting (elegido)</b></td><td>Mejor resultado en 3 de 4 métricas tras el
+    ajuste; admite <code>NaN</code> nativamente, sin necesidad de imputar; entrenamiento eficiente incluso
+    con 71 features</td><td>Sin <code>feature_importances_</code> nativo (requiere <i>permutation
+    importance</i>, más costosa de calcular, Sección 5); menos interpretable "de fábrica" que un árbol
+    individual</td></tr>
+</table>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 5: INTERPRETABILIDAD                                   -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>5. Interpretabilidad</h1>
+<p>
+Todo el análisis de esta sección se calcula sobre el <b>test</b>, no sobre el train: el objetivo es entender
+qué explica la capacidad del modelo para generalizar a anuncios que no ha visto, no qué usó de memoria al
+entrenar.
+</p>
+
+<h2>5.1 Importancia por permutación</h2>
+<p>
+<code>HistGradientBoostingRegressor</code> no tiene el atributo <code>feature_importances_</code> que sí
+tienen Random Forest o Extra Trees. En su lugar se usa <i>permutation importance</i>, que para cada
+variable desordena sus valores al azar y mide cuánto empeora el R&sup2; del modelo. Es más lenta de calcular,
+pero mide el impacto real en el rendimiento, sin el sesgo hacia variables de alta cardinalidad que sí tiene
+la importancia basada en impureza de los árboles.
+</p>
+<div class="figura">
+    <img src="assets/fig_permutation_importance.png">
+    <div class="caption">Figura 3. Importancia por permutación (caída de R&sup2; al desordenar cada
+    variable), calculada sobre el test.</div>
+</div>
+<p>
+<code>minimum_nights</code> domina por encima de todo lo demás: una caída de R&sup2; de 0,636, más de 6
+veces la de la segunda variable (<code>accommodates</code>, 0,098). Es un resultado más marcado de lo que
+sugería la EDA, donde la correlación de Pearson con <code>price</code> era solo moderada (&minus;0,33),
+aunque la de Spearman ya apuntaba a algo más fuerte (&minus;0,65). La relación es fuerte pero
+no lineal (el "salto" en la frontera turístico/temporada de la Sección 2.3), y un modelo de árboles la
+aprovecha mucho mejor que una correlación lineal o que la regresión del baseline.
+</p>
+
+<h2>5.2 SHAP: magnitud y dirección</h2>
+<p>
+La importancia por permutación dice qué variables importan, pero no si empujan el precio hacia arriba o
+hacia abajo, ni cómo se combinan en un anuncio concreto. SHAP reparte la predicción de cada anuncio en la
+contribución de cada variable, la pieza que permitiría explicarle a un anfitrión "por qué tu anuncio sale a
+este precio". <b>Aviso técnico</b>: como el modelo predice <code>log1p(price)</code>, los valores de SHAP
+están en esa escala (aditiva ahí, no en euros); el orden y la dirección siguen siendo válidos, y el ejemplo
+de la Sección 5.3 se traduce a euros al final.
+</p>
+<div class="figura">
+    <img src="assets/fig_shap_beeswarm.png">
+    <div class="caption">Figura 4. SHAP summary plot (test): cada punto es un anuncio; la posición
+    horizontal es su contribución al precio, el color el valor de la variable para ese anuncio.</div>
+</div>
+<p>
+El orden coincide con la importancia por permutación (<code>minimum_nights</code> muy por delante, luego
+<code>room_type_Entire home/apt</code> y <code>accommodates</code>). Dos métodos distintos de medir
+importancia coinciden, lo que da bastante más confianza que si solo se hubiera calculado uno de los dos.
+La dirección confirma el patrón de la Sección 2.3: en <code>minimum_nights</code>, los valores altos (rojo)
+empujan el precio hacia abajo con fuerza y los bajos (azul) lo empujan hacia arriba, como corresponde a un
+alquiler de larga estancia, más barato por noche. En <code>accommodates</code>, <code>bathrooms</code> y <code>bedrooms</code>
+es al revés: valores altos empujan hacia arriba. <code>review_scores_rating</code> apenas influye (puntos de
+ambos colores muy pegados a cero).
+</p>
+
+<h2>5.3 Un ejemplo concreto</h2>
+<p>
+Se elige un anuncio de precio cercano a la mediana del test, y donde el modelo acierta razonablemente bien
+(precio real 174,03€, predicho 177,90€), para que el ejemplo sea representativo y no un caso raro donde el
+modelo falla:
+</p>
+<div class="figura">
+    <img src="assets/fig_shap_waterfall_example.png">
+    <div class="caption">Figura 5. Desglose SHAP (<i>waterfall</i>) de la predicción para un anuncio
+    concreto del test, en escala log1p(price).</div>
+</div>
+<p>
+El valor base (<code>E[f(X)]</code>, el punto de partida antes de mirar ninguna característica del anuncio)
+equivale a unos 162€. Para este anuncio en concreto, la estancia mínima es de solo <b>2 noches</b>: un valor
+bajo de <code>minimum_nights</code> y, coherente con la dirección de la Figura 4, el
+empujón individual más fuerte de toda la predicción, y hacia <b>arriba</b> (+0,39 en escala log), propio de
+un alquiler de estancia corta, con el precio por noche más alto que corresponde a ese segmento. Al ser un piso
+pequeño (1 <code>bedroom</code>, capacidad 3), otras variables tiran algo hacia abajo (&minus;0,08 y
+&minus;0,07), y ser vivienda entera (<code>room_type_Entire home/apt</code>) vuelve a empujar hacia arriba
+(+0,07). El resto de ajustes son menores, hasta llegar a los 177,90€ predichos, razonablemente cerca
+de los 174,03€ reales. Este es el tipo de desglose que se le podría enseñar a un anfitrión real: "tu precio
+sube sobre todo por aceptar estancias tan cortas, y algo por ser vivienda entera; baja un poco por ser un
+piso pequeño".
+</p>
+
+<h2>5.4 Conexión con el resto del trabajo</h2>
+<p>
+Este resultado no es un hallazgo aislado de la Sección 5: es la confirmación, a nivel de modelo, de lo que
+ya apuntaba el EDA (Sección 2.3) y que se repite en las 7 ciudades con distinta forma pero el mismo fondo:
+<code>minimum_nights</code> separa dos negocios de precio muy distinto dentro de un mismo anuncio de
+Airbnb. Es también la razón por la que el Formulario de FairNight (Sección 6) pide la estancia mínima como
+uno de sus primeros campos, y por la que <code>comparables.py</code> la usa como filtro dentro del cual se
+buscan anuncios comparables en la pantalla Comparar de la aplicación, en vez de tratarla como una variable
+más entre otras 70.
+</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 6: PRODUCTIZACIÓN                                      -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>6. Productización: la aplicación FairNight</h1>
+<p>
+El modelo de la Sección 4 y la interpretabilidad de la Sección 5 se llevan a producción como
+<b>FairNight</b>, una aplicación web (Streamlit) de 8 páginas que un anfitrión real puede usar sin tocar
+código ni notebooks.
+</p>
+
+<h2>6.1 Arquitectura</h2>
+<p>
+Cada una de las 7 ciudades tiene su propio modelo entrenado (<code>models/&lt;ciudad&gt;/price_model.pkl</code>)
+y sus metadatos (<code>model_metadata.json</code>: columnas exactas, hiperparámetros, métricas de test de la
+Sección 4), cargados con <code>joblib</code>. Un módulo (<code>features.py</code>) traduce lo que el usuario
+introduce en el Formulario al mismo vector de 71 columnas, en el mismo orden, que espera el modelo. Sin
+este paso, cualquier discrepancia de orden o codificación entre entrenamiento y producción invalidaría
+la predicción en silencio. Un segundo módulo (<code>comparables.py</code>) es deliberadamente
+<b>independiente</b> del modelo: construye el conjunto de anuncios reales para la pantalla Comparar con sus
+propios filtros (tipo, capacidad &plusmn;1, mismo tramo de estancia mínima, zona), sin usar en ningún
+momento la predicción para decidir qué es "parecido". Son dos fuentes de verdad separadas, para que
+Comparar pueda contradecir al modelo si el mercado real lo hace.
+</p>
+
+<h2>6.2 Recorrido funcional</h2>
+<p>
+El <b>Formulario</b> recoge la descripción del anuncio (ubicación en mapa, tipo de alojamiento, capacidad,
+historial del anfitrión, comodidades). Con eso, <b>Predicción</b> devuelve un precio recomendado con su
+rango de error real (el MAE de la Sección 4, no un número inventado) y el desglose SHAP de la Sección 5
+expuesto directamente al usuario, no solo al notebook, además de un simulador
+"&iquest;qué pasaría si cambio...?" para explorar el efecto de una variable a la vez:
+</p>
+<div class="figura">
+    <img src="assets/fig_app_prediccion.png">
+    <div class="caption">Figura 6. Página Predicción: precio recomendado con rango, desglose SHAP
+    ("Por qué este precio") y simulador de variables.</div>
+</div>
+<p>
+<b>Comparar</b> sitúa el precio que el usuario piensa cobrar, no la predicción del modelo,
+frente a los anuncios reales y comparables de su zona (el conjunto de <code>comparables.py</code>), con un
+veredicto (vendes barato / en precio de mercado / vendes caro) cuyo margen de tolerancia es el MAE real del
+modelo en ese tramo de precio, y una lista o mapa de los anuncios comparables uno a uno:
+</p>
+<div class="figura">
+    <img src="assets/fig_app_comparar.png">
+    <div class="caption">Figura 7. Página Comparar: veredicto de precio frente al mercado real, histograma
+    de comparables y listado ordenado por parecido.</div>
+</div>
+<p>
+El resto de páginas exponen el trabajo de las Secciones 2, 4 y 5 de forma navegable por ciudad:
+<b>Modelo</b> (métricas de test y sesgo por segmento), <b>Variables</b> (importancia y PDP),
+<b>Análisis</b> (SHAP interactivo) y <b>Explora el mercado</b> (mapas de precio medio, ocupación y
+valoración por barrio, del estilo de la Sección 2).
+</p>
+
+<h2>6.3 Por qué esto es más que un cuadro de mando</h2>
+<p>
+Un cuadro de mando muestra números; FairNight recomienda, explica y contrasta. La predicción nunca aparece
+sola: siempre va acompañada de por qué (SHAP, Sección 5) y de si el mercado real la respalda (Comparar,
+Sección 2.4&ndash;3), con las dos fuentes deliberadamente desacopladas para que una pueda poner en duda a la
+otra. Esa combinación de predicción, explicación y validación de mercado en la misma herramienta
+es la diferencia entre un ejercicio de modelización y un producto que un anfitrión real usaría para decidir
+un precio.
+</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 7: CONCLUSIONES                                        -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>7. Conclusiones y trabajo futuro</h1>
+
+<h2>7.1 Resultados</h2>
+<p>
+El modelo final (Hist Gradient Boosting, elegido tras comparar 4 familias con validación cruzada y ajuste de
+hiperparámetros) mejora de forma sustancial sobre el baseline de regresión lineal en Barcelona (RMSE de
+172€ a 141€, MAE de 63€ a 51€, R&sup2; de 0,69 a 0,79), con la misma metodología aplicada de forma
+independiente a las otras 6 ciudades. El hallazgo más relevante del trabajo, que
+<code>minimum_nights</code> separa dos mercados de precio muy distinto dentro de un mismo anuncio con una
+frontera legal real en España, aparece primero en el EDA (Sección 2.3), se confirma como la variable
+dominante del modelo por dos métodos distintos (Sección 5.1&ndash;5.2), y determina cómo la propia
+aplicación agrupa sus comparables (Sección 6.1). Por el camino, se detectó y corrigió una fuga de
+información real (<code>neighbourhood_price_encoded</code> calculada sobre todo el dataset antes del
+<i>split</i>, Sección 3.4), y se documentó honestamente que el R&sup2; en euros no es comparable entre
+ciudades de dispersión de precio muy distinta (Sección 4.5). El resultado se lleva a producción como una
+aplicación completa, no como un notebook aislado (Sección 6).
+</p>
+
+<h2>7.2 Limitaciones</h2>
+<ul>
+    <li>Los datos son una única captura (<i>snapshot</i>) de Inside Airbnb: el modelo no ve estacionalidad
+    real ni evolución del mercado en el tiempo.</li>
+    <li>El precio que se predice es el <b>publicado</b>, no el efectivamente cobrado: un anuncio caro con
+    ocupación estimada muy baja entra al entrenamiento con el mismo peso que uno con demanda real
+    (Sección 7.3).</li>
+    <li>En mercados con colas de precio muy largas y dispersas (Sevilla, Mallorca), el error absoluto en
+    euros sigue siendo alto aunque el error relativo (MAPE) sea consistente con el resto de ciudades.</li>
+</ul>
+
+<h2>7.3 Trabajo futuro</h2>
+<ul>
+    <li><b>Ponderar el entrenamiento por ocupación real</b> (<code>estimated_occupancy_l365d</code>, ya
+    presente como feature): dar menos peso a anuncios caros que apenas se alquilan, para que su precio
+    publicado influya menos en lo que el modelo considera "normal".</li>
+    <li><b>Actualización periódica</b>: los 5 notebooks por ciudad (EDA &rarr; feature engineering &rarr;
+    baseline &rarr; entrenamiento &rarr; evaluación) ya son un pipeline reproducible; automatizarlo contra
+    nuevos <i>snapshots</i> de Inside Airbnb mantendría el modelo al día sin trabajo manual.</li>
+    <li><b>Filtro de comparables más fino</b> en la pantalla Comparar (por ejemplo, <code>bedrooms</code>
+    como filtro duro), evaluando el coste en tamaño de muestra frente a la ganancia en precisión del
+    peer-group, como se exploró durante el desarrollo de la aplicación.</li>
+    <li><b>Extender a más ciudades</b> reutilizando el mismo pipeline de 5 notebooks, ya preparado para las
+    particularidades de datos que puedan aparecer (ausencia de columnas, categorías nuevas de
+    <code>property_type</code>, etc.).</li>
+</ul>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN 8: BIBLIOGRAFÍA                                        -->
+<!-- ============================================================ -->
+<div class="section-break">
+<h1>8. Bibliografía</h1>
+<ul>
+    <li>Inside Airbnb. <i>Get the Data</i>.
+    <a href="https://insideairbnb.com/get-the-data/">insideairbnb.com/get-the-data</a>. Snapshots de
+    junio-julio de 2026 por ciudad (fechas exactas en Sección 1.4), ficheros
+    <code>listings.csv.gz</code> y <code>neighbourhoods.geojson</code>.</li>
+    <li>Inside Airbnb. <i>Explore the Data</i>, por ciudad:</li>
+</ul>
+<ul class="sublista">
+    <li><a href="https://insideairbnb.com/barcelona/">insideairbnb.com/barcelona</a></li>
+    <li><a href="https://insideairbnb.com/madrid/">insideairbnb.com/madrid</a></li>
+    <li><a href="https://insideairbnb.com/valencia/">insideairbnb.com/valencia</a></li>
+    <li><a href="https://insideairbnb.com/malaga/">insideairbnb.com/malaga</a></li>
+    <li><a href="https://insideairbnb.com/sevilla/">insideairbnb.com/sevilla</a></li>
+    <li><a href="https://insideairbnb.com/mallorca/">insideairbnb.com/mallorca</a></li>
+    <li><a href="https://insideairbnb.com/euskadi/">insideairbnb.com/euskadi</a></li>
+</ul>
+<ul>
+    <li>Pedregosa, F. et al. (2011). <i>Scikit-learn: Machine Learning in Python</i>. Journal of Machine
+    Learning Research, 12, 2825&ndash;2830.
+    <a href="https://www.jmlr.org/papers/volume12/pedregosa11a/pedregosa11a.pdf">jmlr.org/papers/volume12/pedregosa11a</a>.</li>
+    <li>Lundberg, S. M. &amp; Lee, S.-I. (2017). <i>A Unified Approach to Interpreting Model Predictions</i>
+    (SHAP). Advances in Neural Information Processing Systems 30 (NeurIPS 2017).
+    <a href="https://proceedings.neurips.cc/paper_files/paper/2017/file/8a20a8621978632d76c43dfd28b67767-Paper.pdf">proceedings.neurips.cc/paper_files/paper/2017</a>.</li>
+    <li>Streamlit Inc. <i>Streamlit documentation</i>.
+    <a href="https://docs.streamlit.io/">docs.streamlit.io</a>.</li>
+</ul>
+</div>
+
+</body>
+</html>
