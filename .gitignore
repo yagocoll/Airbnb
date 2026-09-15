@@ -13,3 +13,6 @@ data/external/
 # Intermedio de 02_feature_engineering.ipynb que solo lee 03_model_baseline.ipynb:
 # ni la app ni el resto de notebooks lo necesitan, se regenera solo con ejecutar 02.
 data/processed/*/listings_full_features.csv
+
+# Guion del vídeo de la Competición de becas: material privado, no público.
+guion/
