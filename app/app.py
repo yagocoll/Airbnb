@@ -4841,7 +4841,15 @@ def _page_comparar_body():
 
             mostrados = fuente.iloc[pagina * PAGINA_SIZE:(pagina + 1) * PAGINA_SIZE].reset_index(drop=True)
 
+            def _nombre_anuncio(nombre, barrio):
+                if isinstance(nombre, str) and nombre.strip():
+                    return nombre.strip()
+                return f"Alojamiento en {barrio}"
+
             tabla = pd.DataFrame({
+                "Nombre": [
+                    _nombre_anuncio(n, b) for n, b in zip(mostrados["name"], mostrados["neighbourhood_cleansed"])
+                ],
                 "Barrio": mostrados["neighbourhood_cleansed"].values,
                 "Tamaño": [
                     _formato_tamano(b, ba) for b, ba in zip(mostrados["bedrooms"], mostrados["bathrooms"])
@@ -4879,9 +4887,19 @@ def _page_comparar_body():
             # dibuja una columna de checkboxes que no queríamos. Con celdas, clicar
             # cualquier celda de la fila selecciona (sin checkbox visible) y la posición
             # de fila se lee igual en selection.cells (fila, columna).
+            # "alignment" no está en la firma pública de st.column_config.Column, pero
+            # el frontend sí la lee (se traduce a contentAlignment en la grid), así que
+            # se pasa como dict plano en vez de con el helper.
             seleccion = st.dataframe(
                 estilo, hide_index=True, use_container_width=True,
                 on_select="rerun", selection_mode="single-cell", key="comparar_tabla_sel",
+                column_config={
+                    "Barrio": {"alignment": "center"},
+                    "Tamaño": {"alignment": "center"},
+                    "Distancia": {"alignment": "center"},
+                    "Precio": {"alignment": "center"},
+                    "vs. el tuyo": {"alignment": "center"},
+                },
             )
             celdas_sel = seleccion.selection.cells if seleccion and seleccion.selection else []
             if celdas_sel:

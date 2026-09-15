@@ -220,9 +220,9 @@ limpieza inicial (eliminación de columnas vacías, recuperación de <code>bathr
     <tr><td><b>Total</b></td><td><b>72.537</b></td></tr>
 </table>
 <p>
-El resto de esta sección desarrolla el EDA de <b>Barcelona</b> como caso detallado (la ciudad con el proceso
-de limpieza más documentado y una de las de mayor volumen); el EDA completo, notebook a notebook, se
-desarrolla en el Anexo II. En el caso de Barcelona, de 15.293 filas y 90 columnas originales
+El resto de esta sección desarrolla el EDA de <b>Barcelona</b> como caso detallado, la ciudad con el proceso
+de limpieza más documentado y una de las de mayor volumen. El EDA completo, notebook a notebook, aparece en
+el Anexo II. En el caso de Barcelona, de 15.293 filas y 90 columnas originales
 quedan 13.258 filas y 78 columnas, tras eliminar 12 columnas completamente vacías y recuperar 3.556 de
 3.565 valores de <code>bathrooms</code> a partir del texto libre de <code>bathrooms_text</code>.
 </p>
@@ -248,7 +248,9 @@ en la interpretabilidad (Sección 5), es que <code>minimum_nights</code> no es u
 negocios distintos que conviven bajo el mismo anuncio de Airbnb. Un alquiler con estancia mínima de hasta
 30 noches compite con hoteles (mercado <b>turístico</b>); a partir de 31 noches, deja de considerarse
 vivienda de uso turístico a efectos legales en España y compite con el alquiler residencial normal (mercado
-de <b>temporada</b>), con precios por noche mucho más bajos.
+de <b>temporada</b>), con precios por noche mucho más bajos. Esta diferencia está correlacionada con la
+misma categoría legal que Barcelona va a eliminar en 2028 (retirada de las licencias turísticas), lo que
+previsiblemente acentuará todavía más la división entre ambos mercados (Sección 7.2).
 </p>
 <div class="figura">
     <img src="assets/fig_turistico_temporada.png">
