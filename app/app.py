@@ -3130,6 +3130,13 @@ def page_analisis():
 def page_formulario():
     st.header("Características del anuncio")
 
+    # Al volver a esta página tras predecir (o simplemente navegar fuera), Streamlit
+    # olvida el estado de estos widgets porque dejan de dibujarse durante ese tiempo.
+    # Se recupera el último anuncio (confirmado o solo tecleado, lo que sea más
+    # reciente) para que cada campo se rellene con eso en vez de con su valor de
+    # fábrica.
+    saved = st.session_state.get("live_inputs") or st.session_state.get("confirmed_inputs") or DEFAULT_INPUTS
+
     col_a, col_b = st.columns(2)
 
     with col_a:
@@ -3155,17 +3162,23 @@ def page_formulario():
                     f"Distrito de {CITY_LABEL} donde está el alojamiento. Es una de las variables con más "
                     "peso en el precio.\n\nValores posibles:\n\n" + bullet_list(DISTRICTS)
                 )
+            _saved_district = saved.get("district", features.DEFAULT_DISTRICT.get(CITY, DISTRICTS[0]))
+            if _saved_district not in DISTRICTS:
+                _saved_district = features.DEFAULT_DISTRICT.get(CITY, DISTRICTS[0])
             if HAS_NEIGHBOURHOOD_LEVEL:
                 dist_col, neigh_col = st.columns(2)
                 with dist_col:
                     district = st.selectbox(
                         "Distrito", DISTRICTS,
-                        index=DISTRICTS.index(features.DEFAULT_DISTRICT.get(CITY, DISTRICTS[0])),
+                        index=DISTRICTS.index(_saved_district),
                         help=_district_help,
                     )
                 with neigh_col:
+                    _neigh_options = NEIGHBOURHOODS_BY_DISTRICT[district]
+                    _saved_neigh = saved.get("neighbourhood")
+                    _neigh_index = _neigh_options.index(_saved_neigh) if _saved_neigh in _neigh_options else 0
                     neighbourhood = st.selectbox(
-                        "Barrio", NEIGHBOURHOODS_BY_DISTRICT[district],
+                        "Barrio", _neigh_options, index=_neigh_index,
                         help="Barrio dentro del distrito elegido. El modelo usa el precio medio histórico de cada barrio como variable.",
                     )
             else:
@@ -3173,25 +3186,28 @@ def page_formulario():
                 # desplegable de distrito, sin duplicar el mismo dato en dos campos.
                 district = st.selectbox(
                     "Distrito", DISTRICTS,
-                    index=DISTRICTS.index(features.DEFAULT_DISTRICT.get(CITY, DISTRICTS[0])),
+                    index=DISTRICTS.index(_saved_district),
                     help=_district_help,
                 )
                 neighbourhood = NEIGHBOURHOODS_BY_DISTRICT[district][0]
             st.caption(":material/pin_drop: Ajustar coordenadas exactas")
             stats = NEIGHBOURHOOD_STATS[neighbourhood]
-            if (
-                st.session_state.get("coord_neighbourhood") != neighbourhood
-                or "coord_lat" not in st.session_state
-                or "coord_lon" not in st.session_state
-            ):
-                # "coord_lat"/"coord_lon" son claves de widgets (los number_input de abajo):
-                # Streamlit las elimina de session_state en cuanto sales de esta página, así
-                # que hay que volver a poblarlas al entrar, no solo cuando cambia el barrio.
-                # Redondeadas a 5 decimales: ~1m de precisión, de sobra para un anuncio, y
-                # así el valor cabe en el campo sin cortarse (6 decimales no cabían).
+            if st.session_state.get("coord_neighbourhood") != neighbourhood:
+                # El usuario acaba de cambiar de barrio: recentrar sobre ese barrio.
                 st.session_state["coord_neighbourhood"] = neighbourhood
                 st.session_state["coord_lat"] = round(stats["lat"], 5)
                 st.session_state["coord_lon"] = round(stats["lon"], 5)
+            elif "coord_lat" not in st.session_state or "coord_lon" not in st.session_state:
+                # "coord_lat"/"coord_lon" son claves de widgets (los number_input de abajo):
+                # Streamlit las elimina de session_state en cuanto sales de esta página, así
+                # que hay que volver a poblarlas al entrar, no solo cuando cambia el barrio.
+                # Se restaura la coordenada exacta del último anuncio (si el barrio no ha
+                # cambiado) en vez del centro genérico del barrio, para que un ajuste manual
+                # en el mapa también sobreviva a salir y volver a esta página. Redondeadas a
+                # 5 decimales: ~1m de precisión, de sobra para un anuncio, y así el valor
+                # cabe en el campo sin cortarse (6 decimales no cabían).
+                st.session_state["coord_lat"] = round(saved.get("latitude", stats["lat"]), 5)
+                st.session_state["coord_lon"] = round(saved.get("longitude", stats["lon"]), 5)
 
             @st.dialog("Ampliar mapa", width="large")
             def _expand_map_dialog():
@@ -3269,8 +3285,9 @@ def page_formulario():
     with col_b:
         with st.container(border=True, key="section_form_alojamiento"):
             st.markdown("#### :material/apartment: Alojamiento")
+            _room_types_index = ROOM_TYPES.index(saved["room_type"]) if saved.get("room_type") in ROOM_TYPES else 0
             room_type = st.selectbox(
-                "Tipo de alojamiento", ROOM_TYPES,
+                "Tipo de alojamiento", ROOM_TYPES, index=_room_types_index,
                 format_func=lambda rt: ROOM_TYPE_ICONS[rt].split(": ", 1)[1],
                 help=(
                     "Cómo se comparte el espacio con otros huéspedes:\n\n"
@@ -3280,8 +3297,11 @@ def page_formulario():
                     "- **Habitación de hotel**: gestionado como un hotel u hostal"
                 ),
             )
+            _property_types_index = (
+                PROPERTY_TYPES.index(saved["property_type"]) if saved.get("property_type") in PROPERTY_TYPES else 0
+            )
             property_type = st.selectbox(
-                "Tipo de propiedad", PROPERTY_TYPES,
+                "Tipo de propiedad", PROPERTY_TYPES, index=_property_types_index,
                 help=(
                     "Tipo de inmueble:\n\n"
                     "- **Entire rental unit**: piso de alquiler estándar\n"
@@ -3296,39 +3316,39 @@ def page_formulario():
             c1, c2 = st.columns(2)
             with c1:
                 accommodates = st.number_input(
-                    "Huéspedes", min_value=1, max_value=16, value=4,
+                    "Huéspedes", min_value=1, max_value=16, value=saved.get("accommodates", 4),
                     help="Número máximo de personas que pueden alojarse. Una de las variables con más peso en el precio.",
                 )
                 bedrooms = st.number_input(
-                    "Dormitorios", min_value=0, max_value=20, value=1,
+                    "Dormitorios", min_value=0, max_value=20, value=saved.get("bedrooms", 1),
                     help="Número de dormitorios del alojamiento.",
                 )
                 beds = st.number_input(
-                    "Camas", min_value=1, max_value=20, value=2,
+                    "Camas", min_value=1, max_value=20, value=saved.get("beds", 2),
                     help="Número de camas disponibles (puede diferir de los dormitorios, por ejemplo con literas o sofás cama).",
                 )
                 bathrooms = st.number_input(
-                    "Baños", min_value=0.0, max_value=10.0, value=1.0, step=0.5,
+                    "Baños", min_value=0.0, max_value=10.0, value=saved.get("bathrooms", 1.0), step=0.5,
                     help="Número de baños. Se admiten medios baños (0.5) para aseos sin ducha ni bañera.",
                 )
             with c2:
                 minimum_nights = st.number_input(
-                    "Estancia mínima (noches)", min_value=1, max_value=365, value=2,
+                    "Estancia mínima (noches)", min_value=1, max_value=365, value=saved.get("minimum_nights", 2),
                     help="Noches mínimas por reserva. Es la variable que más influye en el precio: por encima de "
                     "30 noches el anuncio deja de considerarse turístico, y compite con el alquiler residencial "
                     "normal en vez de con hoteles.",
                 )
                 st.caption(market_label(minimum_nights))
                 maximum_nights = st.number_input(
-                    "Estancia máxima (noches)", min_value=1, max_value=1125, value=365,
+                    "Estancia máxima (noches)", min_value=1, max_value=1125, value=saved.get("maximum_nights", 365),
                     help="Número máximo de noches que se puede reservar de una vez.",
                 )
                 availability_365 = st.number_input(
-                    "Días disponibles al año", min_value=0, max_value=365, value=300,
+                    "Días disponibles al año", min_value=0, max_value=365, value=saved.get("availability_365", 300),
                     help="Días del año que el anuncio está disponible para reservar. Menor disponibilidad puede indicar un uso más ocasional.",
                 )
                 has_license = st.toggle(
-                    "Licencia turística", value=True,
+                    "Licencia turística", value=saved.get("has_license", True),
                     help="Indica si el anuncio tiene número de licencia o registro turístico asociado, requisito legal en España para alquileres de corta duración.",
                 )
 
@@ -3340,35 +3360,37 @@ def page_formulario():
             r1c1, r1c2 = st.columns(2, vertical_alignment="center")
             with r1c1:
                 host_is_superhost = st.toggle(
-                    "Soy superhost", value=False,
+                    "Soy superhost", value=saved.get("host_is_superhost", False),
                     help="Distinción de Airbnb para anfitriones con muy buenas valoraciones, alta tasa de respuesta y pocas cancelaciones.",
                 )
             with r1c2:
                 calculated_host_listings_count = st.number_input(
-                    "Anuncios gestionados", min_value=1, max_value=500, value=1,
+                    "Anuncios gestionados", min_value=1, max_value=500,
+                    value=saved.get("calculated_host_listings_count", 1),
                     help="Número total de anuncios que gestionas en Airbnb, incluido este. Los anfitriones con muchos anuncios suelen ser gestores profesionales.",
                 )
             r2c1, r2c2 = st.columns(2, vertical_alignment="center")
             with r2c1:
                 host_has_profile_pic = st.toggle(
-                    "Foto de perfil", value=True,
+                    "Foto de perfil", value=saved.get("host_has_profile_pic", True),
                     help="Si tu perfil de anfitrión muestra una foto visible. Genera más confianza en los huéspedes.",
                 )
             with r2c2:
                 host_tenure_years = st.number_input(
-                    "Años como anfitrión", min_value=0.0, max_value=20.0, value=0.0, step=0.5,
+                    "Años como anfitrión", min_value=0.0, max_value=20.0,
+                    value=saved.get("host_tenure_years", 0.0), step=0.5,
                     help="Tiempo que llevas publicando anuncios en Airbnb.",
                 )
             r3c1, r3c2 = st.columns(2, vertical_alignment="center")
             with r3c1:
                 host_identity_verified = st.toggle(
-                    "Identidad verificada", value=True,
+                    "Identidad verificada", value=saved.get("host_identity_verified", True),
                     help="Si has verificado tu identidad ante Airbnb (documento oficial, teléfono, email...).",
                 )
             with r3c2:
                 host_user_tenure_years = st.number_input(
                     "Años con cuenta", min_value=0.0, max_value=25.0,
-                    value=max(host_tenure_years, 0.5), step=0.5,
+                    value=max(host_tenure_years, saved.get("host_user_tenure_years", 0.5)), step=0.5,
                     help="Años con cuenta en la plataforma: tiempo que llevas registrado en Airbnb, aunque sea sin publicar anuncios.",
                 )
 
@@ -3376,7 +3398,7 @@ def page_formulario():
         with st.container(border=True, key="section_form_comodidades"):
             st.markdown("#### :material/checklist: Comodidades")
             has_ac = st.toggle(
-                "Aire acondicionado", value=CITY != "euskadi",
+                "Aire acondicionado", value=saved.get("has_ac", CITY != "euskadi"),
                 help="Poco común aquí (en torno al 17% de los anuncios), esperable en un clima atlántico."
                 if CITY == "euskadi" else
                 f"Muy común en {CITY_LABEL} (más del 80% de los anuncios lo tiene).",
@@ -3384,7 +3406,7 @@ def page_formulario():
             ac2, ac3 = st.columns(2)
             with ac2:
                 has_pool = st.toggle(
-                    "Piscina", value=False,
+                    "Piscina", value=saved.get("has_pool", False),
                     help=(
                         "Muy frecuente en Mallorca (cerca del 70% de los anuncios), reflejo del peso de "
                         "las villas frente a los pisos urbanos."
@@ -3397,7 +3419,7 @@ def page_formulario():
             with ac3:
                 if "has_dishwasher" in FEATURE_COLS:
                     has_dishwasher = st.toggle(
-                        "Lavavajillas", value=False,
+                        "Lavavajillas", value=saved.get("has_dishwasher", False),
                         help="Presente en casi la mitad de los anuncios."
                         if CITY == "euskadi" else
                         "Presente en algo menos de la mitad de los anuncios.",
@@ -3406,7 +3428,7 @@ def page_formulario():
                     has_dishwasher = False
             if "has_sea_view" in FEATURE_COLS:
                 has_sea_view = st.toggle(
-                    "Vistas al mar", value=False,
+                    "Vistas al mar", value=saved.get("has_sea_view", False),
                     help="En torno al 12% de los anuncios, una variable propia de un mercado insular."
                     if CITY == "mallorca" else
                     "En torno al 5% de los anuncios, ligado al litoral de Donostia a Bilbao.",
@@ -3419,7 +3441,7 @@ def page_formulario():
             # por ciudad en WHATIF_NUMERIC_VALUES en vez de duplicarlo con otro número suelto.
             n_amenities = st.number_input(
                 "Nº total de comodidades del anuncio", min_value=0,
-                max_value=WHATIF_NUMERIC_VALUES["n_amenities"][-1], value=30,
+                max_value=WHATIF_NUMERIC_VALUES["n_amenities"][-1], value=saved.get("n_amenities", 30),
                 help="Recuento total de comodidades marcadas en el anuncio (wifi, cocina, calefacción...), "
                 "no solo las tres de arriba. La media real es de unas 30.",
             )
@@ -3428,7 +3450,7 @@ def page_formulario():
         with st.container(border=True, key="section_form_historial"):
             st.markdown("#### :material/history: Historial del anuncio")
             is_new_listing = st.toggle(
-                "Es un anuncio nuevo, sin reseñas", value=True,
+                "Es un anuncio nuevo, sin reseñas", value=saved.get("is_new_listing", True),
                 help="Actívalo si el anuncio es nuevo y todavía no tiene reseñas ni historial de reservas.",
             )
             review_inputs = {}
@@ -3436,32 +3458,33 @@ def page_formulario():
                 c1, c2 = st.columns(2)
                 with c1:
                     review_inputs["number_of_reviews"] = st.number_input(
-                        "Número de reseñas", min_value=0, value=10,
+                        "Número de reseñas", min_value=0, value=saved.get("number_of_reviews", 10),
                         help="Total de reseñas recibidas desde la publicación del anuncio.",
                     )
                     review_inputs["reviews_per_month"] = st.number_input(
-                        "Reseñas al mes", min_value=0.0, value=1.0, step=0.1,
+                        "Reseñas al mes", min_value=0.0, value=saved.get("reviews_per_month", 1.0), step=0.1,
                         help="Media de reseñas recibidas por mes, una forma indirecta de estimar la frecuencia de reservas.",
                     )
                     review_inputs["listing_age_days"] = st.number_input(
-                        "Días desde la publicación", min_value=0, value=365,
+                        "Días desde la publicación", min_value=0, value=saved.get("listing_age_days", 365),
                         help="Antigüedad del anuncio en días.",
                     )
                 with c2:
                     review_inputs["number_of_reviews_ltm"] = st.number_input(
-                        "Reseñas último año", min_value=0, value=5,
+                        "Reseñas último año", min_value=0, value=saved.get("number_of_reviews_ltm", 5),
                         help="Reseñas recibidas en los últimos 12 meses.",
                     )
                     review_inputs["review_scores_rating"] = st.slider(
-                        "Valoración media", 0.0, 5.0, 4.8,
+                        "Valoración media", 0.0, 5.0, saved.get("review_scores_rating", 4.8),
                         help="Puntuación media de las reseñas, de 0 a 5.",
                     )
                     review_inputs["days_since_last_review"] = st.number_input(
-                        "Días desde la última reseña", min_value=0, value=30,
+                        "Días desde la última reseña", min_value=0, value=saved.get("days_since_last_review", 30),
                         help="Cuántos días han pasado desde la reseña más reciente.",
                     )
                 review_inputs["estimated_occupancy_l365d"] = st.number_input(
-                    "Noches ocupadas/año (estimado)", min_value=0, max_value=365, value=100,
+                    "Noches ocupadas/año (estimado)", min_value=0, max_value=365,
+                    value=saved.get("estimated_occupancy_l365d", 100),
                     help="Estimación de cuántas noches se ha reservado el alojamiento en el último año.",
                 )
             else:
