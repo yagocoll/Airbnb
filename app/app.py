@@ -1591,12 +1591,17 @@ def inject_global_css():
 inject_global_css()
 
 
-@st.cache_resource
+# max_entries=3: la app deja elegir entre 7 ciudades desde un único despliegue, y sin
+# límite el proceso va acumulando en memoria el modelo/datos de cada ciudad que alguien
+# visite, hasta agotar la RAM del contenedor de Streamlit Cloud (mucho más ajustada que
+# en local) y volverse cada vez más lento al cambiar de pantalla. Con esto, como mucho
+# quedan cargadas las 3 ciudades más recientes.
+@st.cache_resource(max_entries=3)
 def load_model(city):
     return joblib.load(PROJECT_DIR / "models" / city / "price_model.pkl")
 
 
-@st.cache_data
+@st.cache_data(max_entries=3)
 def load_comparables(city):
     cols = [
         "id", "host_id", "price", "room_type", "property_type", "neighbourhood_cleansed",
@@ -1639,7 +1644,7 @@ def load_interaction_scores(city):
         return json.load(f)
 
 
-@st.cache_data
+@st.cache_data(max_entries=2)
 def load_full_matrix(city):
     """Todos los anuncios (train + test) con las mismas features que ve el modelo, para
     vistas descriptivas (PDP, interacción, resumen SHAP) que no son una métrica de
@@ -1677,7 +1682,7 @@ def _price_segment_names(n=N_PRICE_SEGMENTS):
 _PRICE_QUINTILE_ORDER = _price_segment_names()
 
 
-@st.cache_data
+@st.cache_data(max_entries=3)
 def load_test_evaluation(city):
     """Sesgo del modelo (predicho - real) en el set de test, por distrito y por
     quintil de precio. Mismo análisis que 05_model_evaluation.ipynb, recalculado
@@ -1834,7 +1839,7 @@ def render_price_error_strip(segments, edges, highlight_idx, user_price):
     return "".join(parts)
 
 
-@st.cache_resource
+@st.cache_resource(max_entries=3)
 def get_shap_explainer(_model, city):
     return shap.TreeExplainer(_model.named_steps["model"])
 
@@ -1856,7 +1861,7 @@ def explain(explainer, X):
         return explainer(X)
 
 
-@st.cache_data
+@st.cache_data(max_entries=3)
 def load_shap_summary(city, sample_size=400):
     """Contribución SHAP de cada variable numérica/booleana en una muestra de todos los
     anuncios (train + test, ver load_full_matrix), con el valor real de esa variable
@@ -1924,7 +1929,10 @@ def market_label(minimum_nights):
     return "🏠 Mercado de temporada (larga estancia)"
 
 
-@st.cache_data
+# max_entries=30: se cachea por (ciudad, tipo, rango de huéspedes, rango de dormitorios),
+# así que cada combinación de filtros del Mapa del mercado que alguien pruebe se queda en
+# memoria; sin tope crece sin límite a lo largo de una sesión larga o entre visitantes.
+@st.cache_data(max_entries=30)
 def neighbourhood_market_agg(city, room_type, accommodates_range, bedrooms_range):
     """Agregados por barrio para el Mapa del mercado. room_type='Todos' o uno de
     ROOM_TYPES, accommodates_range=(min, max) de huéspedes, bedrooms_range=(min, max)
