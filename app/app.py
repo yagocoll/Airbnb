@@ -3179,7 +3179,7 @@ def page_formulario():
                     district = st.selectbox(
                         "Distrito", DISTRICTS,
                         index=DISTRICTS.index(_saved_district),
-                        help=_district_help,
+                        help=_district_help, key="form_district",
                     )
                 with neigh_col:
                     _neigh_options = NEIGHBOURHOODS_BY_DISTRICT[district]
@@ -3188,6 +3188,7 @@ def page_formulario():
                     neighbourhood = st.selectbox(
                         "Barrio", _neigh_options, index=_neigh_index,
                         help="Barrio dentro del distrito elegido. El modelo usa el precio medio histórico de cada barrio como variable.",
+                        key="form_neighbourhood",
                     )
             else:
                 # Sin nivel de barrio (ver features.HAS_NEIGHBOURHOOD_LEVEL): un único
@@ -3195,7 +3196,7 @@ def page_formulario():
                 district = st.selectbox(
                     "Distrito", DISTRICTS,
                     index=DISTRICTS.index(_saved_district),
-                    help=_district_help,
+                    help=_district_help, key="form_district",
                 )
                 neighbourhood = NEIGHBOURHOODS_BY_DISTRICT[district][0]
             st.caption(":material/pin_drop: Ajustar coordenadas exactas")
@@ -3304,12 +3305,14 @@ def page_formulario():
                     "- **Habitación compartida**: comparte también la habitación con otros huéspedes\n"
                     "- **Habitación de hotel**: gestionado como un hotel u hostal"
                 ),
+                key="form_room_type",
             )
             _property_types_index = (
                 PROPERTY_TYPES.index(saved["property_type"]) if saved.get("property_type") in PROPERTY_TYPES else 0
             )
             property_type = st.selectbox(
                 "Tipo de propiedad", PROPERTY_TYPES, index=_property_types_index,
+                key="form_property_type",
                 help=(
                     "Tipo de inmueble:\n\n"
                     "- **Entire rental unit**: piso de alquiler estándar\n"
@@ -3326,18 +3329,22 @@ def page_formulario():
                 accommodates = st.number_input(
                     "Huéspedes", min_value=1, max_value=16, value=saved.get("accommodates", 4),
                     help="Número máximo de personas que pueden alojarse. Una de las variables con más peso en el precio.",
+                    key="form_accommodates",
                 )
                 bedrooms = st.number_input(
                     "Dormitorios", min_value=0, max_value=20, value=saved.get("bedrooms", 1),
                     help="Número de dormitorios del alojamiento.",
+                    key="form_bedrooms",
                 )
                 beds = st.number_input(
                     "Camas", min_value=1, max_value=20, value=saved.get("beds", 2),
                     help="Número de camas disponibles (puede diferir de los dormitorios, por ejemplo con literas o sofás cama).",
+                    key="form_beds",
                 )
                 bathrooms = st.number_input(
                     "Baños", min_value=0.0, max_value=10.0, value=saved.get("bathrooms", 1.0), step=0.5,
                     help="Número de baños. Se admiten medios baños (0.5) para aseos sin ducha ni bañera.",
+                    key="form_bathrooms",
                 )
             with c2:
                 minimum_nights = st.number_input(
@@ -3345,19 +3352,23 @@ def page_formulario():
                     help="Noches mínimas por reserva. Es la variable que más influye en el precio: por encima de "
                     "30 noches el anuncio deja de considerarse turístico, y compite con el alquiler residencial "
                     "normal en vez de con hoteles.",
+                    key="form_minimum_nights",
                 )
                 st.caption(market_label(minimum_nights))
                 maximum_nights = st.number_input(
                     "Estancia máxima (noches)", min_value=1, max_value=1125, value=saved.get("maximum_nights", 365),
                     help="Número máximo de noches que se puede reservar de una vez.",
+                    key="form_maximum_nights",
                 )
                 availability_365 = st.number_input(
                     "Días disponibles al año", min_value=0, max_value=365, value=saved.get("availability_365", 300),
                     help="Días del año que el anuncio está disponible para reservar. Menor disponibilidad puede indicar un uso más ocasional.",
+                    key="form_availability_365",
                 )
                 has_license = st.toggle(
                     "Licencia turística", value=saved.get("has_license", True),
                     help="Indica si el anuncio tiene número de licencia o registro turístico asociado, requisito legal en España para alquileres de corta duración.",
+                    key="form_has_license",
                 )
 
     col_c, col_d = st.columns(2)
@@ -3370,36 +3381,47 @@ def page_formulario():
                 host_is_superhost = st.toggle(
                     "Soy superhost", value=saved.get("host_is_superhost", False),
                     help="Distinción de Airbnb para anfitriones con muy buenas valoraciones, alta tasa de respuesta y pocas cancelaciones.",
+                    key="form_host_is_superhost",
                 )
             with r1c2:
                 calculated_host_listings_count = st.number_input(
                     "Anuncios gestionados", min_value=1, max_value=500,
                     value=saved.get("calculated_host_listings_count", 1),
                     help="Número total de anuncios que gestionas en Airbnb, incluido este. Los anfitriones con muchos anuncios suelen ser gestores profesionales.",
+                    key="form_calculated_host_listings_count",
                 )
             r2c1, r2c2 = st.columns(2, vertical_alignment="center")
             with r2c1:
                 host_has_profile_pic = st.toggle(
                     "Foto de perfil", value=saved.get("host_has_profile_pic", True),
                     help="Si tu perfil de anfitrión muestra una foto visible. Genera más confianza en los huéspedes.",
+                    key="form_host_has_profile_pic",
                 )
             with r2c2:
                 host_tenure_years = st.number_input(
                     "Años como anfitrión", min_value=0.0, max_value=20.0,
                     value=saved.get("host_tenure_years", 0.0), step=0.5,
                     help="Tiempo que llevas publicando anuncios en Airbnb.",
+                    key="form_host_tenure_years",
                 )
             r3c1, r3c2 = st.columns(2, vertical_alignment="center")
             with r3c1:
                 host_identity_verified = st.toggle(
                     "Identidad verificada", value=saved.get("host_identity_verified", True),
                     help="Si has verificado tu identidad ante Airbnb (documento oficial, teléfono, email...).",
+                    key="form_host_identity_verified",
                 )
             with r3c2:
+                # Con key= fijo, este value= solo se aplica la primera vez que se crea el
+                # widget (o tras volver a Formulario, cuando Streamlit ya lo ha olvidado):
+                # el ajuste automático a >= host_tenure_years deja de repetirse en cada
+                # cambio de "Años como anfitrión" una vez el widget ya existe, a cambio de
+                # que escribir aquí ya no se deshaga solo (ver key="form_beds" más arriba).
                 host_user_tenure_years = st.number_input(
                     "Años con cuenta", min_value=0.0, max_value=25.0,
                     value=max(host_tenure_years, saved.get("host_user_tenure_years", 0.5)), step=0.5,
                     help="Años con cuenta en la plataforma: tiempo que llevas registrado en Airbnb, aunque sea sin publicar anuncios.",
+                    key="form_host_user_tenure_years",
                 )
 
     with col_d:
@@ -3410,6 +3432,7 @@ def page_formulario():
                 help="Poco común aquí (en torno al 17% de los anuncios), esperable en un clima atlántico."
                 if CITY == "euskadi" else
                 f"Muy común en {CITY_LABEL} (más del 80% de los anuncios lo tiene).",
+                key="form_has_ac",
             )
             ac2, ac3 = st.columns(2)
             with ac2:
@@ -3423,6 +3446,7 @@ def page_formulario():
                         if CITY == "euskadi" else
                         "Poco frecuente (menos del 5% de los anuncios), pero un factor de lujo cuando está."
                     ),
+                    key="form_has_pool",
                 )
             with ac3:
                 if "has_dishwasher" in FEATURE_COLS:
@@ -3431,6 +3455,7 @@ def page_formulario():
                         help="Presente en casi la mitad de los anuncios."
                         if CITY == "euskadi" else
                         "Presente en algo menos de la mitad de los anuncios.",
+                        key="form_has_dishwasher",
                     )
                 else:
                     has_dishwasher = False
@@ -3440,6 +3465,7 @@ def page_formulario():
                     help="En torno al 12% de los anuncios, una variable propia de un mercado insular."
                     if CITY == "mallorca" else
                     "En torno al 5% de los anuncios, ligado al litoral de Donostia a Bilbao.",
+                    key="form_has_sea_view",
                 )
             else:
                 has_sea_view = False
@@ -3452,6 +3478,7 @@ def page_formulario():
                 max_value=WHATIF_NUMERIC_VALUES["n_amenities"][-1], value=saved.get("n_amenities", 30),
                 help="Recuento total de comodidades marcadas en el anuncio (wifi, cocina, calefacción...), "
                 "no solo las tres de arriba. La media real es de unas 30.",
+                key="form_n_amenities",
             )
 
     with col_a:
@@ -3460,6 +3487,7 @@ def page_formulario():
             is_new_listing = st.toggle(
                 "Es un anuncio nuevo, sin reseñas", value=saved.get("is_new_listing", True),
                 help="Actívalo si el anuncio es nuevo y todavía no tiene reseñas ni historial de reservas.",
+                key="form_is_new_listing",
             )
             review_inputs = {}
             if not is_new_listing:
@@ -3468,32 +3496,39 @@ def page_formulario():
                     review_inputs["number_of_reviews"] = st.number_input(
                         "Número de reseñas", min_value=0, value=saved.get("number_of_reviews", 10),
                         help="Total de reseñas recibidas desde la publicación del anuncio.",
+                        key="form_number_of_reviews",
                     )
                     review_inputs["reviews_per_month"] = st.number_input(
                         "Reseñas al mes", min_value=0.0, value=saved.get("reviews_per_month", 1.0), step=0.1,
                         help="Media de reseñas recibidas por mes, una forma indirecta de estimar la frecuencia de reservas.",
+                        key="form_reviews_per_month",
                     )
                     review_inputs["listing_age_days"] = st.number_input(
                         "Días desde la publicación", min_value=0, value=saved.get("listing_age_days", 365),
                         help="Antigüedad del anuncio en días.",
+                        key="form_listing_age_days",
                     )
                 with c2:
                     review_inputs["number_of_reviews_ltm"] = st.number_input(
                         "Reseñas último año", min_value=0, value=saved.get("number_of_reviews_ltm", 5),
                         help="Reseñas recibidas en los últimos 12 meses.",
+                        key="form_number_of_reviews_ltm",
                     )
                     review_inputs["review_scores_rating"] = st.slider(
                         "Valoración media", 0.0, 5.0, saved.get("review_scores_rating", 4.8),
                         help="Puntuación media de las reseñas, de 0 a 5.",
+                        key="form_review_scores_rating",
                     )
                     review_inputs["days_since_last_review"] = st.number_input(
                         "Días desde la última reseña", min_value=0, value=saved.get("days_since_last_review", 30),
                         help="Cuántos días han pasado desde la reseña más reciente.",
+                        key="form_days_since_last_review",
                     )
                 review_inputs["estimated_occupancy_l365d"] = st.number_input(
                     "Noches ocupadas/año (estimado)", min_value=0, max_value=365,
                     value=saved.get("estimated_occupancy_l365d", 100),
                     help="Estimación de cuántas noches se ha reservado el alojamiento en el último año.",
+                    key="form_estimated_occupancy_l365d",
                 )
             else:
                 st.caption("Sin reseñas, disponibilidad ni historial todavía: el modelo lo tiene en cuenta como tal.")
